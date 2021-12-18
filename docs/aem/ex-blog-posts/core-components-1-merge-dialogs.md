@@ -1,3 +1,5 @@
+import Image from '@theme/IdealImage';
+
 # Extending Core Components Part 1 - Merging Dialogs
 
 This post explains, how you can extend the functionality of AEM Core Components. Part 1 focuses on the extension and
@@ -26,8 +28,7 @@ The latest Core Component Release can be downloaded from
 their [GitHub Release page](https://github.com/adobe/aem-core-wcm-components/releases).
 
 Each GitHub Release produces the following artefacts
-
-![GitHub Release Artifacts](/images/aem/core-components/github-release.jpg)
+<Image img={require('/images/aem/core-components/github-release.jpg')} />
 
 In general, downloading the `core.wcm.components.all-<version>.zip` and installing it via
 the [JCR Package Manager](http://localhost:4502/crx/packmgr/index.jsp) is enough.
@@ -351,24 +352,24 @@ the latter is the important part. But more on this in Part 2.
 
 If added to a page and filled with data, the jcr node will be created like and look like this
 
-![ExtendedImageRoot](/images/aem/core-components/extended-image-root.jpg)
+<Image img={require('/images/aem/core-components/extended-image-root.jpg')} />
 
 Due to the parameterized namespace include, all included/referenced image v2 dialog nodes will be included in
 the `namespace="image"`
 
-![ExtendedImageImage](/images/aem/core-components/extended-image-image.jpg)
+<Image img={require('/images/aem/core-components/extended-image-image.jpg')} />
 
 All custom added properties, in our case the ctaLinks Multifield, will be in their defined jcr properties, as expected
 and usual for any AEM component
 
-![ExtendedImageCtasLinks](/images/aem/core-components/extended-image-ctalinks.jpg)
+<Image img={require('/images/aem/core-components/extended-image-ctalinks.jpg')} />
 
 By implementing above solution, the result will look like the following image. We are reusing the inherited asset and
 metadata tabs, as well as our custom added tab for cta links
 
-![ExtendedImageTabOriginal](/images/aem/core-components/extended-image-tab-original.jpg)
+<Image img={require('/images/aem/core-components/extended-image-tab-original.jpg')} />
 
-![ExtendedImageTabCustom](/images/aem/core-components/extended-image-tab-custom.jpg)
+<Image img={require('/images/aem/core-components/extended-image-tab-custom.jpg')} />
 
 Please take a look at Part 2 of this series in which we will combine core components pre written logic and our own
 custom added properties.
