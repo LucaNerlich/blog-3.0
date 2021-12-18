@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
     title: 'Luca Nerlich - Tech Documentation',
     tagline: 'A Blog ~ ish',
-    url: 'https://blog.lucanerlich.com',
+    url: 'https://lucanerlich.com',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
