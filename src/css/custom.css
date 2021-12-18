@@ -30,3 +30,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .alert {
     margin-bottom: 1em;
 }
+
+.font-red div a{
+    color: #ff0000;
+}
