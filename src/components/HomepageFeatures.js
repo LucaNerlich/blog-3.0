@@ -6,7 +6,6 @@ const FeatureList = [
     {
         title: 'Gesellschafter',
         link: 'https://pnn-it.de/',
-        // Svg: require('../../static/img/pnnit.svg').default,
         description: (
             <>
                 Webdesign and Hosting
@@ -17,7 +16,7 @@ const FeatureList = [
     },
     {
         title: 'Technical Consultant @ Adobe',
-        // Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
+        // Svg: require('../../static/images/undraw_docusaurus_tree.svg').default,
         description: (
             <>
                 AEM Consulting and Development
@@ -28,7 +27,7 @@ const FeatureList = [
     },
     {
         title: 'Webdeveloper and Admin',
-        // Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
+        // Svg: require('../../static/images/undraw_docusaurus_tree.svg').default,
         description: (
             <>
                 First Class Performance GmbH

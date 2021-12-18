@@ -122,8 +122,6 @@ Example `git ld`:
 Example `git ll`:
 ![git_ll](/images/tech/git_ll.png)
 
-Download my `.gitconfig` [here](/assets/downloads/.gitconfig).
-
 ## ~/.ssh/config
 
 The following blocks are two examples of my `~/.ssh/config`.

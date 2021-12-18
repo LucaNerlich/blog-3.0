@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+
+    <!-- https://www.gbmb.org/mb-to-bytes -->
+    <!-- Tracks > Align Tracks > End-To-End -->
+    <!-- Tracks > Mix -> Stereo to Mono  -->
+
+    <channel>
+        <title>Stay Forever Spielt - Privater Archivfeed</title>
+        <link>https://lucanerlich.com</link>
+        <description>Stay Forever Spielt Supercuts - Privater Archivfeed</description>
+        <lastBuildDate>Sat, 26 Jul 2020 22:00:59 +0000</lastBuildDate>
+
+        <image>
+            <url>https://lucanerlich.com/logo.png</url>
+            <title>Stay Forever Spielt - Privater Archivfeed</title>
+            <link>https://lucanerlich.com</link>
+        </image>
+        <atom:link rel="self" type="application/rss+xml"
+                   title="Podcast Supercuts - Privater Archivfeed"
+                   href="https://lucanerlich.com/sfs"/>
+        <language>de-DE</language>
+
+        <itunes:author>Diverse</itunes:author>
+        <itunes:type>episodic</itunes:type>
+        <itunes:summary>Podcasts Supercuts</itunes:summary>
+        <itunes:category text="Games &amp; Hobbies">
+            <itunes:category text="Video Games"></itunes:category>
+        </itunes:category>
+
+        <itunes:owner>
+            <itunes:name>Luca Nerlich</itunes:name>
+            <itunes:email>spam@lucanerlich.de</itunes:email>
+        </itunes:owner>
+        <itunes:image href="https://lucanerlich.com/images/logo.png"/>
+        <itunes:subtitle>Podcasts Supercuts</itunes:subtitle>
+        <itunes:block>yes</itunes:block>
+        <itunes:explicit>yes</itunes:explicit>
+
+        <item>
+            <title>Spiegel - Faking Hitler</title>
+            <pubDate>Mon, 13 December 2021 15:00:00 +0000</pubDate>
+            <guid isPermaLink="false">73cMNEYnRAMybBNt4btz</guid>
+            <description><![CDATA[Spiegel - Faking Hitler]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/7YSD7Li6p9GcAW5/download"
+                       length="313524224"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>6:30:35</itunes:duration>
+            <itunes:author>Der Spiegel</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>Spiegel - Faking Hitler</itunes:summary>
+
+            <content:encoded><![CDATA[Spiegel - Faking Hitler]]></content:encoded>
+        </item>
+
+        <item>
+            <title>SFS - Outer Wilds</title>
+            <pubDate>Tue, 26 November 2021 15:00:00 +0000</pubDate>
+            <guid isPermaLink="false">9bGaysC793AaE3Nx9J38</guid>
+            <description><![CDATA[SFS - Outer Wilds]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/FiHpF2Dq8oa8rQy/download"
+                       length="487587840"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>10:03:25</itunes:duration>
+            <itunes:author>The Pod</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Outer Wilds</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Outer Wilds]]></content:encoded>
+        </item>
+
+        <item>
+            <title>TP - Dark Souls 1</title>
+            <pubDate>Tue, 2 November 2021 23:00:00 +0000</pubDate>
+            <guid isPermaLink="false">chRPgscFGMsD4zBMgN4x</guid>
+            <description><![CDATA[TP - Dark Souls 1]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/rWmSq8FaNDxrT8t/download"
+                       length="658505728"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>15:17:37</itunes:duration>
+            <itunes:author>The Pod</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>TP - Dark Souls 1</itunes:summary>
+
+            <content:encoded><![CDATA[TP - Dark Souls 1]]></content:encoded>
+        </item>
+
+        <item>
+            <title>TP - Mass Effect 3</title>
+            <pubDate>Tue, 2 November 2021 22:00:00 +0000</pubDate>
+            <guid isPermaLink="false">otqPfJHSy8yzTxtM3zGX</guid>
+            <description><![CDATA[TP - Mass Effect 3]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/kJL9dZpJM4Dk77b/download"
+                       length="849346560"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>19:15:07</itunes:duration>
+            <itunes:author>The Pod</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>TP - Mass Effect 3</itunes:summary>
+
+            <content:encoded><![CDATA[TP - Mass Effect 3]]></content:encoded>
+        </item>
+
+        <item>
+            <title>TP - Mass Effect 2</title>
+            <pubDate>Tue, 2 November 2021 21:00:00 +0000</pubDate>
+            <guid isPermaLink="false">CpSN3ToYXdt7nMpH7qr7</guid>
+            <description><![CDATA[TP - Mass Effect 2]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/Tdk8XqE8z6WrF9F/download"
+                       length="1050673152"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>24:55:40</itunes:duration>
+            <itunes:author>The Pod</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>TP - Mass Effect 2</itunes:summary>
+
+            <content:encoded><![CDATA[TP - Mass Effect 2]]></content:encoded>
+        </item>
+
+        <item>
+            <title>TP - Mass Effect 1</title>
+            <pubDate>Tue, 2 November 2021 20:00:00 +0000</pubDate>
+            <guid isPermaLink="false">ijLJP9rHemYMBr9xkk9p</guid>
+            <description><![CDATA[TP - Mass Effect 1]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/PYbGawYwF4Nngyk/download"
+                       length="434110464"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>9:43:18</itunes:duration>
+            <itunes:author>The Pod</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>TP - Mass Effect 1</itunes:summary>
+
+            <content:encoded><![CDATA[TP - Mass Effect 1]]></content:encoded>
+        </item>
+
+        <item>
+            <title>DttD - Gothic 1</title>
+            <pubDate>Sun, 9 September 2021 10:00:00 +0000</pubDate>
+            <guid isPermaLink="false">noFDoz7y3P3EAzcPdqct</guid>
+            <description><![CDATA[DttD - Gothic 1]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/qYKRQXn76ymk6nB/download"
+                       length="742391808"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>15:56:13</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DttD - Gothic 1</itunes:summary>
+
+            <content:encoded><![CDATA[DttD - Gothic 1]]></content:encoded>
+        </item>
+
+        <item>
+            <title>KGB</title>
+            <pubDate>Fri, 9 September 2021 09:00:00 +0000</pubDate>
+            <guid isPermaLink="false">mmQCeqrR8xkLj9zxmm9M</guid>
+            <description><![CDATA[SFS - KGB]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/MiSfw2CxwJ9ErE4/download"
+                       length="719323136"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>14:55:15</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - KGB</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - KGB]]></content:encoded>
+        </item>
+
+        <item>
+            <title>DttD - DreamWeb</title>
+            <pubDate>Sun, 21 March 2021 20:00:00 +0000</pubDate>
+            <guid isPermaLink="false">D3Sf5pfk4QsiPi8RbgQb</guid>
+            <description><![CDATA[DttD - DreamWeb]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/cDy3xgYjfqmDNfw/download"
+                       length="297795584"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>6:50:49</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DttD - DreamWeb</itunes:summary>
+
+            <content:encoded><![CDATA[DttD - DreamWeb]]></content:encoded>
+        </item>
+
+        <item>
+            <title>DttD - Beneath a Steel Sky</title>
+            <pubDate>Sun, 21 March 2021 19:00:00 +0000</pubDate>
+            <guid isPermaLink="false">Q3M9eBJPQgxNRPsrJRQ8</guid>
+            <description><![CDATA[DttD - Beneath a Steel Sky]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/jSjHeHBSYH5xCRd/download"
+                       length="190840832"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>5:08:43</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DttD - Beneath a Steel Sky</itunes:summary>
+
+            <content:encoded><![CDATA[DttD - Beneath a Steel Sky]]></content:encoded>
+        </item>
+
+        <item>
+            <title>A King of Shreds and Patches</title>
+            <pubDate>Fri, 19 March 2021 19:00:00 +0000</pubDate>
+            <guid isPermaLink="false">Xp3ymBjnf95bXC5ETn9M</guid>
+            <description><![CDATA[SFS - A King of Shreds and Patches]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/3Y2XPtBMsXi6paX/download"
+                       length="496000000"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>10:35:09</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - A King of Shreds and Patches</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - A King of Shreds and Patches]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Titanic</title>
+            <pubDate>Fri, 26 February 2021 19:00:00 +0000</pubDate>
+            <guid isPermaLink="false">hfdX9dsgGzNFhBA8bFLo</guid>
+            <description><![CDATA[SFS - Titanic]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/eArdknWEqFSxyok/download"
+                       length="433061888"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>7:31:47</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Titanic</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Titanic]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Sherlock</title>
+            <pubDate>Fri, 11 September 2020 20:00:00 +0000</pubDate>
+            <guid isPermaLink="false">Ikk3JCV4m2ygWGbEIzDb</guid>
+            <description><![CDATA[SFS - Sherlock]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/8NALwzGCa5qk5zD/download"
+                       length="673185792"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>7:47:48</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Sherlock</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Sherlock]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Wonderland</title>
+            <pubDate>Mon, 27 July 2020 20:00:00 +0000</pubDate>
+            <guid isPermaLink="false">3S8nimF8FoQyShybqJAh</guid>
+            <description><![CDATA[SFS - Wonderland]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/Ny9zkmd96RSX8mr/download"
+                       length="503316480"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>5:49:43</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Wonderland</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Wonderland]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Thimbleweed Park</title>
+            <pubDate>Mon, 27 July 2020 19:00:00 +0000</pubDate>
+            <guid isPermaLink="false">3S8nimF8FoQyShybqJAh</guid>
+            <description><![CDATA[SFS - Thimbleweed Park]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/oaoWR6mzKSJM5fs/download"
+                       length="652214272"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>7:33:16</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Thimbleweed Park</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Thimbleweed Park]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Personal Nightmare</title>
+            <pubDate>Mon, 27 July 2020 18:00:00 +0000</pubDate>
+            <guid isPermaLink="false">j67TixBGbXtiXAce8jAg</guid>
+            <description><![CDATA[SFS - Personal Nightmare]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/tYp52HEcwnfPGNp/download"
+                       length="477102080"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>5:31:50</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Personal Nightmare</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Personal Nightmare]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Maupiti Island</title>
+            <pubDate>Mon, 27 July 2020 17:00:00 +0000</pubDate>
+            <guid isPermaLink="false">4dKN9BdF3xCaDHBpMyQg</guid>
+            <description><![CDATA[SFS - Maupiti Island]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/kELMZq5JrXrkkHa/download"
+                       length="692060160"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>8:00:51</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Maupiti Island</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Maupiti Island]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Jonathan</title>
+            <pubDate>Sun, 27 July 2020 16:00:00 +0000</pubDate>
+            <guid isPermaLink="false">ifbNa3yq9N4jzfDtD8Pr</guid>
+            <description><![CDATA[SFS - Jonathan]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/6k4sHQZzBEqkTRf/download"
+                       length="683671552"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>7:55:27</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Jonathan</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Jonathan]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Drachen von Laas</title>
+            <pubDate>Sun, 27 July 2020 15:00:00 +0000</pubDate>
+            <guid isPermaLink="false">B3gHG7Y8DhYenhg7Lgze</guid>
+            <description><![CDATA[SFS - Drachen von Laas]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/p9XipC6jwxb7fPq/download"
+                       length="587202560"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>6:48:26</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Drachen von Laas</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Drachen von Laas]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Discworld</title>
+            <pubDate>Sun, 27 July 2020 15:00:00 +0000</pubDate>
+            <guid isPermaLink="false">5jtXJRLQQqcA3KKQSAJK</guid>
+            <description><![CDATA[SFS - Discworld]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/nrfpd2ZiwPPHmjr/download"
+                       length="1017118720"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>12:08:56</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Discworld</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Discworld]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Die Kathedrale</title>
+            <pubDate>Sun, 27 July 2020 15:00:00 +0000</pubDate>
+            <guid isPermaLink="false">7CzXkFFN3oEdg3ia5dFQ</guid>
+            <description><![CDATA[SFS - Die Kathedrale]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/6ckxXddeMABj56j/download"
+                       length="739246080"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>8:34:05</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Die Kathedrale</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Die Kathedrale]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Deadline</title>
+            <pubDate>Sun, 27 July 2020 14:00:00 +0000</pubDate>
+            <guid isPermaLink="false">BYnBqobds4tA9iF95hk7</guid>
+            <description><![CDATA[SFS - Deadline]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/imcLj2r7gHJFiMb/download"
+                       length="334495744"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>3:52:32</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Deadline</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Deadline]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Darkseed</title>
+            <pubDate>Sun, 27 July 2020 13:00:00 +0000</pubDate>
+            <guid isPermaLink="false">LCoMR3FLnLScANBF9th9</guid>
+            <description><![CDATA[SFS - Darkseed]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/wHGaXnqngWokz8r/download"
+                       length="503316480"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>5:49:36</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Darkseed</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Darkseed]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Circuits Edge</title>
+            <pubDate>Sun, 27 July 2020 12:00:00 +0000</pubDate>
+            <guid isPermaLink="false">CMsoNDiMesBQ7d5T65Pz</guid>
+            <description><![CDATA[SFS - Circuits Edge]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/PXQsgdi46wEtPTj/download"
+                       length="637534208"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>7:22:48</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Circuits Edge</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Circuits Edge]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Bozuma</title>
+            <pubDate>Sun, 27 July 2020 12:00:00 +0000</pubDate>
+            <guid isPermaLink="false">PRfxR9YDCYMEcr96Bd85</guid>
+            <description><![CDATA[SFS - Bozuma]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/4iM9cob6nJ9JQWG/download"
+                       length="639631360"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>7:24:33</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Bozuma</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Bozuma]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Bloodnet</title>
+            <pubDate>Sun, 27 July 2020 11:00:00 +0000</pubDate>
+            <guid isPermaLink="false">GBA9R5ax3nqna7xhmPib</guid>
+            <description><![CDATA[SFS - Bloodnet]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/k2ixjdJFrQZs7ry/download"
+                       length="985661440"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>11:24:44</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Bloodnet</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Bloodnet]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Biosys</title>
+            <pubDate>Sun, 27 July 2020 11:00:00 +0000</pubDate>
+            <guid isPermaLink="false">8MASJbFDrMjcJPeGpghA</guid>
+            <description><![CDATA[SFS - Biosys]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/DxgKL9Qykctzobq/download"
+                       length="544210944"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>6:18:35</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Biosys</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Biosys]]></content:encoded>
+        </item>
+
+        <item>
+            <title>B.A.T 2</title>
+            <pubDate>Sun, 27 July 2020 10:00:00 +0000</pubDate>
+            <guid isPermaLink="false">yPRxz3ymz5ziAEMojeyK</guid>
+            <description><![CDATA[SFS - B.A.T 2]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/7YsdRWQmQRDPL3i/download"
+                       length="808452096"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>9:21:51</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - B.A.T 2</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - B.A.T 2]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Anchorhead</title>
+            <pubDate>Sun, 27 July 2020 09:00:00 +0000</pubDate>
+            <guid isPermaLink="false">3KBzkzoCjqDfsGRLQF45</guid>
+            <description><![CDATA[SFS - Anchorhead]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/GJwnKeACfj5Pn5y/download"
+                       length="1029701632"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>11:55:17</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Anchorhead</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Anchorhead]]></content:encoded>
+        </item>
+
+        <item>
+            <title>Amnesia</title>
+            <pubDate>Sun, 27 July 2020 08:00:00 +0000</pubDate>
+            <guid isPermaLink="false">zJ9EDYb4xkkMajimzfTY</guid>
+            <description><![CDATA[SFS - Amnesia]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/gSAHFsY458bMd3m/download"
+                       length="824180736"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>09:31:25</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Amnesia</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Amnesia]]></content:encoded>
+        </item>
+
+    </channel>
+</rss>
