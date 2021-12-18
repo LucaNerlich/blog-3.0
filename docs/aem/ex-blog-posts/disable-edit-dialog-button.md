@@ -1,4 +1,6 @@
-// todo write blogpost
+---
+draft: true
+---
 
 ```javascript
 // disableComponentEditing.js

@@ -1,32 +1,39 @@
 # AEM Multi Tenancy Theme Support For UI Frontend Module
 
-This post explains, how you can customize your ui.frontend ClientLibrary creation to generate separate ClientLibraries for each site or theme with a focus on reusing (core) components and the AEM Style System. Leveraging this, allows you to build less backend components, reuse more code and provide flexibility to authors.
+This post explains, how you can customize your ui.frontend ClientLibrary creation to generate separate ClientLibraries
+for each site or theme with a focus on reusing (core) components and the AEM Style System. Leveraging this, allows you
+to build less backend components, reuse more code and provide flexibility to authors.
 
 This tutorial expects an entry level understanding of the AEM Client Library mechanism.
 
 ## TL:DR
 
 1. Configure webpack common to, for each desired 'site', copy and generate (to /dist)
-   1. site.css
-   2. site.js
-   3. all resources (images, fonts)
-2. Configure the aem-clientlib-generator plugin to generate a separate clientlib for each specified site and their files in /dist
+    1. site.css
+    2. site.js
+    3. all resources (images, fonts)
+2. Configure the aem-clientlib-generator plugin to generate a separate clientlib for each specified site and their files
+   in /dist
 3. Implement site specific component variants, styling etc.
 
 ## Issue
 
-The maven archetype ui.frontendmodule comes with a neat template to generate and copy a ClientLibrary to ui.apps, which can then be integrated and loaed on AEM pages. However, the out of the box solution is only configured to generate one single ClientLibrary.
-This works fine, if you have *one* site for which you are building the styling in this repository.
+The maven archetype ui.frontendmodule comes with a neat template to generate and copy a ClientLibrary to ui.apps, which
+can then be integrated and loaed on AEM pages. However, the out of the box solution is only configured to generate one
+single ClientLibrary. This works fine, if you have *one* site for which you are building the styling in this repository.
 
-By reusing AEM Core Components and referencing them via `@ResourceSuperType` in tenant specific sites, it is possible to reuse a lot of backend code and markup templates. FrontEnd developers could then focus on creating site specific styling variants which get *automatically* loaded via their respective ClientLibrary.
-One could also separate a Light and a Dark Mode for example with this method and have their stylesheets neatly separated into specific ClientLibraries.
+By reusing AEM Core Components and referencing them via `@ResourceSuperType` in tenant specific sites, it is possible to
+reuse a lot of backend code and markup templates. FrontEnd developers could then focus on creating site specific styling
+variants which get *automatically* loaded via their respective ClientLibrary. One could also separate a Light and a Dark
+Mode for example with this method and have their stylesheets neatly separated into specific ClientLibraries.
 
 ## Solution
 
-This example assumes, that we are building components, their styling variants and/or themes for two clients/tenants called [site-X] and [site-Y].
+This example assumes, that we are building components, their styling variants and/or themes for two clients/tenants
+called [site-X] and [site-Y].
 
-Since this solution just adapts the maven archetype generated files, I will only show the relevant file excerpts.
-The two important files are:
+Since this solution just adapts the maven archetype generated files, I will only show the relevant file excerpts. The
+two important files are:
 
 - ui.frontend/clientlib.config.js
 - ui.frontend/webpack.common.js
@@ -34,30 +41,30 @@ The two important files are:
 ### ui.frontend Folder Structure
 
 - ui.frontend
-  - /clientlib.config.js
-  - /webpack.common.js
-  - /src/main/webpack
-    - /components
-      - /[some-component-A]
-        - /[site-X] -- the components styling for the site X
-        - /[site-Y]
-        - [...]
-      - /[some-component-B]
-        - /[site-X]
-        - /[site-Y]
-        - [...]
-      - [...]
-    - /resources
-      - /[site-X]
-      - /[site-Y]
-    - /site/layouts
-      - /[site-X]
-        - /main-site-X.scss
-        - /main-site-X.ts
-      - /[site-Y]
-        - /main-site-Y.scss
-        - /main-site-Y.ts
-      - [...]
+    - /clientlib.config.js
+    - /webpack.common.js
+    - /src/main/webpack
+        - /components
+            - /[some-component-A]
+                - /[site-X] -- the components styling for the site X
+                - /[site-Y]
+                - [...]
+            - /[some-component-B]
+                - /[site-X]
+                - /[site-Y]
+                - [...]
+            - [...]
+        - /resources
+            - /[site-X]
+            - /[site-Y]
+        - /site/layouts
+            - /[site-X]
+                - /main-site-X.scss
+                - /main-site-X.ts
+            - /[site-Y]
+                - /main-site-Y.scss
+                - /main-site-Y.ts
+            - [...]
 
 ### /src/main/webpack/site/layouts/main-site-X.scss
 
@@ -95,9 +102,14 @@ For the webpack config, we need to modify three key areas
 ```javascript
 // we need to define the javascript/typescripts entry file location for each clientlib and their site.
 entry: {
-    site-X: '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
-    site-Y: '/src/main/webpack/site/layouts/main-site-Y.ts',
-},
+    site - X
+:
+    '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
+    site - Y
+:
+    '/src/main/webpack/site/layouts/main-site-Y.ts',
+}
+,
 
 [...]
 
@@ -107,8 +119,11 @@ output: {
     filename: (chunkData) => {
         return chunkData.chunk.name === 'dependencies' ? 'clientlib-dependencies/[name].js' : 'clientlib-[name]/[name].js';
     },
-    path: path.resolve(__dirname, 'dist')
-},
+        path
+:
+    path.resolve(__dirname, 'dist')
+}
+,
 
 [...]
 
@@ -116,8 +131,8 @@ plugins: [
     [...]
     new CopyWebpackPlugin([
         // we need to specify the path to each site
-        { from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-X'), to: './clientlib-site-X' },
-        { from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-Y'), to: './clientlib-site-Y' }
+        {from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-X'), to: './clientlib-site-X'},
+        {from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-Y'), to: './clientlib-site-Y'}
     ])
 ],
 ```
@@ -180,9 +195,11 @@ for (const siteName of SITES) {
 
 // Config for `aem-clientlib-generator`
 module.exports = {
-    [...]
-    libs: CLIENT_LIBS
-};
+    [...
+]
+libs: CLIENT_LIBS
+}
+;
 ```
 
 Thanks for reading!

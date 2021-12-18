@@ -55,11 +55,11 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
-          // {
-          //   to: '/blog',
-          //   label: 'Blog',
-          //   position: 'left'
-          // },
+          {
+            to: '/docs/aem/intro',
+            label: 'AEM',
+            position: 'left'
+          },
           {
             href: 'https://github.com/LucaNerlich/blog-3.0',
             label: 'GitHub',

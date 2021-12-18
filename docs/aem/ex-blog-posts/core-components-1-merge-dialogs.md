@@ -48,7 +48,7 @@ If you bootstrap your development environment via the maven AEM Project Archetyp
 <!-- /pom.xml -->
 <core.wcm.components.version>2.15.2</core.wcm.components.version>
 
-        <!-- [...] -->
+    <!-- [...] -->
 <dependency>
 <groupId>com.adobe.cq</groupId>
 <artifactId>core.wcm.components.core</artifactId>
@@ -89,7 +89,7 @@ If you bootstrap your development environment via the maven AEM Project Archetyp
 <type>zip</type>
 <version>${core.wcm.components.version}</version>
 </dependency>
-        <!-- [...] -->
+    <!-- [...] -->
 ```
 
 #### All POM
@@ -138,7 +138,7 @@ If you bootstrap your development environment via the maven AEM Project Archetyp
 <type>zip</type>
 <target>/apps/mysite-vendor-packages/content/install</target>
 </embedded>
-        <!-- [...] -->
+    <!-- [...] -->
 ```
 
 #### core POM
@@ -151,7 +151,7 @@ If you bootstrap your development environment via the maven AEM Project Archetyp
     <groupId>com.adobe.cq</groupId>
     <artifactId>core.wcm.components.core</artifactId>
 </dependency>
-        <!-- [...] -->
+    <!-- [...] -->
 ```
 
 #### ui.apps POM
@@ -187,7 +187,7 @@ If you bootstrap your development environment via the maven AEM Project Archetyp
     </configuration>
 </plugin>
 
-        <!-- [...] -->
+    <!-- [...] -->
 
 <dependency>
 <groupId>com.adobe.cq</groupId>
@@ -203,7 +203,7 @@ If you bootstrap your development environment via the maven AEM Project Archetyp
 <artifactId>core.wcm.components.config</artifactId>
 <type>zip</type>
 </dependency>
-        <!-- [...] -->
+    <!-- [...] -->
 ```
 
 ## Extending Image Core Component
@@ -272,43 +272,43 @@ the latter is the important part. But more on this in Part 2.
           jcr:title="Extended Image"
           sling:resourceType="cq/gui/components/authoring/dialog">
     <content
-            jcr:primaryType="nt:unstructured"
-            sling:resourceType="granite/ui/components/coral/foundation/container">
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
         <items jcr:primaryType="nt:unstructured">
             <tabs
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
-                    maximized="{Boolean}true">
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
                     <image
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="Asset"
-                            sling:resourceType="acs-commons/granite/ui/components/include"
-                            path="/libs/core/wcm/components/image/v2/image/cq:dialog/content/items/tabs/items/asset"
-                            namespace="image"
-                            margin="{Boolean}true"/>
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Asset"
+                        sling:resourceType="acs-commons/granite/ui/components/include"
+                        path="/libs/core/wcm/components/image/v2/image/cq:dialog/content/items/tabs/items/asset"
+                        namespace="image"
+                        margin="{Boolean}true"/>
                     <imageMetaData
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="MetaData"
-                            sling:resourceType="acs-commons/granite/ui/components/include"
-                            path="/libs/core/wcm/components/image/v2/image/cq:dialog/content/items/tabs/items/metadata"
-                            namespace="image"
-                            margin="{Boolean}true"/>
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="MetaData"
+                        sling:resourceType="acs-commons/granite/ui/components/include"
+                        path="/libs/core/wcm/components/image/v2/image/cq:dialog/content/items/tabs/items/metadata"
+                        namespace="image"
+                        margin="{Boolean}true"/>
                     <ctaLinksContainer
-                            jcr:primaryType="nt:unstructured"
-                            jcr:title="CTAs"
-                            sling:orderBefore="properties"
-                            sling:resourceType="granite/ui/components/coral/foundation/container"
-                            margin="{Boolean}true">
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="CTAs"
+                        sling:orderBefore="properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
                             <columns
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
-                                    margin="{Boolean}true">
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
                                 <items jcr:primaryType="nt:unstructured">
                                     <column
-                                            jcr:primaryType="nt:unstructured"
-                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
                                             <ctaLinks jcr:primaryType="nt:unstructured"
                                                       sling:resourceType="granite/ui/components/coral/foundation/form/multifield"

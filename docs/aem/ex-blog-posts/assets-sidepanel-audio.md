@@ -1,6 +1,7 @@
 # Select Audiofiles in the Assets Sidepanel
 
-This post explains, how you can add a simple overlay to allow authors to filter and select audio files in the assets sidepanel.
+This post explains, how you can add a simple overlay to allow authors to filter and select audio files in the assets
+sidepanel.
 
 ## TL:DR
 
@@ -10,7 +11,9 @@ This post explains, how you can add a simple overlay to allow authors to filter 
 
 ## Issue
 
-By default, the AEM Assets Sidepanel does not allow to filter by audio files and therefore an author cannot drag and drop these onto pages and components. This is a great addition, if you want to build components which let the user list and download to audio files, such as podcasts, songs or shows.
+By default, the AEM Assets Sidepanel does not allow to filter by audio files and therefore an author cannot drag and
+drop these onto pages and components. This is a great addition, if you want to build components which let the user list
+and download to audio files, such as podcasts, songs or shows.
 
 The out of the box asset dropdown filters do not include a mime type for audio files. Therefore we need to add our own.
 
@@ -18,19 +21,32 @@ The out of the box asset dropdown filters do not include a mime type for audio f
 
 ## Solution
 
-Fortunately, the solution is quite simple. Adobe provides a bunch of xyzController.js files which control the current behaviour and are responsible for the asset sidepanel dropdown filter. We can reuse one of them, adapt to our needs, sideload it enjoy the possibility to filter by audio (or any other mimetypes).
+Fortunately, the solution is quite simple. Adobe provides a bunch of xyzController.js files which control the current
+behaviour and are responsible for the asset sidepanel dropdown filter. We can reuse one of them, adapt to our needs,
+sideload it enjoy the possibility to filter by audio (or any other mimetypes).
 
-The controller provided by AEM can be found in this path `/libs/cq/gui/components/authoring/editors/clientlibs/core/js/assetController`. Almost all controller are very similar, their only real difference is the name, dropdown title/value and filtered mimetypes. Due to this, we can easily copy the `/libs/cq/gui/components/authoring/editors/clientlibs/core/js/assetController/video/videoController.js` for example and recreate it as an assetController.js.
+The controller provided by AEM can be found in this
+path `/libs/cq/gui/components/authoring/editors/clientlibs/core/js/assetController`. Almost all controller are very
+similar, their only real difference is the name, dropdown title/value and filtered mimetypes. Due to this, we can easily
+copy the `/libs/cq/gui/components/authoring/editors/clientlibs/core/js/assetController/video/videoController.js` for
+example and recreate it as an assetController.js.
 
-There are now two ways to go about this, creating an overlay or adding it to a new ClientLibrary. The latter is a much cleaner solution, but I will quickly explain the overlay variant as well.
+There are now two ways to go about this, creating an overlay or adding it to a new ClientLibrary. The latter is a much
+cleaner solution, but I will quickly explain the overlay variant as well.
 
-The mentioned audioController.js can be found added at the end of this post: [audioController.js example](#audiocontrollerjs-example).
+The mentioned audioController.js can be found added at the end of this
+post: [audioController.js example](#audiocontrollerjs-example).
 
 ### Overlay
 
-AEM allows to quickly "edit" / overwrite files, using the Sling Resource Merger mechanism -> or "creating an overlay". This works via recreating a file with the same name under the exact same directory strucutre, just in `/apps/` and not in `/libs/`.
+AEM allows to quickly "edit" / overwrite files, using the Sling Resource Merger mechanism -> or "creating an overlay".
+This works via recreating a file with the same name under the exact same directory strucutre, just in `/apps/` and not
+in `/libs/`.
 
-Therefore on could create `/apps/cq/gui/components/authoring/editors/clientlibs/core/js/assetController/audio/audioController.js` and add that file to an overlay of its ClientLibraries `/libs/cq/gui/components/authoring/editors/clientlibs/core/js.txt` aggregation file, which would also need an overlay at `/apps/cq/gui/components/authoring/editors/clientlibs/core/js.txt`
+Therefore on could
+create `/apps/cq/gui/components/authoring/editors/clientlibs/core/js/assetController/audio/audioController.js` and add
+that file to an overlay of its ClientLibraries `/libs/cq/gui/components/authoring/editors/clientlibs/core/js.txt`
+aggregation file, which would also need an overlay at `/apps/cq/gui/components/authoring/editors/clientlibs/core/js.txt`
 
 ```text
 [...]
@@ -43,11 +59,16 @@ assetController/audio/audioController.js
 [...]
 ```
 
-However, this solution is not encouraged. Overlays should be used sparesly and especially not for altering ClientLibraries. This can lead to major issues and unwanted sideeffects when upgrading AEM, since Adobe can not take your added overlay into account when updating "their own / `libs`" files.
+However, this solution is not encouraged. Overlays should be used sparesly and especially not for altering
+ClientLibraries. This can lead to major issues and unwanted sideeffects when upgrading AEM, since Adobe can not take
+your added overlay into account when updating "their own / `libs`" files.
 
 ### Custom ClientLibrary
 
-A better and cleaner solution is to add the audioController.js to a new ClientLibrary `clientlib-sidepanel` and load it when necessary. The category we need in this case is `cq.authoring.dialog.all`. By loading our ClientLibrary for pages specifying this category, we make sure, that our added audioController gets loaded whenever we need it -> an author edits pages.
+A better and cleaner solution is to add the audioController.js to a new ClientLibrary `clientlib-sidepanel` and load it
+when necessary. The category we need in this case is `cq.authoring.dialog.all`. By loading our ClientLibrary for pages
+specifying this category, we make sure, that our added audioController gets loaded whenever we need it -> an author
+edits pages.
 
 The following files need to be created:
 
@@ -56,11 +77,11 @@ The following files need to be created:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0"
- xmlns:jcr="http://www.jcp.org/jcr/1.0"
- jcr:primaryType="cq:ClientLibraryFolder"
- categories="[cq.authoring.dialog.all]"
- embed="[]"
- allowProxy="{Boolean}true"/>
+          xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          jcr:primaryType="cq:ClientLibraryFolder"
+          categories="[cq.authoring.dialog.all]"
+          embed="[]"
+          allowProxy="{Boolean}true"/>
 ```
 
 - ui.apps/src/main/content/jcr_root/apps/[myapp]/clientlibs/clientlib-sidepanel/js.txt
@@ -73,18 +94,21 @@ audioController.js
 
 - ui.apps/src/main/content/jcr_root/apps/[myapp]/clientlibs/clientlib-sidepanel/js/audioController.js
 
-After deployment, the assets sidepanel has a new `audio` filter dropdown entry and lists only files with audio mimetypes. Authors can now search and filter for songs etc.
+After deployment, the assets sidepanel has a new `audio` filter dropdown entry and lists only files with audio
+mimetypes. Authors can now search and filter for songs etc.
 
 ![assetsidepanel](/images/aem/audiocontroller/audiodropdown.png)
 
 #### Enable drag and drop
 
-Assets from the sidepanel can also be drag and dropped, if your component as a configured cq:editConfig node. This is a quick example for `ui.apps/src/main/content/jcr_root/apps/[myapp]/core/components/[mycomponent]/_cq_editConfig.xml`
+Assets from the sidepanel can also be drag and dropped, if your component as a configured cq:editConfig node. This is a
+quick example for `ui.apps/src/main/content/jcr_root/apps/[myapp]/core/components/[mycomponent]/_cq_editConfig.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
-    jcr:primaryType="cq:EditConfig">
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="cq:EditConfig">
     <cq:dropTargets jcr:primaryType="nt:unstructured">
         <file
             jcr:primaryType="cq:DropTargetConfig"
@@ -102,7 +126,9 @@ Assets from the sidepanel can also be drag and dropped, if your component as a c
 </jcr:root>
 ```
 
-This config defines the accepted mimetypes for drag and dropped assets and clarifies the property and resourceType of the targeted jcr node / property. In this case, the property `./link` of the component `[myapp]/core/components/[mycomponent]` will be populated with the dropped files path.
+This config defines the accepted mimetypes for drag and dropped assets and clarifies the property and resourceType of
+the targeted jcr node / property. In this case, the property `./link` of the
+component `[myapp]/core/components/[mycomponent]` will be populated with the dropped files path.
 
 ### audioController.js example
 
@@ -126,85 +152,87 @@ This config defines the accepted mimetypes for drag and dropped assets and clari
 ;
 (function ($, ns, channel, window, undefined) {
 
- /**
-  * Asset Controller for the video type
-  *
-  * @memberOf Granite.author.ui.assetFinder
-  * @inner
-  * @alias audioAssetController
-  * @ignore
-  * @type {Granite.author.ui.assetFinder~AssetController}
-  */
- var self = {},
-  name = 'Audio';
+    /**
+     * Asset Controller for the video type
+     *
+     * @memberOf Granite.author.ui.assetFinder
+     * @inner
+     * @alias audioAssetController
+     * @ignore
+     * @type {Granite.author.ui.assetFinder~AssetController}
+     */
+    var self = {},
+        name = 'Audio';
 
- // make the loadAssets function more flexible
- self.searchRoot = '/content/dam';
- // open assets in the admin view (to edit properties)
- self.viewInAdminRoot = '/assetdetails.html{+item}';
+    // make the loadAssets function more flexible
+    self.searchRoot = '/content/dam';
+    // open assets in the admin view (to edit properties)
+    self.viewInAdminRoot = '/assetdetails.html{+item}';
 
- var searchPath = self.searchRoot,
-  imageServlet = '/bin/wcm/contentfinder/asset/view.html',
-  itemResourceType = 'cq/gui/components/authoring/assetfinder/asset';
+    var searchPath = self.searchRoot,
+        imageServlet = '/bin/wcm/contentfinder/asset/view.html',
+        itemResourceType = 'cq/gui/components/authoring/assetfinder/asset';
 
- /**
-      Pre asset type switch hook
-  */
- self.setUp = function () {};
+    /**
+     Pre asset type switch hook
+     */
+    self.setUp = function () {
+    };
 
- /**
-      Post asset type switch hook
-  */
- self.tearDown = function () {};
+    /**
+     Post asset type switch hook
+     */
+    self.tearDown = function () {
+    };
 
- /**
-  *
-  * @param query {String} search query
-  * @param lowerLimit {Number} lower bound for paging
-  * @param upperLimit {Number} upper bound for paging
-  * @returns {jQuery.Promise}
-  */
- self.loadAssets = function (query, lowerLimit, upperLimit) {
-  var param = {
-   '_dc': new Date().getTime(),  // cache killer
-   'query': query.concat("order:\"-jcr:content/jcr:lastModified\" "), // sort by jcr:content/jcr:lastModified property
-   // we specify audio files only:
-   'mimeType': 'audio',
-   'itemResourceType': itemResourceType, // single item rendering (cards)
-   'limit': lowerLimit + ".." + upperLimit,
-   '_charset_': 'utf-8'
-  };
+    /**
+     *
+     * @param query {String} search query
+     * @param lowerLimit {Number} lower bound for paging
+     * @param upperLimit {Number} upper bound for paging
+     * @returns {jQuery.Promise}
+     */
+    self.loadAssets = function (query, lowerLimit, upperLimit) {
+        var param = {
+            '_dc': new Date().getTime(),  // cache killer
+            'query': query.concat("order:\"-jcr:content/jcr:lastModified\" "), // sort by jcr:content/jcr:lastModified property
+            // we specify audio files only:
+            'mimeType': 'audio',
+            'itemResourceType': itemResourceType, // single item rendering (cards)
+            'limit': lowerLimit + ".." + upperLimit,
+            '_charset_': 'utf-8'
+        };
 
-  return $.ajax({
-   type: 'GET',
-   dataType: 'html',
-   url: Granite.HTTP.externalize(imageServlet) + searchPath,
-   data: param
-  });
- };
+        return $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            url: Granite.HTTP.externalize(imageServlet) + searchPath,
+            data: param
+        });
+    };
 
- /**
-  * Set URL to image servlet
-  * @param {String} imgServlet - URL to image servlet
-  */
- self.setServlet = function (imgServlet) {
-  imageServlet = imgServlet;
- };
+    /**
+     * Set URL to image servlet
+     * @param {String} imgServlet - URL to image servlet
+     */
+    self.setServlet = function (imgServlet) {
+        imageServlet = imgServlet;
+    };
 
- self.setSearchPath = function (spath) {
-  searchPath = spath;
- };
+    self.setSearchPath = function (spath) {
+        searchPath = spath;
+    };
 
- self.setItemResourceType = function (rt) {
-  itemResourceType = rt;
- };
+    self.setItemResourceType = function (rt) {
+        itemResourceType = rt;
+    };
 
- self.resetSearchPath = function () {
-  searchPath = self.searchRoot;
- };
+    self.resetSearchPath = function () {
+        searchPath = self.searchRoot;
+    };
 
- // register as a asset tab
- ns.ui.assetFinder.register(name, self);
+    // register as a asset tab
+    ns.ui.assetFinder.register(name, self);
 
 }(jQuery, Granite.author, jQuery(document), this));
 
