@@ -18,6 +18,8 @@ sidebar_position: 1
 
 ## General Technology Posts
 
+- [Rust Lang](./tech/rust-lang.mdx)
+
 ## Archive
 
 Contains old blog posts and link archives.
