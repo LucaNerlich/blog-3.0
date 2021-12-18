@@ -4,32 +4,20 @@ sidebar_position: 1
 
 # Table of Contents
 
-Let's discover **Docusaurus in less than 5 minutes**.
+<div class="alert alert--info" role="alert">
+    This is a rough content overview. Use the sidebar to navigate between all pages.
+</div>
 
-## Getting Started
+## AEM
 
-Get started by **creating a new site**.
+- [Core Components](./aem/core-components.mdx)
+- [Helix](./aem/helix.mdx)
+- [Overlays](./aem/overlays.mdx)
+- [Spa Editor](./aem/spa-editor.mdx)
+- [Workflows](./aem/workflows.mdx)
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## General Technology Posts
 
-## Generate a new site
+## Archive
 
-Generate a new Docusaurus site using the **classic template**:
-
-```shell
-npm init docusaurus@latest my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and displays your changes.
+Contains old blog posts and link archives.

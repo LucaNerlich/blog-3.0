@@ -12,6 +12,7 @@ const config = {
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
+    staticDirectories: ['public', 'static'],
     favicon: 'images/favicon.ico',
     organizationName: 'LucaNerlich',
     projectName: 'blog-3.0',
@@ -65,7 +66,7 @@ const config = {
                         label: 'Documentation',
                     },
                     {
-                        to: '/docs/aem/intro',
+                        to: '/docs/intro#aem',
                         label: 'AEM',
                         position: 'left'
                     },

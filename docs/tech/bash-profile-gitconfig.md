@@ -1,4 +1,6 @@
-# Overview
+import Image from '@theme/IdealImage';
+
+# My Bash Profile
 
 Over the years I have updated my .bash_profile and my .gitconfig with useful command aliases. I will share the most
 interesting ones and roughly explain these in this post.
@@ -116,11 +118,13 @@ The following git aliases are my favourite implementation and formatting for the
 ```
 
 Example `git ls`:
-![git_ls](/images/tech/git_ls.png)
+<Image img={require('/images/tech/git_ls.png')} />
+
 Example `git ld`:
-![git_ld](/images/tech/git_ld.png)
+<Image img={require('/images/tech/git_ld.png')} />
+
 Example `git ll`:
-![git_ll](/images/tech/git_ll.png)
+<Image img={require('/images/tech/git_ll.png')} />
 
 ## ~/.ssh/config
 

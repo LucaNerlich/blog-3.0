@@ -1,0 +1,22 @@
+[core]
+	excludesfile = /Users/user/.gitignore_global
+	autocrlf = input
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	email = user@mail.com
+	name = user user
+[commit]
+	template = /Users/user/.stCommitMsg
+[credential]
+	helper = osxkeychain
+[push]
+	default = current
+[alias]
+    ls = log --pretty=format:"%C(yellow)%h\\ %C(green)%cd%C(red)%d\\ %Creset%s%C(green)\\ [%cn]%C(yellow)\\ [%an]" --decorate
+    ld = log --pretty=format:"%C(yellow)%h\\ %C(green)%cd\\ %C(yellow)%ad%C(red)%d\\ %Creset%s%C(green)\\ [%cn]%C(yellow)\\ [%an]" --decorate --date=relative
+    ll = log --pretty=format:"%C(yellow)%h\\ %C(green)%cd%C(red)%d\\ %Creset%s%C(green)\\ [%cn]%C(yellow)\\ [%an]" --decorate --numstat
