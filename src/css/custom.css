@@ -31,6 +31,6 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
     margin-bottom: 1em;
 }
 
-.font-red div a{
+.font-red > div > a {
     color: #ff0000;
 }

@@ -1,4 +1,4 @@
-# Extracting unique page visits from the access.log
+# Go Access - Easy Page Statistics Dashboard
 
 Example GoAccess Widget
 

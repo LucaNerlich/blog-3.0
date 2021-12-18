@@ -1,0 +1,766 @@
+# AEM Code Snippets
+
+<div class="alert alert--warning" role="alert">
+    Todo split into separate categories ⚠️
+</div>
+
+## Tools
+
+### FileVault / IntelliVault
+
+[Download Release v3.4.10](https://repo1.maven.org/maven2/org/apache/jackrabbit/vault/vault-cli/3.4.10/)
+
+### Adobe AEM Repo Tool
+
+[Github](https://github.com/Adobe-Marketing-Cloud/tools/tree/master/repo)
+
+[Releases](https://github.com/Adobe-Marketing-Cloud/tools/releases)
+
+[Docs](https://experienceleague.adobe.com/docs/experience-manager-65/developing/devtools/aem-repo-tool.html?lang=en#overview)
+
+## Python AEM Api
+
+https://git.corp.adobe.com/unilever-replatform/PyAEM
+
+https://pypi.org/project/pyaem3/
+
+## AEM Component Help Pages
+<https://medium.com/@surajkamdi/adding-documentation-for-aem-components-ab0bced28c26>
+
+1.  First of all, Open the [CRXDE](https://experienceleague.adobe.com/docs/experience-manager-65/developing/devtools/developing-with-crxde-lite.html?lang=en) console [http://localhost:4502/crx/de/index.jsp](http://localhost:4502/crx/de/index.jsp)
+2.  Go to the component path. example - ``_/apps/<project-name>/components/general_`
+3.  Now create a new markdown file inside the component with the name **README.md.**
+4.  Now add the following sample markdown text into **README.md** file.
+5. Now, go to [http://localhost:4502/libs/wcm/core/content/sites/components.html](http://localhost:4502/libs/wcm/core/content/sites/components.html) and select **Title Component** from the list with a valid **component group**.
+6. Now copy the URL from the address bar. In my case, URL will be **_/mnt/overlay/wcm/core/content/sites/components/details.html/apps/Suraj/title_**
+7. Go to the **_component_** inside **CRXDE Lite** > **_cq:dialog_** and set the **_helpPath_** property and set the value from the above-copied path.
+8. Now allow and add the component to the page, Open the Dialog and Click on the **Help (?)** icon.
+
+### Steps to set Documentation as Default Active Tab
+
+In order to show up **_documentation_** as the **_default active tab_** when the author clicks on the **Help (?)** icon, We need to overlay the AEM’s certain functionality. Just follow certain steps.
+
+1.  Go to CRXDE Lite Console [http://localhost:4502/crx/de/index.jsp](http://localhost:4502/crx/de/index.jsp)
+2.  Go to **_/libs/wcm/core/content/sites/components/details/jcr:content/content/single/content/items/content/items/tabs/items/documentation_**
+3.  Right-Click on the **_documentation_** node and Select the **_Overlay Node_** option.
+Set the following properties on the Overlay Node dialog and Click on OK.
+**Path:** /libs/wcm/core/content/sites/components/details/jcr:content/content/single/content/items/content/items/tabs/items/documentation
+**Overlay Location:** /apps/
+**Match Node Types:** Checked
+
+## Querying the JCR
+
+## Service User / System User
+
+[Documentation](https://docs.adobe.com/content/help/en/experience-manager-learn/forms/adaptive-forms/service-user-tutorial-develop.html)
+[Documentation 2](https://docs.adobe.com/content/help/de-DE/experience-manager-65/administering/security/security-service-users.translate.html)
+
+### AEM Groovy Console
+
+[Groovy Console Github](https://github.com/icfnext/aem-groovy-console)
+
+Simple Query Example
+
+```groovy
+/*
+SQL QUERY with Groovy Script.
+@author Hashim Khan */
+/*This method is used to Query the JCR and find results as per the Query.*/
+def buildQuery(page, term) {
+    def queryManager = session.workspace.queryManager;
+    def statement = 'select * from nt:base where jcr:path like \'' + page.path + '/%\' and sling:resourceType = \'' + term + '\'';
+    /*Here term is the sling:resourceType property value*/
+    queryManager.createQuery(statement, 'sql');
+}
+
+/*Defined Content Hierarchy */
+final def page = getPage('/content/geometrixx/en/')
+/*Template which is searched in the content hierarchy */
+final def query = buildQuery(page, 'geometrixx/components/contentpage');
+final def result = query.execute()
+final def count = result.getRows().getSize();
+
+println 'No Of pages found = ' + result.nodes.size();
+
+result.nodes.each {
+    node - >
+        println 'nodePath::' + node.path
+}
+```
+
+//delete all jcr:language props below backoffice
+
+```groovy
+import javax.jcr.Session
+
+Session session = slingRequest.getResourceResolver().adaptTo(Session.class)
+
+def buildQuery() {
+    def queryManager = session.workspace.queryManager
+
+    def statement = "/jcr:root/content/eurowings//*[@jcr:language]"
+    queryManager.createQuery(statement, 'xpath')
+}
+
+final def query = buildQuery()
+final def result = query.execute()
+
+result.nodes.each { node ->
+    String nodePath = node.path
+    if (nodePath.contains('backoffice')) {
+        println 'Deleting prop below  :' + nodePath
+        node.getProperty('jcr:language').remove()
+        session.save()
+    }
+}
+```
+
+[Further Groovy Examples on Github](https://github.com/hashimkhan786/aem-groovy-scripts)
+
+### Touch-UI + Migration
+
+[Dialog Conversion Tool](https://docs.adobe.com/content/help/en/experience-manager-64/developing/devtools/dialog-conversion.html)
+
+[Github](https://github.com/adobe/aem-modernize-tools)
+
+[Doku](https://opensource.adobe.com/aem-modernize-tools/)
+
+[Github Legacy](https://github.com/Adobe-Marketing-Cloud/aem-dialog-conversion)
+
+Usage: `http://localhost:4502/libs/cq/modernize/dialog/content/console.html`
+
+### Session API / JCR API
+
+To use the JCR API, add the jackrabbit-standalone-2.4.0.jar file to your Java application’s class path. You can obtain this JAR file from the Java JCR API web page at [jackrabbit.apache.org](https://jackrabbit.apache.org/jcr/jcr-api.html).
+
+```java
+import javax.jcr.Repository;
+import javax.jcr.Session;
+import javax.jcr.SimpleCredentials;
+import javax.jcr.Node;
+
+import org.apache.jackrabbit.commons.JcrUtils;
+import org.apache.jackrabbit.core.TransientRepository;
+
+// class XX function yy
+
+try {
+    //Create a connection to the CQ repository running on local host
+    Repository repository = JcrUtils.getRepository("http://localhost:4503/crx/server");
+
+    //Create a Session
+    javax.jcr.Session session = repository.login(new SimpleCredentials("admin", "admin".toCharArray()));
+
+    //Create a node that represents the root node
+    Node root = session.getRootNode();
+
+    // Store content
+    Node adobe = root.addNode("adobe");
+    Node day = adobe.addNode("day");
+    day.setProperty("message", "Adobe CQ is part of the Adobe Digital Marketing Suite!");
+
+    // Retrieve content
+    Node node = root.getNode("adobe/day");
+    System.out.println(node.getPath());
+    System.out.println(node.getProperty("message").getString());
+
+    // Save the session changes and log out
+    session.save();
+    session.logout();
+} catch (Exception e) {
+  e.printStackTrace();
+}
+```
+
+## Tag Manager
+
+```java
+TagManager tagManager = request.getResourceResolver().adaptTo(TagManager.class);
+        if (tagManager != null) {
+            Tag resolvedTag = tagManager.resolve(tag);
+            if (resolvedTag != null) {
+                tagName = resolvedTag.getTitle();
+                tagDescription = resolvedTag.getDescription();
+            }
+        }
+```
+
+## Sling Servlets
+
+[Infos](http://www.aemcq5tutorials.com/tutorials/sling-servlet-in-aem/)
+
+[Infos 2](https://aem.redquark.org/2018/10/day-05-working-with-sling-servlets-in_10.html)
+
+DO
+
+```java
+@SlingServlet(
+resourceTypes = "sling/servlet/default",
+selectors = "selector",
+extensions = "tab",
+methods = HttpConstants.METHOD_GET
+)
+```
+
+DON'T
+
+```java
+@Component
+@Service(value = javax.servlet.Servlet.class)
+@Properties({ @Property(name = "sling.servlet.resourceTypes", value = { "sling/servlet/default" }),
+@Property(name = "sling.servlet.selectors", value = { "selector" }),
+@Property(name = "sling.servlet.extensions", value = { "tab" }),
+@Property(name = "sling.servlet.methods", value = { HttpConstants.METHOD_GET }) })
+```
+
+## Overlays
+
+To, for example, change the main authorui navigation, in crx/de right click and 'overlay node': /libs/cq/core/content/nav.
+
+[Documentation](https://docs.adobe.com/content/help/en/experience-manager-64/developing/platform/overlays.html)
+
+## @ChildResource
+
+Dialog Multifield Entries -> include as @ChildResource
+
+ProductList.java
+
+```java
+@Model(adaptables = SlingHttpServletRequest.class, adapters = {ProductList.class, ComponentExporter.class}, resourceType = ProductList.RESOURCE_TYPE,
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
+@Getter
+public class ProductList implements ComponentExporter {
+
+// [...]
+
+@ChildResource
+    private List<Product> productList;
+}
+```
+
+Product.java
+
+```java
+@Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Getter
+public class Product {
+    @ValueMapValue
+    private String productId;
+    @ValueMapValue
+    private String originalPrice;
+    @ValueMapValue
+    private boolean showStrikethroughPrice;
+    @ValueMapValue
+    private String additionalPriceText;
+}
+```
+
+### Loop manually
+
+```java
+    private Product[] generateProducts() {
+        List<Product> slidePojos = new ArrayList<>();
+        Resource resource = request.getResource();
+
+        final Resource slideCollectionItems = resource.getChild(SLIDE_COLLECTION_ITEMS);
+        if (slideCollectionItems != null) {
+            for (Resource slide : slideCollectionItems.getChildren()) {
+                final Product slidePojo = new Product(slide.getValueMap(), request);
+                slidePojos.add(slidePojo);
+            }
+        }
+
+        return slidePojos.toArray(new Product[0]);
+    }
+```
+
+## Transport Handler
+
+```java
+package com.iqospwa.core.listeners;
+
+import com.day.cq.replication.AgentConfig;
+import com.day.cq.replication.ReplicationException;
+import com.day.cq.replication.ReplicationResult;
+import com.day.cq.replication.ReplicationTransaction;
+import com.day.cq.replication.TransportContext;
+import com.day.cq.replication.TransportHandler;
+import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Component(service = TransportHandler.class,
+        name = "Jenkins Transport Handler",
+        immediate = true)
+public class JenkinsTransportHandler implements TransportHandler {
+
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
+
+    /**
+     * return true, if this handler should act on the job in this "queue".
+     */
+    @Override
+    public boolean canHandle(AgentConfig agentConfig) {
+        return false;
+    }
+
+    /**
+     * Basically works like the filter queue. It acts on the replication queue jobs.
+     */
+    @Override
+    public ReplicationResult deliver(TransportContext transportContext, ReplicationTransaction replicationTransaction) throws ReplicationException {
+        return null;
+    }
+}
+```
+
+## Event Listener
+
+With OCD Config
+
+```java
+package com.iqospwa.core.listeners;
+
+import com.day.cq.replication.ReplicationAction;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.sling.event.jobs.NotificationConstants;
+import org.osgi.service.component.*;
+import org.osgi.service.component.propertytypes.ServiceDescription;
+import org.osgi.service.event.Event;
+import org.osgi.service.event.EventConstants;
+import org.osgi.service.event.EventHandler;
+import org.osgi.service.metatype.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+
+/**
+ * Listens to Replication Action Events. If the configured paths match the event path,
+ * it will trigger the configured endpoint -> hit jenkins and trigger a new build for example
+ */
+@Component(service = EventHandler.class,
+        immediate = true,
+        property = {
+                EventConstants.EVENT_TOPIC + "=" + NotificationConstants.TOPIC_JOB_FINISHED
+        })
+@ServiceDescription("Event Listener which looks for Replication Events and triggers an external Endpoint")
+@Designate(ocd = ReplicationEventJenkinsListener.Config.class, factory = true)
+public class ReplicationEventJenkinsListener implements EventHandler {
+
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
+
+    private boolean enabled = false;
+    private String jenkinsUrl;
+    private String[] targetPaths;
+
+    private HttpClient httpClient;
+
+    @ObjectClassDefinition(name = "ReplicationEventJenkinsListener Config",
+            description = "Configure the ReplicationEventJenkinsListener")
+    public static @interface Config {
+
+        @AttributeDefinition(
+                name = "Enabled",
+                description = "Activation Event Listener is enabled",
+                type = AttributeType.BOOLEAN
+        )
+        boolean isEnabled() default false;
+
+        @AttributeDefinition(name = "External Jenkins Endpoint (url)",
+                description = "Jenkins Endpoint which should be triggered on AEM Replication Action")
+        String getJenkinsUrl() default "";
+
+        @AttributeDefinition(name = "Trigger on path", description = "Configure here all the paths on which the trigger should run")
+        String[] getTargetPaths();
+    }
+
+    /**
+     * Act only of finished replication jobs.
+     *
+     * @param event
+     */
+    public void handleEvent(final Event event) {
+        if (enabled && filterReplicationJobs(event)) {
+            final ReplicationAction action = ReplicationAction.fromEvent(event);
+            try {
+                if (httpClient != null) {
+                    final HttpResponse httpResponse = httpClient.execute(new HttpGet(jenkinsUrl));
+                }
+            } catch (IOException e) {}
+        }
+    }
+
+    @Activate
+    @Modified
+    protected void activate(Config config) {
+        enabled = config.isEnabled();
+        jenkinsUrl = config.getJenkinsUrl();
+        targetPaths = config.getTargetPaths();
+        httpClient = HttpClientBuilder.create().build();
+    }
+}
+```
+
+## Workflows
+
+[JavaDoc](https://helpx.adobe.com/experience-manager/6-3/sites/developing/using/reference-materials/javadoc/com/adobe/granite/workflow/WorkflowSession.html)
+
+```java
+WorkflowSession wf = resourceResolver.adaptTo(WorkflowSession.class);
+Workflow[] workflows = wf.getAllWorkflows();
+```
+
+Beispiel: Terminate all Workflows for current user / resourceResolvers Access Rights
+
+```java
+final WorkflowSession workflowSession = resourceResolver.adaptTo(WorkflowSession.class);
+final Workflow[] allWorkflows = workflowSession.getAllWorkflows();
+for (Workflow wf : allWorkflows) {
+ if (wf.getState().equals("RUNNING")) {
+  final String id = wf.getId();
+  LOG.info("Found running wf id: {}. Termination initiated.", id);
+  try {
+   workflowSession.terminateWorkflow(wf);
+  }
+  catch (WorkflowException we) {
+   LOG.error("Could not terminate Workflow with id: {}", id, we);
+  }
+ }
+}
+```
+
+Get All WorkflowLauncher and their Configs:
+
+```java
+ResourceResolver resourceResolver = getClientMergeReportingService().getResourceResolver();
+WorkflowLauncher wfl = resourceResolver.adaptTo(WorkflowLauncher.class);
+if (wfl != null) {
+ Iterator<ConfigEntry> configEntries = wfl.getConfigEntries();
+ List<ConfigEntry> wflConfigs = new ArrayList<>();
+ configEntries.forEachRemaining(wflConfigs::add);
+ for (ConfigEntry ce : wflConfigs) {
+  LOG.info("desc: " + ce.getId());
+  LOG.info("desc: " + ce.getDescription() + "\n");
+ }
+
+    // Disable all
+    for (ConfigEntry ce : list) {
+  ce.setEnabled(false);
+ }
+}
+```
+
+Disable / Enable All WorkflowLauncher
+
+```java
+try {
+ ResourceResolver resourceResolver = getClientMergeReportingService().getResourceResolver();
+ WorkflowLauncher workflowLauncher = resourceResolver.adaptTo(WorkflowLauncher.class);
+ if (workflowLauncher != null) {
+  Iterator<ConfigEntry> configEntries = workflowLauncher.getConfigEntries();
+  while (configEntries.hasNext()) {
+   final ConfigEntry configEntry = configEntries.next();
+   configEntries.next().setEnabled(false);
+   LOG.info("Disabled: " + configEntry.getId());
+   getClientMergeReportingService().details("Disabled WFL: " + configEntry.getId());
+  }
+ }
+}
+catch (LoginException le) {
+ LOG.error("Error during ResourceResolver login.", le);
+ return false;
+}
+catch (Exception e) {
+ LOG.error("Error during step execution.", e);
+ return false;
+}
+```
+
+### Links
+
+[Administering Workflows](https://docs.adobe.com/content/help/en/experience-manager-64/administering/operations/workflows.html)
+
+[Extending Workflows](https://docs.adobe.com/content/help/en/experience-manager-64/developing/extending-aem/extending-workflows/workflows.html)
+
+[Youtube Playlist / slightly outdated](https://www.youtube.com/playlist?list=PLAyP-K1LNAolxbfGAIFlBas9HW4EciArd)
+
+## ResourceResolver
+
+[Java Doc](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/reference-materials/javadoc/org/apache/sling/api/resource/ResourceResolver.html)
+
+[RR Factory](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/reference-materials/javadoc/org/apache/sling/api/resource/ResourceResolverFactory.html)
+
+### Lifecycle
+
+A Resource Resolver has a life cycle which begins with the creation of the Resource Resolver using any of the factory methods and ends with calling the close() method. It is very important to call the close() method once the resource resolver is not used any more to ensure any system resources are properly cleaned up. A Resource Resolver may also be closed implicitly if the ResourceResolverFactory which was used to create this resolver is no longer active.
+
+To check whether a Resource Resolver can still be used, the isLive() method can be called.
+
+A ResourceResolver is only valid for as long as the ResourceResolverFactory that created this instance exists. The same applies in general to all objects returned by this instance, especially for all resources. If the ResourceResolverFactory does not exist anymore, the resource resolver instances becomes invalid.
+
+[J Hoh Blog](https://cqdump.wordpress.com/2013/07/23/cq-development-patterns-sling-resourceresolver-and-jcr-sessions/)
+
+E-Mail Auszug von FI
+
+```text
+Wenn ein ResourceResolver implizit verwendet wird, darf dieser nicht manuell per .close() geschlossen werden, da sonst 'zu viel' / die zugrundeliegende Session geschlossen wird. Die Verantwortung des RR Lifecycle liegt hier nicht beim Entwickler.
+Wenn ein ResourceResolver explizit per ResourceResolverFactory geoeffnet wird muss dieser auch manuell per .close() geschlossen werden. Zum Beispiel als autocloseable, wie bereits beschrieben.
+Bezueglich des angesprochenen API / Methodensignaturenproblems, ein ResourceResolver sollte  immer dort geschlossen werden, wo er auch geoeffnet wurde. Bedeuet, wenn ein ResourceResolver als Parameter in die Methode gereicht wird, darf diese den RR nicht schliessen. Der urspruengliche Aufrufer muss sich um diesen Sachverhalt kuemmern, bzw verantwortet den Lifecycle.
+```
+
+## Oak
+
+### Index
+
+[Indexing](https://jackrabbit.apache.org/oak/docs/query/indexing.html)
+
+### TarMK
+
+#### Links
+
+[Oak Segment Tar](https://jackrabbit.apache.org/oak/docs/nodestore/segment/overview.html)
+
+[TarMK vs MongoMK](http://aemintroduction.blogspot.com/2018/11/aem-mk-microkernels-tarmk-and-mongomk.html)
+
+[TarMK Deep Dive - pdf](https://adapt.to/content/dam/adaptto/production/presentations/2016/adaptTo2016-Into-the-tar-pit-a-TarMK-deep-dive-Michael-Duerig-notes.pdf/_jcr_content/renditions/original./adaptTo2016-Into-the-tar-pit-a-TarMK-deep-dive-Michael-Duerig-notes.pdf)
+
+[TarMK Cold Standby](https://docs.adobe.com/content/help/en/experience-manager-64/deploying/deploying/tarmk-cold-standby.html)
+
+## Content as a Service - CaaS
+
+'Sling Modul Exporter'
+Enables users to query pages with xx.model.json and retrieve a json document with the pages structure and content.
+
+`https://sling.apache.org/documentation/bundles/models.html#exporter-framework-since-130`
+
+`https://docs.adobe.com/content/help/en/experience-manager-64/developing/components/json-exporter-components.html`
+
+### Example
+
+Java Component
+
+```java
+@Model(adaptables = SlingHttpServletRequest.class, adapters = {Title.class, ComponentExporter.class}, resourceType = Title.RESOURCE_TYPE,
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Exporter(name = "jackson", extensions = "json")
+public class Title implements ComponentExporter {
+
+    static final String RESOURCE_TYPE = "wknd/components/title";
+
+    // optional, change exported key name
+    @JsonProperty("title")
+    @ValueMapValue
+    private String title;
+
+    public String getTitle(){
+        return title;
+    }
+
+    @Nonnull
+    @Override
+    public String getExportedType() {
+        return RESOURCE_TYPE;
+    }
+}
+
+```
+
+JCR Component
+Path: `jcr_root/apps/wknd/components/title`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    cq:icon="textLeft"
+    jcr:description="Displays a title."
+    jcr:primaryType="cq:Component"
+    jcr:title="Title"
+    componentGroup="Adobe"/>
+```
+
+## Annotations
+
+### Externalized ValueMapValue
+
+Interface
+
+```java
+@Target({FIELD})
+@Retention(RUNTIME)
+@InjectAnnotation
+@Source(ExternalizedValueMapValue.ANNOTATION_NAME)
+public @interface ExternalizedValueMapValue {
+
+    String ANNOTATION_NAME = "externalized";
+
+    /**
+     * Represents the name
+     *
+     * @return
+     */
+    String name() default StringUtils.EMPTY;
+
+    @Deprecated
+    boolean optional() default false;
+
+    /**
+     * if set to REQUIRED injection is mandatory, if set to OPTIONAL injection is optional, in case of DEFAULT
+     * the standard annotations ({@link org.apache.sling.models.annotations.Optional}, {@link org.apache.sling.models.annotations.Required}) are used.
+     * If even those are not available the default injection strategy defined on the {@link org.apache.sling.models.annotations.Model} applies.
+     * Default value = DEFAULT.
+     */
+    InjectionStrategy injectionStrategy() default InjectionStrategy.DEFAULT;
+}
+```
+
+Implementation
+
+```java
+package com.jti.cep.inject.impl;
+
+import com.jti.cep.externalizer.ExternalizerService;
+import com.jti.cep.inject.annotations.ExternalizedValueMapValue;
+import com.jti.cep.inject.util.InjectorUtil;
+import com.jti.cep.inject.util.ReflectionUtil;
+import org.apache.commons.lang.StringUtils;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.spi.DisposalCallbackRegistry;
+import org.apache.sling.models.spi.Injector;
+import org.apache.sling.models.spi.injectorspecific.AbstractInjectAnnotationProcessor2;
+import org.apache.sling.models.spi.injectorspecific.InjectAnnotationProcessor2;
+import org.apache.sling.models.spi.injectorspecific.StaticInjectAnnotationProcessorFactory;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Type;
+import java.util.Optional;
+
+/**
+ * ExternalizedValueMapValueInjector
+ * <p>
+ * Externalizes properties in the sling model
+ * </p>
+ *
+ * @author raaijmak@adobe.com
+ * @since 2019-09-19
+ */
+@Component(immediate = true, service = {Injector.class, StaticInjectAnnotationProcessorFactory.class})
+public class ExternalizedValueMapValueInjector implements Injector, StaticInjectAnnotationProcessorFactory {
+
+    @Reference
+    private ExternalizerService externalizerService;
+
+    @Override
+    public String getName() {
+        return ExternalizedValueMapValue.ANNOTATION_NAME;
+    }
+
+    @Override
+    public Object getValue(Object adaptable, String name, Type type, AnnotatedElement annotatedElement, DisposalCallbackRegistry disposalCallbackRegistry) {
+
+        if (
+                ReflectionUtil.isAssignableFrom(type, String.class) &&
+                        annotatedElement.isAnnotationPresent(ExternalizedValueMapValue.class) &&
+                        adaptable instanceof SlingHttpServletRequest
+        ) {
+            SlingHttpServletRequest request = (SlingHttpServletRequest) adaptable;
+            ExternalizedValueMapValue annotation = annotatedElement.getAnnotation(ExternalizedValueMapValue.class);
+
+            String key = StringUtils.defaultIfBlank(annotation.name(), name);
+
+            Resource resource = InjectorUtil.getResourceFromAdaptable(adaptable);
+            String rawValue = resource.getValueMap().get(key, String.class);
+
+            if (StringUtils.isNotBlank(rawValue)) {
+                return externalizerService.externalizeForSPARouter(request, rawValue);
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public InjectAnnotationProcessor2 createAnnotationProcessor(AnnotatedElement annotatedElement) {
+        return Optional.ofNullable(annotatedElement.getAnnotation(ExternalizedValueMapValue.class)).map(ExternalizedValueMapValueInjectorProcessor::new).orElse(null);
+    }
+
+    private static class ExternalizedValueMapValueInjectorProcessor extends AbstractInjectAnnotationProcessor2 {
+
+        private final ExternalizedValueMapValue annotation;
+
+        public ExternalizedValueMapValueInjectorProcessor(ExternalizedValueMapValue annotation) {
+            this.annotation = annotation;
+        }
+
+        @Override
+        public InjectionStrategy getInjectionStrategy() {
+            return annotation.injectionStrategy();
+        }
+
+        @Override
+        public Boolean isOptional() {
+            return annotation.optional();
+        }
+    }
+}
+```
+
+ExternalizerService.externalize
+
+```java
+@Override
+    public String externalize(SlingHttpServletRequest request, String path) {
+        if (StringUtils.isBlank(path)) {
+            return null;
+        }
+        return request.getResourceResolver().map(path);
+    }
+```
+
+## UI
+
+### CoralUI /Coral3
+
+[Components API](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/reference-materials/coral-ui/coralui3/Coral.Calendar.html)
+
+Setup and Integration
+
+1. Create a new Clientlib
+2. Add a Dependency to at least "coral3".
+3. Define a custom category
+4. Load this clientlib in your .html file which uses coral3 components
+
+`clientlib .content.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          jcr:primaryType="cq:ClientLibraryFolder"
+          allowProxy="{Boolean}true"
+          dependencies="[coralui3,granite.ui.coral.foundation,granite.ui.shell]"
+          categories="[luca.coraltest]"/>
+
+```
+
+`body.html`
+
+```html
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html">
+    <!--  the clientlib has a dependency to coral3 and therefore loads after the coral3 base has been loaded  -->
+    <sly data-sly-call="${clientlib.all @ categories='luca.coraltest'}"></sly>
+</sly>
+
+<div class="container">
+    <button is="coral-button" icon="add">My Button</button>
+</div>
+```
