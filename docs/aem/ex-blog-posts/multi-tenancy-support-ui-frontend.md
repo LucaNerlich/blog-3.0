@@ -1,0 +1,190 @@
+# AEM Multi Tenancy Theme Support For UI Frontend Module
+
+This post explains, how you can customize your ui.frontend ClientLibrary creation to generate separate ClientLibraries for each site or theme with a focus on reusing (core) components and the AEM Style System. Leveraging this, allows you to build less backend components, reuse more code and provide flexibility to authors.
+
+This tutorial expects an entry level understanding of the AEM Client Library mechanism.
+
+## TL:DR
+
+1. Configure webpack common to, for each desired 'site', copy and generate (to /dist)
+   1. site.css
+   2. site.js
+   3. all resources (images, fonts)
+2. Configure the aem-clientlib-generator plugin to generate a separate clientlib for each specified site and their files in /dist
+3. Implement site specific component variants, styling etc.
+
+## Issue
+
+The maven archetype ui.frontendmodule comes with a neat template to generate and copy a ClientLibrary to ui.apps, which can then be integrated and loaed on AEM pages. However, the out of the box solution is only configured to generate one single ClientLibrary.
+This works fine, if you have *one* site for which you are building the styling in this repository.
+
+By reusing AEM Core Components and referencing them via `@ResourceSuperType` in tenant specific sites, it is possible to reuse a lot of backend code and markup templates. FrontEnd developers could then focus on creating site specific styling variants which get *automatically* loaded via their respective ClientLibrary.
+One could also separate a Light and a Dark Mode for example with this method and have their stylesheets neatly separated into specific ClientLibraries.
+
+## Solution
+
+This example assumes, that we are building components, their styling variants and/or themes for two clients/tenants called [site-X] and [site-Y].
+
+Since this solution just adapts the maven archetype generated files, I will only show the relevant file excerpts.
+The two important files are:
+
+- ui.frontend/clientlib.config.js
+- ui.frontend/webpack.common.js
+
+### ui.frontend Folder Structure
+
+- ui.frontend
+  - /clientlib.config.js
+  - /webpack.common.js
+  - /src/main/webpack
+    - /components
+      - /[some-component-A]
+        - /[site-X] -- the components styling for the site X
+        - /[site-Y]
+        - [...]
+      - /[some-component-B]
+        - /[site-X]
+        - /[site-Y]
+        - [...]
+      - [...]
+    - /resources
+      - /[site-X]
+      - /[site-Y]
+    - /site/layouts
+      - /[site-X]
+        - /main-site-X.scss
+        - /main-site-X.ts
+      - /[site-Y]
+        - /main-site-Y.scss
+        - /main-site-Y.ts
+      - [...]
+
+### /src/main/webpack/site/layouts/main-site-X.scss
+
+Each site needs a stylesheet entry. This file imports all other stylesheet files. This is an example:
+
+```scss
+@import 'src/main/webpack/site/variables';
+
+// Pages
+@import 'src/main/webpack/components/header/site-X/header';
+
+//Page Authoring
+@import 'src/main/webpack/components/teaser/site-X/teaser';
+
+```
+
+### /src/main/webpack/site/layouts/main-site-X.ts
+
+Each site needs a javascript / typescript entry. This file imports all other script files. This is an example:
+
+```typescript
+// Stylesheets
+import "./main-site-X.scss";
+// Javascript or Typescript
+
+// To import JS/TS files, directly point / import them e.g:
+import "/src/main/webpack/components/teaser/site-X/[some-js-ts-file]"
+
+```
+
+### webpack.common.js
+
+For the webpack config, we need to modify three key areas
+
+```javascript
+// we need to define the javascript/typescripts entry file location for each clientlib and their site.
+entry: {
+    site-X: '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
+    site-Y: '/src/main/webpack/site/layouts/main-site-Y.ts',
+},
+
+[...]
+
+// our clientlib will be called clientlib-site-x and the entry javascript file should be called site-x.js
+// -> 'clientlib-[name]/[name].js'
+output: {
+    filename: (chunkData) => {
+        return chunkData.chunk.name === 'dependencies' ? 'clientlib-dependencies/[name].js' : 'clientlib-[name]/[name].js';
+    },
+    path: path.resolve(__dirname, 'dist')
+},
+
+[...]
+
+plugins: [
+    [...]
+    new CopyWebpackPlugin([
+        // we need to specify the path to each site
+        { from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-X'), to: './clientlib-site-X' },
+        { from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-Y'), to: './clientlib-site-Y' }
+    ])
+],
+```
+
+All in all, the webpack common config defines the structure of the generated build artifacts below /dist.
+
+![dist-output](/images/aem/multi-tenancy-uifrontend/dist-output.png)
+
+### clientlib.config.js
+
+Code has been kept simple for clarification sake.
+
+The clientlib generation picks up files from the webpack generated artifacts, according to the specified 'cwd' command.
+
+For example:
+
+- /dist/clientlib-site-x
+- /dist/clientlib-site-y
+
+We keep most of the archetype templates file version the same, just a couple of key changes:
+
+```javascript
+[...]
+
+// Generate site specific clientlibs
+const SITES = ['site-X', 'site-Y'] // define our sites / tenants
+const CLIENT_LIBS = []
+
+for (const siteName of SITES) {
+    CLIENT_LIBS.push({
+        ...libsBaseConfig,
+        name: 'clientlib-site-' + siteName,
+        categories: [siteName + '.site'],
+        dependencies: ['some-dependency'],
+        assets: {
+            // Copy js and css into the respective ClientLib directories
+            js: {
+                cwd: 'clientlib-' + siteName, // cwd -> changeWorkingDirectory
+                files: ['**/*.js'],
+                flatten: false
+            },
+            css: {
+                cwd: 'clientlib-' + siteName,
+                files: ['**/*.css'],
+                flatten: false
+            },
+
+            // Copy all other files into the `resources` ClientLib directory
+            resources: {
+                cwd: 'clientlib-' + siteName,
+                files: ['**/*.*'],
+                flatten: false,
+                ignore: ['**/*.js', '**/*.css']
+            }
+        }
+    });
+}
+
+[...]
+
+// Config for `aem-clientlib-generator`
+module.exports = {
+    [...]
+    libs: CLIENT_LIBS
+};
+```
+
+Thanks for reading!
+
+luca
