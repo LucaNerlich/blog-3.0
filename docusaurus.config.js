@@ -15,6 +15,7 @@ const config = {
     favicon: 'images/favicon.ico',
     organizationName: 'LucaNerlich',
     projectName: 'blog-3.0',
+    trailingSlash: false,
 
     presets: [
         [
@@ -35,12 +36,16 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
+                sitemap: {
+                    changefreq: 'weekly',
+                    priority: 0.5,
+                }
             }),
         ],
     ],
 
     plugins: [
-        '@docusaurus/plugin-ideal-image'
+        '@docusaurus/plugin-ideal-image',
     ],
 
     themeConfig:
