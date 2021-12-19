@@ -1,4 +1,4 @@
-# AEM Multi Tenancy Theme Support For UI Frontend Module
+# Multi Tenancy Theme Support For UI Frontend Module
 
 This post explains, how you can customize your ui.frontend ClientLibrary creation to generate separate ClientLibraries
 for each site or theme with a focus on reusing (core) components and the AEM Style System. Leveraging this, allows you
@@ -88,7 +88,6 @@ Each site needs a javascript / typescript entry. This file imports all other scr
 ```typescript
 // Stylesheets
 import "./main-site-X.scss";
-// Javascript or Typescript
 
 // To import JS/TS files, directly point / import them e.g:
 import "/src/main/webpack/components/teaser/site-X/[some-js-ts-file]"
@@ -102,39 +101,30 @@ For the webpack config, we need to modify three key areas
 ```javascript
 // we need to define the javascript/typescripts entry file location for each clientlib and their site.
 entry: {
-    site - X
-:
-    '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
-    site - Y
-:
-    '/src/main/webpack/site/layouts/main-site-Y.ts',
-}
-,
+    site-X: '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
+    site-Y: '/src/main/webpack/site/layouts/main-site-Y.ts',
+},
 
-[...]
+// [...]
 
 // our clientlib will be called clientlib-site-x and the entry javascript file should be called site-x.js
 // -> 'clientlib-[name]/[name].js'
 output: {
     filename: (chunkData) => {
         return chunkData.chunk.name === 'dependencies' ? 'clientlib-dependencies/[name].js' : 'clientlib-[name]/[name].js';
-    },
-        path
-:
-    path.resolve(__dirname, 'dist')
-}
-,
+    }, path: path.resolve(__dirname, 'dist')
+},
 
-[...]
+// [...]
 
 plugins: [
-    [...]
+    // [...]
     new CopyWebpackPlugin([
         // we need to specify the path to each site
         {from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-X'), to: './clientlib-site-X'},
         {from: path.resolve(__dirname, "/src/main/webpack/resource" + '/site-Y'), to: './clientlib-site-Y'}
     ])
-],
+]
 ```
 
 All in all, the webpack common config defines the structure of the generated build artifacts below /dist.
@@ -191,17 +181,11 @@ for (const siteName of SITES) {
     });
 }
 
-[...]
+// [...]
 
 // Config for `aem-clientlib-generator`
 module.exports = {
-    [...
-]
-libs: CLIENT_LIBS
-}
-;
+    // [...]
+    libs: CLIENT_LIBS
+};
 ```
-
-Thanks for reading!
-
-luca

@@ -184,6 +184,7 @@ responsiveGrid properties and classes, as well as all child resources, which wer
 aem editor.
 
 ```json
+// todo fix layout
 quicklinkscontainer: {
 text: "My custom footer",
 columnClassNames: {
@@ -202,14 +203,14 @@ gridClassNames: "aem-Grid aem-Grid--12 aem-Grid--default--12",
 ],: items: {
 quicklinkscolumn1: {
 linksPath: {
-jcr: primaryType: "nt:unstructured",
+"jcr: primaryType": "nt:unstructured",
 item0: {
-jcr: primaryType: "nt:unstructured",
+"jcr: primaryType": "nt:unstructured",
 path: "/content/mysite/fr/en/home",
 title: "link1"
 },
 item1: {
-jcr: primaryType: "nt:unstructured",
+"jcr: primaryType": "nt:unstructured",
 path: "/content/mysite/fr/en/discover",
 title: "link2"
 }
@@ -218,14 +219,14 @@ title: "My Column",: type: "mysite/components/quicklinks/quicklinkscolumn"
 },
 quicklinkscolumn2: {
 linksPath: {
-jcr: primaryType: "nt:unstructured",
+"jcr: primaryType": "nt:unstructured",
 item0: {
-jcr: primaryType: "nt:unstructured",
+"jcr: primaryType": "nt:unstructured",
 path: "/content/mysite/fr/en/home",
 title: "link 3"
 },
 item1: {
-jcr: primaryType: "nt:unstructured",
+"jcr: primaryType": "nt:unstructured",
 path: "/content/mysite/fr/en/home",
 title: "link 4"
 }
