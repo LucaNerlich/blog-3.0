@@ -39,6 +39,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
     color: #ff0000;
 }
 
+.theme-doc-sidebar-item-category-level-2 > div > a {
+    color: darkgoldenrod;
+}
+
 .archive > div > a {
     color: #666666;
     font-style: italic;
