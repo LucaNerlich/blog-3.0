@@ -12,7 +12,7 @@ sidebar_position: 1
 
 - [Core Components](./aem/core-components.mdx)
 - [Helix](./aem/helix.mdx)
-- [Overlays](./aem/overlays.mdx)
+- [Overlays](aem/ui/overlays.mdx)
 - [Spa Editor](./aem/spa-editor.mdx)
 - [Workflows](./aem/workflows.mdx)
 

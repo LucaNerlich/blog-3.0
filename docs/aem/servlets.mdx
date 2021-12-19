@@ -1,0 +1,31 @@
+# Servlets
+
+<div class="alert alert--warning" role="alert">
+    Work in progress ⚠️
+</div>
+
+[Infos](http://www.aemcq5tutorials.com/tutorials/sling-servlet-in-aem/)
+
+[Infos 2](https://aem.redquark.org/2018/10/day-05-working-with-sling-servlets-in_10.html)
+
+DO
+
+```java
+@SlingServlet(
+resourceTypes = "sling/servlet/default",
+selectors = "selector",
+extensions = "tab",
+methods = HttpConstants.METHOD_GET
+)
+```
+
+DON'T
+
+```java
+@Component
+@Service(value = javax.servlet.Servlet.class)
+@Properties({ @Property(name = "sling.servlet.resourceTypes", value = { "sling/servlet/default" }),
+@Property(name = "sling.servlet.selectors", value = { "selector" }),
+@Property(name = "sling.servlet.extensions", value = { "tab" }),
+@Property(name = "sling.servlet.methods", value = { HttpConstants.METHOD_GET }) })
+```

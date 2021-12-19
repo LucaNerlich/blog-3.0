@@ -1,0 +1,35 @@
+# CoralUI
+
+[Components API](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/reference-materials/coral-ui/coralui3/Coral.Calendar.html)
+
+Setup and Integration
+
+1. Create a new Clientlib
+2. Add a Dependency to at least "coral3".
+3. Define a custom category
+4. Load this clientlib in your .html file which uses coral3 components
+
+`clientlib .content.xml`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          jcr:primaryType="cq:ClientLibraryFolder"
+          allowProxy="{Boolean}true"
+          dependencies="[coralui3,granite.ui.coral.foundation,granite.ui.shell]"
+          categories="[luca.coraltest]"/>
+
+```
+
+`body.html`
+
+```html
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html">
+    <!--  the clientlib has a dependency to coral3 and therefore loads after the coral3 base has been loaded  -->
+    <sly data-sly-call="${clientlib.all @ categories='luca.coraltest'}"></sly>
+</sly>
+
+<div class="container">
+    <button is="coral-button" icon="add">My Button</button>
+</div>
+```
