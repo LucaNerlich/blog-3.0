@@ -1,3 +1,6 @@
 {
-    "label": "Interesting Links"
+    "label": "Interesting Links",
+    "link": {
+        "type": "generated-index"
+    }
 }

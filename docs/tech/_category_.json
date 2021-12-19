@@ -1,3 +1,6 @@
 {
     "label": "Tech",
+    "link": {
+        "type": "generated-index"
+    }
 }

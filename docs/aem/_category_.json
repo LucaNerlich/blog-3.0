@@ -1,4 +1,7 @@
 {
     "label": "AEM",
-    "className": "font-red"
+    "className": "font-red",
+    "link": {
+        "type": "generated-index"
+    }
 }

@@ -1,3 +1,6 @@
 {
-    "label": "Video Games"
+    "label": "Video Games",
+    "link": {
+        "type": "generated-index"
+    }
 }

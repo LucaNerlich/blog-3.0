@@ -1,4 +1,7 @@
 {
     "label": "_archive",
-    "className": "archive"
+    "className": "archive",
+    "link": {
+        "type": "generated-index"
+    }
 }

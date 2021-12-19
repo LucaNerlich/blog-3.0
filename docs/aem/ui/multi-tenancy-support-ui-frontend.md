@@ -101,9 +101,14 @@ For the webpack config, we need to modify three key areas
 ```javascript
 // we need to define the javascript/typescripts entry file location for each clientlib and their site.
 entry: {
-    site-X: '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
-    site-Y: '/src/main/webpack/site/layouts/main-site-Y.ts',
-},
+    site - X
+:
+    '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
+    site - Y
+:
+    '/src/main/webpack/site/layouts/main-site-Y.ts',
+}
+,
 
 // [...]
 
@@ -112,8 +117,11 @@ entry: {
 output: {
     filename: (chunkData) => {
         return chunkData.chunk.name === 'dependencies' ? 'clientlib-dependencies/[name].js' : 'clientlib-[name]/[name].js';
-    }, path: path.resolve(__dirname, 'dist')
-},
+    }, path
+:
+    path.resolve(__dirname, 'dist')
+}
+,
 
 // [...]
 
