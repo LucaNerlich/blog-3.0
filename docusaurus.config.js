@@ -68,6 +68,7 @@ const config = {
                     {
                         to: '/docs/intro#aem',
                         label: 'AEM',
+                        className: "font-red",
                         position: 'left'
                     },
                     {

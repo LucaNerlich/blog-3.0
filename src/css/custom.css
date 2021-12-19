@@ -31,6 +31,15 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
     margin-bottom: 1em;
 }
 
+.font-red {
+    color: #ff0000;
+}
+
 .font-red > div > a {
     color: #ff0000;
+}
+
+.archive > div > a {
+    color: #666666;
+    font-style: italic;
 }

@@ -11,10 +11,24 @@ sidebar_position: 1
 ## AEM
 
 - [Core Components](./aem/core-components.mdx)
+- [Local Development Setup](./aem/aem-dev-setup.md)
 - [Helix](./aem/helix.mdx)
+- [Event Listener](./aem/event-listener.mdx)
 - [Overlays](aem/ui/overlays.mdx)
 - [Spa Editor](./aem/spa-editor.mdx)
+- [Servelts](./aem/servlets.mdx)
 - [Workflows](./aem/workflows.mdx)
+
+### UI
+
+- [Workflows](./aem/ui/coral-ui.mdx)
+- [Multi Tenancy ui.frontend](./aem/ui/multi-tenancy-support-ui-frontend.md)
+- [Overlays](./aem/ui/overlays.mdx)
+
+### Annotations
+
+- [@ChildResource](./aem/annotations/child-resource.mdx)
+- [@ExternalizedValueMapValue](./aem/annotations/externalized-value-map-value.mdx)
 
 ## General Technology Posts
 
