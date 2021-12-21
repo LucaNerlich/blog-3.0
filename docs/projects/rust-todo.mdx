@@ -4,6 +4,11 @@
 
 A console based todo app, written in rust, saving to sqlite.
 
+## Update .toml dependencies
+
+1. `cargo install cargo-update`
+2. `cargo install-update -a`
+
 ## Usage
 
 ### Create
@@ -26,3 +31,66 @@ A console based todo app, written in rust, saving to sqlite.
 -i -> row id
 
 > td delete -i 1
+
+## Code
+
+> hideous main function - first actual rust program I am writing
+
+```rust title="main()"
+fn main() {
+    let yaml = load_yaml!("cli.yml");
+    let matches: ArgMatches = App::from(yaml).get_matches();
+
+    // setup db
+    let connection: Connection = api::database::open_connection();
+    api::database::initial_table_setup(&connection);
+
+    // handle arguments
+    if let Some(matches) = matches.subcommand_matches(COM_CREATE) {
+        let mut body: &str = "";
+        let mut date: &str = "";
+
+        if matches.is_present(ARG_BODY) {
+            body = match matches.value_of(ARG_BODY) {
+                None => "",
+                Some(x) => {
+                    x.trim()
+                }
+            };
+        }
+        if matches.is_present(ARG_DATE) {
+            date = match matches.value_of(ARG_DATE) {
+                None => "",
+                Some(arg_date) => {
+                    if util::util::is_date(arg_date.trim()) {
+                        arg_date.trim()
+                    } else {
+                        println!("Input date of wrong format. Needs yyyy-mm-dd.");
+                        ""
+                    }
+                }
+            };
+        }
+        if !body.is_empty() {
+            let _rows_modified = actions::create::create(&body, &date, &connection);
+        }
+    } else if let Some(matches) = matches.subcommand_matches(COM_DELETE) {
+        let id = match matches.value_of(ARG_ID) {
+            None => "",
+            Some(id) => id
+        };
+        if !id.is_empty() {
+            let _rows_modified = actions::delete::delete(id.trim(), &connection);
+        } else {
+            println!("Cannot delete for empty id.")
+        }
+    } else if let Some(_) = matches.subcommand_matches(COM_LIST) {
+        actions::list::list(&connection);
+    }
+
+    // default action
+    actions::list::list(&connection);
+    // close app
+    shutdown();
+}
+```
