@@ -4,6 +4,9 @@
 const lightCodeTheme = require('prism-react-renderer/themes/vsLight');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
+// Docusauraus.io config
+// https://github.com/facebook/docusaurus/blob/main/website/docusaurus.config.js
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Luca Nerlich - Tech Documentation',
