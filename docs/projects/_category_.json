@@ -2,5 +2,6 @@
     "label": "Projects",
     "link": {
         "type": "generated-index"
-    }
+    },
+    "collapsible": false
 }

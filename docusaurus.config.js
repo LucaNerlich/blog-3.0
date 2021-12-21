@@ -66,6 +66,11 @@ const config = {
                         label: 'Documentation',
                     },
                     {
+                        to: '/docs/category/projects',
+                        label: 'Projects',
+                        position: 'left'
+                    },
+                    {
                         to: '/docs/category/aem',
                         label: 'AEM',
                         className: "font-red",

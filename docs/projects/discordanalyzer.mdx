@@ -52,6 +52,10 @@ public abstract class Ranking {
 }
 ```
 
+Ranking implementations
+
+<Image img={require('/images/projects/dca/rankings.png')}/>
+
 ## Program Sequence
 
 ### Entity Models
@@ -149,7 +153,7 @@ private static List<Channel> parseJsonToChannels() {
 
 The loaded log data gets send through multiple methods of data aggregation and preparation. For each single author / chatter found.
 
-``` title="populateAuthorDataMap()"
+```java title="populateAuthorDataMap()"
 private void populateAuthorDataMap(AuthorData authorData, Message message) {
         analyzeMessage(authorData, message);
         authorData.setAuthorId(message.getAuthor().getId());
@@ -159,7 +163,7 @@ private void populateAuthorDataMap(AuthorData authorData, Message message) {
 }
 ```
 
-``` title="analyzeMessage()"
+```java title="analyzeMessage()"
 private void analyzeMessage(AuthorData authorData, Message message) {
         authorData.incrementMessages();
         analyzeContent(authorData, message);
@@ -170,14 +174,70 @@ private void analyzeMessage(AuthorData authorData, Message message) {
 }
 ```
 
-The `analyzeMentions` method for example counts the amount of times, the `current` chatter has been mentioned `@UserXYZ`.
+The `analyzeMentions` method for example counts the amount of times, the `current` chatter has been mentioned (e.g. `@UserXYZ`).
 
-``` title="analyzeMentions()"
+```java title="analyzeMentions()"
 private void analyzeMentions(AuthorData authorData, Message message) {
         final Mention[] mentions = message.getMentions();
         if (mentions != null && mentions.length > 0) {
             authorData.incrementTimesMentioned();
         }
+}
+```
+
+Each Author collects its own data, which get updated during the analyzation process.
+
+```java title="AuthorData.java"
+@Getter
+@Setter
+public class AuthorData {
+
+    private transient Author author;
+    private transient LocalDate earliestLocalDate;
+    private transient List<Integer> wordsPerMessage = new ArrayList<>();
+
+    private String authorId;
+    private String firstMessageSent;
+    private double averageWordsPerMessage;
+    private long messagesSent = 0;
+    private long embedsSent = 0;
+    private long attachmentsSent = 0;
+    private long sumEmojisReceived = 0;
+    private long timesMentioned = 0;
+    private Map<Emoji, Integer> emojisReceived = new TreeMap<>(new Emoji.EmojiComparator());
+
+// [...]
+}
+```
+
+## Statistics Generation
+
+Each data entry gets fed to a Java TreeMap which integrates a custom comparator.
+The TreeMap is then automatically sorted according to the compare method written.
+After all data has been ingested, the resulting TreeMap is already in the correct ranked order.
+
+For example, the author, who has been mentioned the most, is on index 0.
+
+```java title="Analyzer.java"
+@Nullable
+    public Ranking getRanking(RankingType rankingType) {
+        Ranking result = null;
+
+        switch (rankingType) {
+            // [...]
+            case TIMES_MENTIONED:
+                result = new TimesMentionedRanking(new LinkedList<>(authorDataMap.values()));
+                break;
+        }
+
+        return result;
+    }
+```
+
+```java title="calculateMentionRanking()"
+private void calculateMentionRanking(List<AuthorData> authorDataList) {
+        timesMentioned = new TreeMap<>(new AuthorData.AuthorDataMentionsCountComparator());
+        authorDataList.forEach(authorData -> timesMentioned.put(authorData, authorData.getTimesMentioned()));
 }
 ```
 

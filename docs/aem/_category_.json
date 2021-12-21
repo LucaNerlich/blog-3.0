@@ -3,5 +3,6 @@
     "className": "font-red",
     "link": {
         "type": "generated-index"
-    }
+    },
+    "collapsed": false
 }
