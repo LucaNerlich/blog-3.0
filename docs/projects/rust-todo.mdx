@@ -1,3 +1,28 @@
 # Rust CLI ToDo
 
 [GitLab Repository](https://gitlab.com/nerlich/td)
+
+A console based todo app, written in rust, saving to sqlite.
+
+## Usage
+
+### Create
+
+-b body
+
+-d due_date
+
+> td create -b "todo content"
+
+> td create -b "todo content" -d 2021-02-15
+
+### List
+
+> td
+> td list
+
+### Delete
+
+-i -> row id
+
+> td delete -i 1
