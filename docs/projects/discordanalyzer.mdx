@@ -9,7 +9,7 @@ The DCA operates on statically available chat log files, downloaded by the [Disc
 ## Architecture and Output
 
 After parsing all `.json` logs to Java Entities, separated into an array of `Channel` objects, each gets analyzed by the `Analyzer.java`.
-The analyzer reads each message and tracks a multitude of information, automatically sorted by TreeMaps.
+The analyzer reads each message and tracks a multitude of information for each specific author/chatter, automatically sorted by TreeMaps.
 
 Based on the `rankingType`, the analyzer writes its data to separate files.
 
@@ -220,24 +220,252 @@ For example, the author, who has been mentioned the most, is on index 0.
 
 ```java title="Analyzer.java"
 @Nullable
-    public Ranking getRanking(RankingType rankingType) {
-        Ranking result = null;
+public Ranking getRanking(RankingType rankingType) {
+    Ranking result = null;
 
-        switch (rankingType) {
-            // [...]
-            case TIMES_MENTIONED:
-                result = new TimesMentionedRanking(new LinkedList<>(authorDataMap.values()));
-                break;
-        }
-
-        return result;
+    switch (rankingType) {
+        // [...]
+        case TIMES_MENTIONED:
+            result = new TimesMentionedRanking(new LinkedList<>(authorDataMap.values()));
+            break;
     }
+
+    return result;
+}
 ```
 
 ```java title="calculateMentionRanking()"
 private void calculateMentionRanking(List<AuthorData> authorDataList) {
-        timesMentioned = new TreeMap<>(new AuthorData.AuthorDataMentionsCountComparator());
-        authorDataList.forEach(authorData -> timesMentioned.put(authorData, authorData.getTimesMentioned()));
+    timesMentioned = new TreeMap<>(new AuthorData.AuthorDataMentionsCountComparator());
+    authorDataList.forEach(authorData -> timesMentioned.put(authorData, authorData.getTimesMentioned()));
+}
+```
+
+### Account Age
+
+> Author on the analyzed server with the oldest account / date of first message sent.
+
+```java title="Comparator"
+public static class AuthorDataFirstMessageComparator implements Comparator<AuthorData> {
+    @Override
+    public int compare(AuthorData o1, AuthorData o2) {
+        final int compare = o1.getEarliestLocalDate().compareTo(o2.getEarliestLocalDate());
+        if (compare == 0) {
+            return 1;
+        } else {
+            return compare;
+        }
+    }
+}
+```
+
+```java title="Analysis"
+private void calculateAccountAgeRanking(List<AuthorData> authorDataList) {
+    joinedServer = new TreeMap<>(new AuthorData.AuthorDataFirstMessageComparator());
+    authorDataList.stream()
+            .filter(authorData -> authorData.getMessagesSent() >= 10)
+            .forEach(authorData -> joinedServer.put(authorData, authorData.getLocalDateAsString(authorData.getEarliestLocalDate())));
+}
+```
+
+### Average Words per Message
+
+```java title="Comparator"
+public static class AvgWordCountComparator implements Comparator<Double> {
+    @Override
+    public int compare(Double o1, Double o2) {
+        final int compare = o2.compareTo(o1);
+
+        if (compare == 0) {
+            return 1;
+        } else {
+            return compare;
+        }
+    }
+}
+```
+
+```java title="Analysis"
+private void calculateAvgWordCount(List<AuthorData> authorDataList) {
+    authorDataList
+            .stream()
+            .filter(authorData -> authorData.getMessagesSent() >= 10)
+            .forEach(authorData -> {
+                final double wordCountSum = authorData.getWordCountSum();
+                final double messagesSent = authorData.getMessagesSent();
+
+                if (wordCountSum > 0 && messagesSent > 0) {
+                    authorData.setAverageWordsPerMessage(round(wordCountSum / messagesSent));
+                    averageWordsPerMessage.put(authorData.getAverageWordsPerMessage(), authorData.getAuthor().getNickname());
+                }
+            });
+}
+```
+
+### Attachments added
+
+```java title="Comparator"
+public static class AuthorDataAttachmentsCountComparator implements Comparator<AuthorData> {
+    @Override
+    public int compare(AuthorData o1, AuthorData o2) {
+        final Long attachmentsSent1 = o1.getAttachmentsSent();
+        final Long attachmentsSent2 = o2.getAttachmentsSent();
+        final int compare = attachmentsSent2.compareTo(attachmentsSent1);
+
+        if (compare == 0) {
+            return 1;
+        } else {
+            return compare;
+        }
+    }
+}
+```
+
+```java title="Analysis"
+private void calculateAttachments(List<AuthorData> authorDataList) {
+        mostAttachments = new TreeMap<>(new AuthorData.AuthorDataAttachmentsCountComparator());
+        authorDataList.forEach(authorData -> mostAttachments.put(authorData, authorData.getAttachmentsSent()));
+}
+
+private void countAttachments(List<AuthorData> authorDataList) {
+    for (AuthorData authorData : authorDataList) {
+        attachmentsSent = attachmentsSent + authorData.getAttachmentsSent();
+    }
+}
+```
+
+### Embeds added
+
+```java title="Comparator"
+public static class AuthorDataEmbedsCountComparator implements Comparator<AuthorData> {
+    @Override
+    public int compare(AuthorData o1, AuthorData o2) {
+        final Long embedsSent1 = o1.getEmbedsSent();
+        final Long embedsSent2 = o2.getEmbedsSent();
+        final int compare = embedsSent2.compareTo(embedsSent1);
+
+        if (compare == 0) {
+            return 1;
+        } else {
+            return compare;
+        }
+    }
+}
+```
+
+```java title="Analysis"
+private void calculateEmbeds(List<AuthorData> authorDataList) {
+    mostEmbeds = new TreeMap<>(new AuthorData.AuthorDataEmbedsCountComparator());
+    authorDataList.forEach(authorData -> mostEmbeds.put(authorData, authorData.getEmbedsSent()));
+}
+
+private void countEmbeds(List<AuthorData> authorDataList) {
+    for (AuthorData authorData : authorDataList) {
+        embedsSent = embedsSent + authorData.getEmbedsSent();
+    }
+}
+```
+
+### Emoji Reaction count
+
+```java title="Comparator"
+public static class EmojiCountComparator implements Comparator<Emoji> {
+    @Override
+    public int compare(Emoji o1, Emoji o2) {
+        final int compare = o2.count.compareTo(o1.count);
+
+        if (compare == 0) {
+            return 1;
+        } else {
+            return compare;
+        }
+    }
+}
+```
+
+```java title="Analysis"
+private void calculateMostCommonReaction(List<AuthorData> authorDataList) {
+    Map<Emoji, Integer> emojiCount = new HashMap<>();
+    authorDataList.forEach(authorData -> {
+        final Map<Emoji, Integer> emojisReceived = authorData.getEmojisReceived();
+        emojisReceived.forEach((key, value) -> {
+            if (emojiCount.containsKey(key)) {
+                emojiCount.put(key, emojiCount.get(key) + value);
+            } else {
+                emojiCount.put(key, value);
+            }
+        });
+    });
+
+    // write emoji count
+    for (Map.Entry<Emoji, Integer> emoji : emojiCount.entrySet()) {
+        emoji.getKey().setCount(emoji.getValue());
+    }
+    mostCommonReaction.putAll(emojiCount);
+}
+```
+
+### Messages sent
+
+```java title="Comparator"
+public static class AuthorDataMessagesCountComparator implements Comparator<AuthorData> {
+    @Override
+    public int compare(AuthorData o1, AuthorData o2) {
+        final Long messagesSent1 = o1.getMessagesSent();
+        final Long messagesSent2 = o2.getMessagesSent();
+        final int compare = messagesSent2.compareTo(messagesSent1);
+
+        if (compare == 0) {
+            return 1;
+        } else {
+            return compare;
+        }
+    }
+}
+```
+
+```java title="Analysis"
+private void calculateMessageRanking(List<AuthorData> authorDataList) {
+    mostMessages = new TreeMap<>(new AuthorData.AuthorDataMessagesCountComparator());
+    authorDataList.forEach(authorData -> mostMessages.put(authorData, authorData.getMessagesSent()));
+}
+
+private void countMessages(List<AuthorData> authorDataList) {
+    for (AuthorData authorData : authorDataList) {
+        messagesSent = messagesSent + authorData.getMessagesSent();
+    }
+}
+```
+
+### Times Mentioned
+
+```java title="Comparator"
+public static class AuthorDataMentionsCountComparator implements Comparator<AuthorData> {
+    @Override
+    public int compare(AuthorData o1, AuthorData o2) {
+        final Long timesMentioned1 = o1.getTimesMentioned();
+        final Long timesMentioned2 = o2.getTimesMentioned();
+        final int compare = timesMentioned2.compareTo(timesMentioned1);
+
+        if (compare == 0) {
+            return 1;
+        } else {
+            return compare;
+        }
+    }
+}
+```
+
+```java title="Analysis"
+private void calculateMentionRanking(List<AuthorData> authorDataList) {
+    timesMentioned = new TreeMap<>(new AuthorData.AuthorDataMentionsCountComparator());
+    authorDataList.forEach(authorData -> timesMentioned.put(authorData, authorData.getTimesMentioned()));
+}
+
+private void countMentions(List<AuthorData> authorDataList) {
+    for (AuthorData authorData : authorDataList) {
+        countMentions = countMentions + authorData.getTimesMentioned();
+    }
 }
 ```
 
