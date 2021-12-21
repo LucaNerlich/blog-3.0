@@ -27,12 +27,20 @@ const config = {
                     sidebarPath: require.resolve('./sidebars.js'),
                     // Please change this to your repo.
                     editUrl: 'https://github.com/LucaNerlich/blog-3.0/tree/main',
+                    showLastUpdateAuthor: false,
+                    showLastUpdateTime: true,
                 },
                 blog: {
                     showReadingTime: true,
-                    // Please change this to your repo.
                     editUrl:
                         'https://github.com/LucaNerlich/blog-3.0/tree/main/docs',
+                    postsPerPage: 5,
+                    feedOptions: {
+                        type: 'all',
+                        copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+                    },
+                    blogSidebarCount: 'ALL',
+                    blogSidebarTitle: 'All our posts',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
@@ -52,7 +60,20 @@ const config = {
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            hideableSidebar: true,
+            colorMode: {
+                defaultMode: 'dark',
+                disableSwitch: false,
+                respectPrefersColorScheme: true,
+            },
+            // algolia: {
+            //     appId: '',
+            //     apiKey: '',
+            //     indexName: '',
+            //     contextualSearch: true,
+            // },
             navbar: {
+                hideOnScroll: true,
                 title: 'Luca Nerlich',
                 logo: {
                     alt: 'My Site Logo',
