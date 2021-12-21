@@ -1,3 +1,110 @@
+import Image from '@theme/IdealImage';
+
 # Discord Chat Analyzer
 
 [GitLab Repository](https://gitlab.com/lucanerlich/discordchatanalyzer)
+
+The DCA operates on statically available chat log files, downloaded by the [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter).
+
+## Architecture
+
+## Program Sequenz
+
+### Entity Models
+
+By manually analyzing the available fields in the json logs, a separate pojo / entity file has been created for each object.
+Using Lombok, the Pojos can be kept fairly small. This could be reduced even further, by implementing each entity as a [Java 17 record](https://docs.oracle.com/en/java/javase/17/language/records.html).
+
+Each server has multiple `Channels`. Each channel has `ChannelInfos` and `n` messages.
+
+```java title='Channel.java'
+import analyzer.models.DateRange;
+import analyzer.models.Guild;
+import analyzer.models.message.Message;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class Channel {
+
+    private Guild guild;
+    private ChannelInfo channel;
+    private DateRange dateRange;
+    private Message[] messages;
+}
+```
+
+```java title='ChannelInfo.java'
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ChannelInfo {
+    private String id;
+    private String type;
+    private String categoryId;
+    private String category;
+    private String name;
+    private String topic;
+}
+```
+
+```java title="Message.java"
+import analyzer.models.Author;
+import analyzer.models.message.embed.Embed;
+import analyzer.models.message.reaction.Reaction;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class Message {
+    private String id;
+    private String type;
+    private String timestamp;
+    private String timestampEdited;
+    private String callEndedTimestamp;
+    private boolean isPinned;
+    private String content;
+    private Author author;
+    private Attachment[] attachments;
+    private Embed[] embeds;
+    private Reaction[] reactions;
+    private Mention[] mentions;
+    private Reference reference;
+}
+```
+
+### Load JSON
+
+We instantiate a Gson object and read all json log files in parallel.
+
+```java title="Main.java"
+private static List<Channel> parseJsonToChannels() {
+        final Gson gson = new GsonBuilder().setDateFormat(DateFormat.FULL, DateFormat.FULL).create();
+
+        final List<Channel> channels = new ArrayList<>();
+        final List<String> logs = readLogs();
+
+        logs.parallelStream().forEach(logFilePath -> {
+            try (Reader reader = Files.newBufferedReader(Paths.get(logFilePath))) {
+                final Channel channel = gson.fromJson(reader, Channel.class);
+                channels.add(channel);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        return channels;
+    }
+```
+
+## UML
+
+*Zoom in to read*
+
+<Image img={require('/images/projects/dca/uml.png')}/>
+
+[Download UML Image](/images/projects/dca/uml.png)
