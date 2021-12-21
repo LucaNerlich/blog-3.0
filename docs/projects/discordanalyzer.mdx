@@ -6,16 +6,60 @@ import Image from '@theme/IdealImage';
 
 The DCA operates on statically available chat log files, downloaded by the [DiscordChatExporter](https://github.com/Tyrrrz/DiscordChatExporter).
 
-## Architecture
+## Architecture and Output
 
-## Program Sequenz
+After parsing all `.json` logs to Java Entities, separated into an array of `Channel` objects, each gets analyzed by the `Analyzer.java`.
+The analyzer reads each message and tracks a multitude of information, automatically sorted by TreeMaps.
+
+Based on the `rankingType`, the analyzer writes its data to separate files.
+
+```java title="RankingType.java"
+package analyzer.models.ranking;
+
+public enum RankingType {
+    MOST_MESSAGES,
+    MOST_EMBEDS,
+    MOST_ATTACHMENTS,
+    TIMES_MENTIONED,
+    ACCOUNT_AGE,
+    MOST_COMMON_REACTION,
+    AVG_WORD_COUNT
+}
+```
+
+The data is aggregated and analyzed by an implementation of `Ranking.java`.
+
+```java title="Ranking.java"
+import analyzer.stats.AuthorData;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+public abstract class Ranking {
+
+    @Getter
+    @Setter
+    private transient List<AuthorData> authorDataList;
+
+    public Ranking(List<AuthorData> authorDataList) {
+        this.authorDataList = authorDataList;
+    }
+
+    public String getOutputFilePath() {
+        return "logs/not-implemented.json";
+    }
+}
+```
+
+## Program Sequence
 
 ### Entity Models
 
 By manually analyzing the available fields in the json logs, a separate pojo / entity file has been created for each object.
 Using Lombok, the Pojos can be kept fairly small. This could be reduced even further, by implementing each entity as a [Java 17 record](https://docs.oracle.com/en/java/javase/17/language/records.html).
 
-Each server has multiple `Channels`. Each channel has `ChannelInfos` and `n` messages.
+Each server (`Guild`) has multiple `Channels`. Each channel has `ChannelInfos` and `n` messages.
 
 ```java title='Channel.java'
 import analyzer.models.DateRange;
@@ -99,6 +143,42 @@ private static List<Channel> parseJsonToChannels() {
 
         return channels;
     }
+```
+
+### Data Aggregation
+
+The loaded log data gets send through multiple methods of data aggregation and preparation. For each single author / chatter found.
+
+``` title="populateAuthorDataMap()"
+private void populateAuthorDataMap(AuthorData authorData, Message message) {
+        analyzeMessage(authorData, message);
+        authorData.setAuthorId(message.getAuthor().getId());
+        authorData.setAuthor(message.getAuthor());
+        authorData.setEarliestLocalDate(message.getTimestamp());
+        authorDataMap.put(message.getAuthor(), authorData);
+}
+```
+
+``` title="analyzeMessage()"
+private void analyzeMessage(AuthorData authorData, Message message) {
+        authorData.incrementMessages();
+        analyzeContent(authorData, message);
+        analyzeEmbeds(authorData, message);
+        analyzeAttachments(authorData, message);
+        analyzeMentions(authorData, message);
+        analyzeReactions(authorData, message.getReactions());
+}
+```
+
+The `analyzeMentions` method for example counts the amount of times, the `current` chatter has been mentioned `@UserXYZ`.
+
+``` title="analyzeMentions()"
+private void analyzeMentions(AuthorData authorData, Message message) {
+        final Mention[] mentions = message.getMentions();
+        if (mentions != null && mentions.length > 0) {
+            authorData.incrementTimesMentioned();
+        }
+}
 ```
 
 ## UML
