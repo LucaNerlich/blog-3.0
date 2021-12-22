@@ -12,3 +12,18 @@ Helix grabs that content, transforms it to markdown and HTML. These fragments ar
 
 A client requests the html and executes the referenced scripts. These are a developers only possibility to alter the Websites appearance.
 Dom Manipulation, third party requests and CSS Styling transform the generated html into the desired visual outcome.
+
+## Technical Setup
+
+A helix development domain is constructed from three parts: **Branch Name**, **Repository Name** and **Repository Owner username**.
+
+Example: <https://branchname--reponame--githubusername.hlx3.page/site/path>
+
+## Best Practices
+
+Merge only via GitHub PullRequest. Add helix url to the pull requests branch and utilize the Helix Bot Core Web Vital analysis for every commit.
+This ensures, that you never heavily change a pages' performance to the worse.
+
+<div class="alert alert--warning" role="alert">
+    This is especially important, since its fairly easy to mess with a pages' core web vitals via DOM manipulation.
+</div>
