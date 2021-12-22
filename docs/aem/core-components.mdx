@@ -44,166 +44,163 @@ If you bootstrap your development environment via the maven AEM Project Archetyp
 
 ##### Root POM
 
-```xml
-<!-- /pom.xml -->
+```xml title="/pom.xml"
 <core.wcm.components.version>2.15.2</core.wcm.components.version>
 
-    <!-- [...] -->
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.core</artifactId>
-<version>${core.wcm.components.version}</version>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.content</artifactId>
-<type>zip</type>
-<version>${core.wcm.components.version}</version>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.config</artifactId>
-<type>zip</type>
-<version>${core.wcm.components.version}</version>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.extensions.amp</artifactId>
-<version>${core.wcm.components.version}</version>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.extensions.amp.content</artifactId>
-<type>zip</type>
-<version>${core.wcm.components.version}</version>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.examples.ui.apps</artifactId>
-<type>zip</type>
-<version>${core.wcm.components.version}</version>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.examples.ui.content</artifactId>
-<type>zip</type>
-<version>${core.wcm.components.version}</version>
-</dependency>
-    <!-- [...] -->
+<!-- [...] -->
+
+<dependencies>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.core</artifactId>
+        <version>${core.wcm.components.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.content</artifactId>
+        <type>zip</type>
+        <version>${core.wcm.components.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.config</artifactId>
+        <type>zip</type>
+        <version>${core.wcm.components.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.extensions.amp</artifactId>
+        <version>${core.wcm.components.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.extensions.amp.content</artifactId>
+        <type>zip</type>
+        <version>${core.wcm.components.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.examples.ui.apps</artifactId>
+        <type>zip</type>
+        <version>${core.wcm.components.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.examples.ui.content</artifactId>
+        <type>zip</type>
+        <version>${core.wcm.components.version}</version>
+    </dependency>
+</dependencies>
 ```
 
 ##### All POM
 
-```xml
-<!-- /all/pom.xml -->
-
-<!-- [...] -->
-<embedded>
-    <groupId>com.adobe.cq</groupId>
-    <artifactId>core.wcm.components.content</artifactId>
-    <type>zip</type>
-    <target>/apps/mysite-vendor-packages/application/install</target>
-</embedded>
-<embedded>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.core</artifactId>
-<target>/apps/mysite-vendor-packages/application/install</target>
-</embedded>
-<embedded>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.config</artifactId>
-<type>zip</type>
-<target>/apps/mysite-vendor-packages/application/install</target>
-</embedded>
-<embedded>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.extensions.amp.content</artifactId>
-<type>zip</type>
-<target>/apps/mysite-vendor-packages/application/install</target>
-</embedded>
-<embedded>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.extensions.amp</artifactId>
-<target>/apps/mysite-vendor-packages/application/install</target>
-</embedded>
-<embedded>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.examples.ui.apps</artifactId>
-<type>zip</type>
-<target>/apps/mysite-vendor-packages/application/install</target>
-</embedded>
-<embedded>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.examples.ui.content</artifactId>
-<type>zip</type>
-<target>/apps/mysite-vendor-packages/content/install</target>
-</embedded>
-    <!-- [...] -->
+```xml title="/all/pom.xml"
+<root-element>
+    <embedded>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.content</artifactId>
+        <type>zip</type>
+        <target>/apps/mysite-vendor-packages/application/install</target>
+    </embedded>
+    <embedded>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.core</artifactId>
+        <target>/apps/mysite-vendor-packages/application/install</target>
+    </embedded>
+    <embedded>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.config</artifactId>
+        <type>zip</type>
+        <target>/apps/mysite-vendor-packages/application/install</target>
+    </embedded>
+    <embedded>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.extensions.amp.content</artifactId>
+        <type>zip</type>
+        <target>/apps/mysite-vendor-packages/application/install</target>
+    </embedded>
+    <embedded>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.extensions.amp</artifactId>
+        <target>/apps/mysite-vendor-packages/application/install</target>
+    </embedded>
+    <embedded>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.examples.ui.apps</artifactId>
+        <type>zip</type>
+        <target>/apps/mysite-vendor-packages/application/install</target>
+    </embedded>
+    <embedded>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.examples.ui.content</artifactId>
+        <type>zip</type>
+        <target>/apps/mysite-vendor-packages/content/install</target>
+    </embedded>
+</root-element>
 ```
 
 ##### core POM
 
-```xml
-<!-- /core/pom.xml -->
-
+```xml title=""/core/pom.xml
 <!-- [...] -->
 <dependency>
     <groupId>com.adobe.cq</groupId>
     <artifactId>core.wcm.components.core</artifactId>
 </dependency>
-    <!-- [...] -->
+<!-- [...] -->
 ```
 
 ##### ui.apps POM
 
-```xml
-<!-- /ui.apps/pom.xml -->
-
-<!-- [...] -->
-<plugin>
-    <groupId>org.apache.jackrabbit</groupId>
-    <artifactId>filevault-package-maven-plugin</artifactId>
-    <configuration>
-        <group>com.fi</group>
-        <name>mysite.ui.apps</name>
-        <packageType>application</packageType>
-        <accessControlHandling>merge</accessControlHandling>
-        <repositoryStructurePackages>
-            <repositoryStructurePackage>
-                <groupId>com.fi</groupId>
-                <artifactId>mysite.ui.apps.structure</artifactId>
-            </repositoryStructurePackage>
-        </repositoryStructurePackages>
-        <dependencies>
-            <dependency>
-                <groupId>com.adobe.cq</groupId>
-                <artifactId>core.wcm.components.content</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>com.adobe.cq</groupId>
-                <artifactId>core.wcm.components.config</artifactId>
-            </dependency>
-        </dependencies>
-    </configuration>
-</plugin>
+```xml title="/ui.apps/pom.xml"
+<dependencies>
+    <!-- [...] -->
+    <plugin>
+        <groupId>org.apache.jackrabbit</groupId>
+        <artifactId>filevault-package-maven-plugin</artifactId>
+        <configuration>
+            <group>com.fi</group>
+            <name>mysite.ui.apps</name>
+            <packageType>application</packageType>
+            <accessControlHandling>merge</accessControlHandling>
+            <repositoryStructurePackages>
+                <repositoryStructurePackage>
+                    <groupId>com.fi</groupId>
+                    <artifactId>mysite.ui.apps.structure</artifactId>
+                </repositoryStructurePackage>
+            </repositoryStructurePackages>
+            <dependencies>
+                <dependency>
+                    <groupId>com.adobe.cq</groupId>
+                    <artifactId>core.wcm.components.content</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>com.adobe.cq</groupId>
+                    <artifactId>core.wcm.components.config</artifactId>
+                </dependency>
+            </dependencies>
+        </configuration>
+    </plugin>
 
     <!-- [...] -->
 
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.core</artifactId>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.content</artifactId>
-<type>zip</type>
-</dependency>
-<dependency>
-<groupId>com.adobe.cq</groupId>
-<artifactId>core.wcm.components.config</artifactId>
-<type>zip</type>
-</dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.core</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.content</artifactId>
+        <type>zip</type>
+    </dependency>
+    <dependency>
+        <groupId>com.adobe.cq</groupId>
+        <artifactId>core.wcm.components.config</artifactId>
+        <type>zip</type>
+    </dependency>
     <!-- [...] -->
+</dependencies>
 ```
 
 ### Extending Image Core Component
