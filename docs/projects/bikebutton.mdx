@@ -1,0 +1,42 @@
+# Bike Button
+
+> Fabian Bode + Luca Nerlich
+
+## Ziel
+- Reibungsloses Merken bestimmter Streckenabschnitte während der Fahrradfahrt ohne das Handy zu benutzen
+- Gesammelte Daten zur zukünftigen Routenplanung verwenden und als Notification während der Fahrt zur Verfügung stellen
+- Verknüpfung der Informationen mehrerer Fahrer zur Bestimmung besonders schöner/gefährlicher Stellen
+
+## Software Anforderungen
+- Streckenabschnitte mit Gefahrenstellen z.B. Schlaglöchern merken (roter Button)
+- Besonders schöne Streckenabschnitte merken (grüner Button)
+- Selbst gesammelte Informationen bei der Routenplanung verwenden (Komoot?)
+- Notification während der Fahrt auf wahoo, dass man sich einer Gefahrenstelle nähert
+- Foto bei Knopfdruck für gestützte Erinnerungen
+- iOS App, die die Information von den Sensoren während der Fahrt sammelt und speichert
+- Verknüpfung der Button Klick Events mit den Standortinformationen
+- Merken der Genauigkeitsangaben zum Zeitpunkt der Standorterfassung
+- Darstellung gesammelter Informationen auf einer Karte. Bezogen auf Fahrt und fahrtenübergreifend
+- Anzeigen der fahrerübergreifenden Insights auf einer Karte. Erkennen von Abschnitten, die von besonders vielen Fahrern als gefährlich eingestuft wurden
+- Wenn eine Gefahrenstelle beseitigt wurde, über langes Drücken des Buttons Entwarnung erfassen
+- Wenn genügend Fahrer Entwarnung getrackt haben, wird dieses in der Crowd Funktion nicht mehr als Gefahr angezeigt
+- Die Anzahl kurzer Klicks auf den Button (1-3) gibt die gerankte Schönheit/Gefahr an. Je mehr Klicks, desto wichtiger. Alle weiteren Klicks innerhalb von 20 Sek werden dann ignoriert
+- Ignorierzeit konfigurierbar in App
+- Unterscheidbarkeit Gefahrenstelle auf Radweg oder Straße
+- Gefahrenstellen (Radweg/Straße) zentral erfassen und automatisch an Behörde melden und Bearbeitungsstand merken
+- Meldemethoden API/Brief an zuständige lokale Behörde
+
+## Hardware Anforderungen
+- Wasserdicht
+- Leicht
+- Klein
+- Batteriebetrieben (cr2042?)
+- Bluetooth low energy / ANT+
+- Befestigung am Lenker
+- Micro Kamera zur Fotoaufnahme
+- Befestigung für Micro Kamera (Helm oder Lenker)
+
+## APIs
+- https://developers.strava.com/
+- https://static.komoot.de/doc/external-api/v007/index.html
+- https://static.komoot.de/doc/auth/oauth2.html
