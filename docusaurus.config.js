@@ -32,6 +32,7 @@ const config = {
                     editUrl: 'https://github.com/LucaNerlich/blog-3.0/tree/main',
                     showLastUpdateAuthor: false,
                     showLastUpdateTime: true,
+                    remarkPlugins: [require('mdx-mermaid')],
                 },
                 blog: {
                     showReadingTime: true,
@@ -58,6 +59,7 @@ const config = {
 
     plugins: [
         '@docusaurus/plugin-ideal-image',
+        'plugin-image-zoom'
     ],
 
     themeConfig:
