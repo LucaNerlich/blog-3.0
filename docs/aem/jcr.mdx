@@ -1,8 +1,114 @@
-# JCR
+# JCR - Session
 
 ## JCR Queries
 
 I highly recommend downloading and "studying" the [JCR Query Cheatsheet](https://experienceleague.adobe.com/docs/experience-manager-65/assets/JCR_query_cheatsheet-v1.0.pdf?lang=en) [^1].
+
+## Session API / JCR API
+
+To use the JCR API, add the jackrabbit-standalone-2.4.0.jar file to your Java application’s class path. You can obtain this JAR file from the Java JCR API web page at [jackrabbit.apache.org](https://jackrabbit.apache.org/jcr/jcr-api.html).
+
+```java
+import javax.jcr.Repository;
+import javax.jcr.Session;
+import javax.jcr.SimpleCredentials;
+import javax.jcr.Node;
+
+import org.apache.jackrabbit.commons.JcrUtils;
+import org.apache.jackrabbit.core.TransientRepository;
+
+// class XX function yy
+
+try {
+    //Create a connection to the CQ repository running on local host
+    Repository repository = JcrUtils.getRepository("http://localhost:4503/crx/server");
+
+    //Create a Session
+    javax.jcr.Session session = repository.login(new SimpleCredentials("admin", "admin".toCharArray()));
+
+    //Create a node that represents the root node
+    Node root = session.getRootNode();
+
+    // Store content
+    Node adobe = root.addNode("adobe");
+    Node day = adobe.addNode("day");
+    day.setProperty("message", "Adobe CQ is part of the Adobe Digital Marketing Suite!");
+
+    // Retrieve content
+    Node node = root.getNode("adobe/day");
+    System.out.println(node.getPath());
+    System.out.println(node.getProperty("message").getString());
+
+    // Save the session changes and log out
+    session.save();
+    session.logout();
+} catch (Exception e) {
+  e.printStackTrace();
+}
+```
+
+## Groovy Console
+
+[Groovy Console Github](https://github.com/icfnext/aem-groovy-console)
+
+Simple Query Example
+
+```groovy
+/*
+SQL QUERY with Groovy Script.
+@author Hashim Khan */
+/*This method is used to Query the JCR and find results as per the Query.*/
+def buildQuery(page, term) {
+    def queryManager = session.workspace.queryManager;
+    def statement = 'select * from nt:base where jcr:path like \'' + page.path + '/%\' and sling:resourceType = \'' + term + '\'';
+    /*Here term is the sling:resourceType property value*/
+    queryManager.createQuery(statement, 'sql');
+}
+
+/*Defined Content Hierarchy */
+final def page = getPage('/content/geometrixx/en/')
+/*Template which is searched in the content hierarchy */
+final def query = buildQuery(page, 'geometrixx/components/contentpage');
+final def result = query.execute()
+final def count = result.getRows().getSize();
+
+println 'No Of pages found = ' + result.nodes.size();
+
+result.nodes.each {
+    node - >
+        println 'nodePath::' + node.path
+}
+```
+
+// > delete all jcr:language props below backoffice
+
+```groovy
+//delete all jcr:language props below backoffice
+import javax.jcr.Session
+
+Session session = slingRequest.getResourceResolver().adaptTo(Session.class)
+
+def buildQuery() {
+    def queryManager = session.workspace.queryManager
+
+    def statement = "/jcr:root/content/eurowings//*[@jcr:language]"
+    queryManager.createQuery(statement, 'xpath')
+}
+
+final def query = buildQuery()
+final def result = query.execute()
+
+result.nodes.each { node ->
+    String nodePath = node.path
+    if (nodePath.contains('backoffice')) {
+        println 'Deleting prop below  :' + nodePath
+        node.getProperty('jcr:language').remove()
+        session.save()
+    }
+}
+```
+
+[Further Groovy Examples on Github](https://github.com/hashimkhan786/aem-groovy-scripts)
 
 ## References
 

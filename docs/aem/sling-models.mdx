@@ -1,0 +1,129 @@
+# Sling Models and Services
+
+## Content as a Service - CaaS
+
+'Sling Module Exporter'
+
+Enables users to query pages with xx.model.json and retrieve a json document with the pages structure and content.
+
+`https://sling.apache.org/documentation/bundles/models.html#exporter-framework-since-130`
+
+`https://docs.adobe.com/content/help/en/experience-manager-64/developing/components/json-exporter-components.html`
+
+### Example
+
+Java Component
+
+```java
+@Model(adaptables = SlingHttpServletRequest.class, adapters = {Title.class, ComponentExporter.class}, resourceType = Title.RESOURCE_TYPE,
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Exporter(name = "jackson", extensions = "json")
+public class Title implements ComponentExporter {
+
+    static final String RESOURCE_TYPE = "wknd/components/title";
+
+    // optional, change exported key name
+    @JsonProperty("title")
+    @ValueMapValue
+    private String title;
+
+    public String getTitle(){
+        return title;
+    }
+
+    @Nonnull
+    @Override
+    public String getExportedType() {
+        return RESOURCE_TYPE;
+    }
+}
+
+```
+
+JCR Component
+Path: `jcr_root/apps/wknd/components/title`
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    cq:icon="textLeft"
+    jcr:description="Displays a title."
+    jcr:primaryType="cq:Component"
+    jcr:title="Title"
+    componentGroup="Adobe"/>
+```
+
+## Tag Manager
+
+```java
+TagManager tagManager = request.getResourceResolver().adaptTo(TagManager.class);
+if (tagManager != null) {
+    Tag resolvedTag = tagManager.resolve(tag);
+    if (resolvedTag != null) {
+        tagName = resolvedTag.getTitle();
+        tagDescription = resolvedTag.getDescription();
+    }
+}
+```
+
+## ResourceResolver
+
+[Java Doc](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/reference-materials/javadoc/org/apache/sling/api/resource/ResourceResolver.html)
+
+[RR Factory](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/reference-materials/javadoc/org/apache/sling/api/resource/ResourceResolverFactory.html)
+
+### Lifecycle
+
+A Resource Resolver has a life cycle which begins with the creation of the Resource Resolver using any of the factory methods and ends with calling the close() method. It is very important to call the close() method once the resource resolver is not used any more to ensure any system resources are properly cleaned up. A Resource Resolver may also be closed implicitly if the ResourceResolverFactory which was used to create this resolver is no longer active.
+
+To check whether a Resource Resolver can still be used, the isLive() method can be called.
+
+A ResourceResolver is only valid for as long as the ResourceResolverFactory that created this instance exists. The same applies in general to all objects returned by this instance, especially for all resources. If the ResourceResolverFactory does not exist anymore, the resource resolver instances becomes invalid.
+
+[J. Hoh Blog](https://cqdump.wordpress.com/2013/07/23/cq-development-patterns-sling-resourceresolver-and-jcr-sessions/)
+
+```text
+Wenn ein ResourceResolver implizit verwendet wird, darf dieser nicht manuell per .close() geschlossen werden, da sonst 'zu viel' / die zugrundeliegende Session geschlossen wird. Die Verantwortung des RR Lifecycle liegt hier nicht beim Entwickler.
+Wenn ein ResourceResolver explizit per ResourceResolverFactory geoeffnet wird muss dieser auch manuell per .close() geschlossen werden. Zum Beispiel als autocloseable, wie bereits beschrieben.
+Bezueglich des angesprochenen API / Methodensignaturenproblems, ein ResourceResolver sollte  immer dort geschlossen werden, wo er auch geoeffnet wurde. Bedeuet, wenn ein ResourceResolver als Parameter in die Methode gereicht wird, darf diese den RR nicht schliessen. Der urspruengliche Aufrufer muss sich um diesen Sachverhalt kuemmern, bzw verantwortet den Lifecycle.
+```
+
+## Transport Handler
+
+```java
+package com.iqospwa.core.listeners;
+
+import com.day.cq.replication.AgentConfig;
+import com.day.cq.replication.ReplicationException;
+import com.day.cq.replication.ReplicationResult;
+import com.day.cq.replication.ReplicationTransaction;
+import com.day.cq.replication.TransportContext;
+import com.day.cq.replication.TransportHandler;
+import org.osgi.service.component.annotations.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Component(service = TransportHandler.class,
+        name = "Jenkins Transport Handler",
+        immediate = true)
+public class JenkinsTransportHandler implements TransportHandler {
+
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
+
+    /**
+     * return true, if this handler should act on the job in this "queue".
+     */
+    @Override
+    public boolean canHandle(AgentConfig agentConfig) {
+        return false;
+    }
+
+    /**
+     * Basically works like the filter queue. It acts on the replication queue jobs.
+     */
+    @Override
+    public ReplicationResult deliver(TransportContext transportContext, ReplicationTransaction replicationTransaction) throws ReplicationException {
+        return null;
+    }
+}
+```
