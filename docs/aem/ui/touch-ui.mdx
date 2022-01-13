@@ -1,0 +1,202 @@
+import Image from '@theme/IdealImage';
+
+# Touch UI / Author UI
+
+<div class="alert alert--info" role="alert">
+    Being called TouchUI previously, the official name for the 'modern' / post classic Ui is 'AuthorUI'.️
+</div>
+
+## Add the Styles Plugin to the RTE
+
+The RTE Styles plugin allows an author to add a specific css class to a text selection.
+AEM will wrap the selection with a tag.
+
+```html
+<span class="your-defined-class">
+your text selection
+</span>
+```
+
+### Result
+
+AEM Dialog Plugin Integration:
+<Image img={require('/images/aem/ui/rte-styles.png')}/>
+
+
+HTML Output:
+<Image img={require('/images/aem/ui/rte-styles-html.png')}/>
+
+### Setup
+
+The following is a bare minimum example to add the Styles Plugin. The example component extends the AEM Core Component Text.
+
+- [Text Core Component](https://www.aemcomponents.dev/content/core-components-examples/library/page-authoring/text.html)
+- [Text Core Dialog](https://github.com/adobe/aem-core-wcm-components/blob/master/content/src/content/jcr_root/apps/core/wcm/components/text/v2/text/_cq_dialog/.content.xml)
+
+```xml title="apps/myproject/components/text/.content.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+		  jcr:primaryType="cq:Component"
+		  jcr:title="Text with Styles"
+		  sling:resourceSuperType="core/wcm/components/text/v2/text"
+		  componentGroup="content"/>
+```
+
+You need to add specific nodes to your components dialog RTE configuration (`/apps/myproject/components/text/_cq_dialog/.content.xml`).
+
+1. Add the `styles` node to `rtePlugins`.
+
+```xml
+<rtePlugins jcr:primaryType="nt:unstructured">
+	<styles
+		jcr:primaryType="nt:unstructured"
+		features="*">
+		<styles jcr:primaryType="cq:WidgetCollection">
+			<p1
+				jcr:primaryType="nt:unstructured"
+				cssName="p1"
+				text="P1"/>
+			<p2
+				jcr:primaryType="nt:unstructured"
+				cssName="p2"
+				text="P2"/>
+			<p3
+				jcr:primaryType="nt:unstructured"
+				cssName="p3"
+				text="P3"/>
+		</styles>
+	</styles>
+</rtePlugins>
+```
+
+2. Add `#styles` to inline and fullscreen Dialog Toolbar.
+```xml
+<inline
+	jcr:primaryType="nt:unstructured"
+	toolbar="[format#bold,format#italic,format#underline,#justify,#lists,links#modifylink,links#unlink,#paraformat,#styles]">
+    <!-- [...] -->
+</inline>
+```
+
+3. Add the `styles` node to inline and fullscreen `popovers` node.
+
+```xml
+<popovers jcr:primaryType="nt:unstructured">
+	<styles jcr:primaryType="nt:unstructured"
+			items="styles:getStyles:styles-pulldown"
+			ref="styles"/>
+</popovers>
+```
+
+### Full Example
+
+Note, that the [Sling Resource Merger](https://experienceleague.adobe.com/docs/experience-manager-65/developing/platform/sling-resource-merger.html?lang=en) pulls in additional nodes from the parents Text Core Component dialog.
+sTherefore we are able to (mostly) add only our new Styles Plugin related nodes.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+		  xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+		  xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+		  jcr:primaryType="nt:unstructured"
+		  jcr:title="Text with Styles"
+		  helpPath="https://www.aemcomponents.dev/content/core-components-examples/library/page-authoring/text.html"
+		  sling:resourceType="cq/gui/components/authoring/dialog">
+	<content
+		jcr:primaryType="nt:unstructured"
+		sling:resourceType="granite/ui/components/coral/foundation/container">
+		<items jcr:primaryType="nt:unstructured">
+			<tabs
+				jcr:primaryType="nt:unstructured"
+				sling:resourceType="granite/ui/components/coral/foundation/tabs"
+				maximized="{Boolean}true">
+				<items jcr:primaryType="nt:unstructured">
+					<properties
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Properties"
+						sling:resourceType="granite/ui/components/coral/foundation/container"
+						margin="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<columns
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<column
+										jcr:primaryType="nt:unstructured"
+										granite:class="cq-RichText-FixedColumn-column"
+										sling:resourceType="granite/ui/components/coral/foundation/container">
+										<items jcr:primaryType="nt:unstructured" sling:hideChildren="[id]">
+											<text
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+												name="./text"
+												useFixedInlineToolbar="{Boolean}true">
+												<rtePlugins jcr:primaryType="nt:unstructured">
+													<styles
+														jcr:primaryType="nt:unstructured"
+														features="*">
+														<styles jcr:primaryType="cq:WidgetCollection">
+															<p1
+																jcr:primaryType="nt:unstructured"
+																cssName="p1"
+																text="P1"/>
+															<p2
+																jcr:primaryType="nt:unstructured"
+																cssName="p2"
+																text="P2"/>
+															<p3
+																jcr:primaryType="nt:unstructured"
+																cssName="p3"
+																text="P3"/>
+														</styles>
+													</styles>
+												</rtePlugins>
+												<uiSettings jcr:primaryType="nt:unstructured">
+													<cui jcr:primaryType="nt:unstructured">
+														<inline
+															jcr:primaryType="nt:unstructured"
+															toolbar="[format#bold,format#italic,format#underline,#justify,#lists,links#modifylink,links#unlink,#paraformat,#styles]">
+															<popovers jcr:primaryType="nt:unstructured">
+																<styles jcr:primaryType="nt:unstructured"
+																		items="styles:getStyles:styles-pulldown"
+																		ref="styles"/>
+															</popovers>
+														</inline>
+														<dialogFullScreen
+															jcr:primaryType="nt:unstructured"
+															toolbar="[format#bold,format#italic,format#underline,#justify,#lists,links#modifylink,links#unlink,#paraformat,#styles]">
+															<popovers jcr:primaryType="nt:unstructured">
+																<justify
+																	jcr:primaryType="nt:unstructured"
+																	items="[justify#justifyleft,justify#justifycenter,justify#justifyright,justify#justifyjustify]"
+																	ref="justify"/>
+																<lists
+																	jcr:primaryType="nt:unstructured"
+																	items="[lists#unordered,lists#ordered,lists#outdent,lists#indent]"
+																	ref="lists"/>
+																<paraformat
+																	jcr:primaryType="nt:unstructured"
+																	items="paraformat:getFormats:paraformat-pulldown"
+																	ref="paraformat"/>
+																<styles jcr:primaryType="nt:unstructured"
+																		items="styles:getStyles:styles-pulldown"
+																		ref="styles"/>
+															</popovers>
+														</dialogFullScreen>
+													</cui>
+												</uiSettings>
+											</text>
+										</items>
+									</column>
+								</items>
+							</columns>
+						</items>
+					</properties>
+				</items>
+			</tabs>
+		</items>
+	</content>
+</jcr:root>
+
+```

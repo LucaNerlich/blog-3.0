@@ -59,7 +59,7 @@ const config = {
 
     plugins: [
         '@docusaurus/plugin-ideal-image',
-        'plugin-image-zoom'
+        require.resolve('docusaurus-plugin-image-zoom')
     ],
 
     themeConfig:
@@ -159,6 +159,16 @@ const config = {
                 darkTheme: darkCodeTheme,
                 additionalLanguages: ['groovy', 'java', 'rust'],
             },
+            zoom: {
+                selector: '.markdown :not(em) > img',
+                config: {
+                    // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+                    background: {
+                        light: 'rgb(255, 255, 255)',
+                        dark: 'rgb(50, 50, 50)'
+                    }
+                }
+            }
         }),
 };
 
