@@ -19,7 +19,7 @@ const config = {
     favicon: 'images/favicon.ico',
     organizationName: 'LucaNerlich',
     projectName: 'blog-3.0',
-    trailingSlash: false,
+    trailingSlash: true,
 
     presets: [
         [
