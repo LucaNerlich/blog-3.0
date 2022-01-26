@@ -1,8 +1,69 @@
+import Image from '@theme/IdealImage';
+
 # Servlets
 
-<div class="alert alert--warning" role="alert">
-    Work in progress ⚠️
-</div>
+## POST and Authentication
+
+When writing a Sling Servlet that handles POST requests, you might want to test it, by firing requests from a tool such as curl or Postman.
+This requires you to authenticate yourself via a cookie. The following example will demonstrate how a simple POST Servlet can be written and tested.
+
+This Servlet listens on requests to the defined ResourceType + `.action` url selector.
+
+If you place a component of the referenced ResourceType on a page, an example request url could look like this: `http://localhost:4502/content/myproject/de/testpage/jcr:content/root/responsivegrid/contactform.action.json`.
+
+```java title="TestFormServlet.java"
+package ch.coop.cq.aembase.core.servlets;
+
+
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.servlets.SlingAllMethodsServlet;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVLET_EXTENSIONS;
+import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVLET_METHODS;
+import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVLET_RESOURCE_TYPES;
+import static org.apache.sling.api.servlets.ServletResolverConstants.SLING_SERVLET_SELECTORS;
+
+@Component(
+	service = {Servlet.class},
+	property = {
+		SLING_SERVLET_METHODS + "=POST",
+		SLING_SERVLET_EXTENSIONS + "=json",
+		SLING_SERVLET_RESOURCE_TYPES + "=myproject/components/contactform",
+		SLING_SERVLET_SELECTORS + "=action"
+	}
+)
+public class ContactFormServlet extends SlingAllMethodsServlet {
+
+    @Override
+	protected void doPost(SlingHttpServletRequest request, final SlingHttpServletResponse response) throws ServletException, IOException {
+        // handle POST
+    }
+}
+```
+
+To test this via Postman, you will need to add AEMs Login Cookie. Open your Browsers Dev Tools and find the Cookies for your AEM Instance, most likely running at `localhost:4502`.
+
+<Image img={require('/images/aem/servlets/chrome.png')}/>
+
+You now need to add this cookie "by hand" to your Postman configuration and remember to update its value, on instance restart / new login / value change.
+
+<Image img={require('/images/aem/servlets/postman-cookiesettings.png')}/>
+
+The added cookie with its Key Value Pair (`name=value`) looks like this:
+
+<Image img={require('/images/aem/servlets/postman-cookieadded.png')}/>
+
+I'd suggest to increase / adapt the `Expires` Timestamp to at least a couple hours in the future.
+
+When firing a POST Request to `http://localhost:4502/content/myproject/de/testpage/jcr:content/root/responsivegrid/contactform.action.json` your servlet will correctly handle that request and return a non 401 HTTP statuscode.
+
+<Image img={require('/images/aem/servlets/200.png')}/>
+
+## Quick Infos
 
 [Infos](http://www.aemcq5tutorials.com/tutorials/sling-servlet-in-aem/)
 
