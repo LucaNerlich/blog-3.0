@@ -12,9 +12,6 @@ This Servlet listens on requests to the defined ResourceType + `.action` url sel
 If you place a component of the referenced ResourceType on a page, an example request url could look like this: `http://localhost:4502/content/myproject/de/testpage/jcr:content/root/responsivegrid/contactform.action.json`.
 
 ```java title="TestFormServlet.java"
-package ch.coop.cq.aembase.core.servlets;
-
-
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
