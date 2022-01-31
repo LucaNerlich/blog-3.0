@@ -19,7 +19,7 @@ const config = {
     favicon: 'images/favicon.ico',
     organizationName: 'LucaNerlich',
     projectName: 'blog-3.0',
-    trailingSlash: false,
+    trailingSlash: true,
 
     presets: [
         [
@@ -71,12 +71,14 @@ const config = {
                 disableSwitch: false,
                 respectPrefersColorScheme: true,
             },
-            // algolia: {
-            //     appId: '',
-            //     apiKey: '',
-            //     indexName: '',
-            //     contextualSearch: true,
-            // },
+            // https://crawler.algolia.com/admin/crawlers/418c876a-d3fa-4976-97e7-2706034e9ec8/overview
+            // https://crawler.algolia.com/admin/crawlers/418c876a-d3fa-4976-97e7-2706034e9ec8/configuration/edit
+            algolia: {
+                appId: '9BZ1Z8DOXB',
+                apiKey: '89c2de4e4cc51dabec31db32e7ee4e4f',
+                indexName: 'lucanerlich',
+                contextualSearch: true,
+            },
             navbar: {
                 hideOnScroll: true,
                 title: 'Luca Nerlich',
