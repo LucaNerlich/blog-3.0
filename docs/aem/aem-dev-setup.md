@@ -12,10 +12,14 @@ project according to the best practices.
 2. Login with Adobe Account & Download AEM
     1. [Adobe Software Distribution](https://experience.adobe.com/#/downloads/content/software-distribution/en/aemcloud.html)
     2. e.g AEM SDK v2021.3.5087.20210322T071003Z-210325
+       1. Note, AEM Changed its Versioning for Cloud to `year + version + timestamp`.
     3. extract archive
+    4. rename to `cq-author-p4502.jar`
+       1. If you want to start a local publisher, name it to `cq-publish-p4503`.
+       2. You can change the number to any valid port, if you have something already running and blocking that specific port.
 3. Start AEM Instance
-    1. `java -jar aem-sdk-quickstart-v2021.3.5087.20210322T071003Z-210325.jar -gui`
-    2. wait 1-5 minutes
+    1. `java -jar cq-author-p4502.jar`
+    2. wait 1-5 minutes (Newer Versions of AEM start a lot quicker, than e.g 6.3 or 6.4)
 4. Install Maven
     1. [Download](https://maven.apache.org/download.cgi)
     2. Add to $PATH
@@ -55,7 +59,7 @@ A local development setup consists of two parts. One, the actual AEM instance (j
 
 After downloading the desired AEM Version from
 the [Adobe Software Distribution](https://experience.adobe.com/#/downloads/content/software-distribution/en/aemcloud.html)
-, extract the archive - if the cloud sdk has been downloaded. Otherwise we can directly run the jar.
+, extract the archive - if the cloud sdk has been downloaded. Otherwise, we can directly run the jar.
 
 By renaming the jar according to the following schema, a couple of default settings can be
 set: `cq-(author|publish)-p(port)`. For example `cq-author-p4502`. When started, this will run the AEM instance as an
@@ -63,7 +67,7 @@ author and expose it locally via port 4502.
 
 Running the jar is as easy as executing it like this: `java -jar my-downloaded-aem.jar -gui`. The parameter `-gui` can
 be appended, to launch an additional small UI, which informs the user about the startup / installation progress.
-Additionall, `-gui` will automatically set the default admin users credentials to `admin:admin`.
+Additionally, `-gui` will automatically set the default admin users credentials to `admin:admin`.
 
 ### Bootstrapping a development environment via Maven Archetype
 
@@ -77,10 +81,10 @@ variables with which the archetypes bootstraps / creates a customized set of fil
 The following example demonstrates a bash command using the v27 of the aem-project-archetype. By setting 'appTitle', '
 appId' and 'groupId' we tell the Archetype how it should name and structure our packages. 'frontendModule' can be one
 of ['none', 'general', 'react', 'angular']. By specifying this parameter, we can opt in to use the (new) ui.frontend
-module, which itself can be preconfigures with either a "classic" html variant, or one of the modern Javascript SPA
+module, which itself can be preconfigured with either a "classic" html variant, or one of the modern Javascript SPA
 Frameworks - currently only React and Angular are supported.
 
-If we do not specify an 'aemVersion' the latest AEM Cloud Sdk will be used. A specifiv version can be set via passing
+If we do not specify an 'aemVersion' the latest AEM Cloud Sdk will be used. A specific version can be set via passing
 the AEM version in its major.minor.patch level notation. For example 'aemVersion="6.4.8' would create the archetype
 based on AEM 6.4 with Patch Level 8 and add all necessary dependencies to the pom.xml.
 
@@ -96,7 +100,7 @@ mvn -B archetype:generate \
  -D includeExamples=y
 ```
 
-The Archetypes provides a wide range of optional properties, with sensisble defaults set for each. For a list of all
+The Archetype provides a wide range of optional properties, with sensible defaults set for each. For a list of all
 available settings, please check
 the [official documentation](https://github.com/adobe/aem-project-archetype#available-properties) on GitHub.
 
@@ -138,8 +142,10 @@ drwxr-xr-x  11 nerlich  staff  352B ui.tests/
 Building and deploying the complete development environment can be done via the following
 command `mvn clean install -PautoInstallSinglePackage` - executed in the root directory.
 
-ui.apps, ui.config and ui.content can be individually build with the profile `-PautoInstallPackage`. Deploying just the
+`ui.apps`, `ui.config` and `ui.content` can be individually build with the profile `-PautoInstallPackage`. Deploying just the
 java module 'core' can be achieved with the profile `-PautoInstallBundle`.
+
+> I usually just run `mvn clean install -PautoInstallPackage` in my projects root. The deployment is quick enough, and I can be sure, that I did not miss anything.
 
 Thanks for reading!
 
@@ -148,7 +154,7 @@ luca
 ## Links & Downloads
 
 - [AEM Software Distribution](https://experience.adobe.com/#/downloads)
-    - The offical Adobe Experience Cloud Download Hub
+    - The official Adobe Experience Cloud Download Hub
 - [Official AEM Archetype GitHub Page](https://github.com/adobe/aem-project-archetype)
 - [AEM Core Components](https://github.com/adobe/aem-core-wcm-components)
 - [AEM ACS Commons](https://adobe-consulting-services.github.io/acs-aem-commons/)
