@@ -147,6 +147,13 @@ java module 'core' can be achieved with the profile `-PautoInstallBundle`.
 
 > I usually just run `mvn clean install -PautoInstallPackage` in my projects root. The deployment is quick enough, and I can be sure, that I did not miss anything.
 
+## Attaching a Java Debugger
+
+To debug java code, you will need to start your AEM Instance with a debug port. To do this, you need to modify the startup script.
+This is the `crx-quickstart/bin/start` file for MacOS/unix and `crx-quickstart/bin/start.bat` for windows. Open it in a text editor and look for CQ_JVM_OPTS or `java.awt.headless=true`.
+Append `-Djava.awt.headless=true -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=30303,suspend=n` to that list of options, save and start AEM with this modified file.
+You can also increase the amount of RAM, which the AEM Process can allocate, here - if needed.
+
 Thanks for reading!
 
 luca
