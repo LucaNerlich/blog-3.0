@@ -1,3 +1,5 @@
+import Image from '@theme/IdealImage';
+
 # Overlays
 
 <div class="alert alert--warning" role="alert">
@@ -250,15 +252,11 @@ component `[myapp]/core/components/[mycomponent]` will be populated with the dro
 
 ## Disabling the Edit Dialog Button
 
-<div class="alert alert--warning" role="alert">
-    Work in progress - DRAFT ⚠️
-</div>
+You can console.log the available EditBar Actions, by looking at `author.EditorFrame.editableToolbar.config.actions.`.
 
-```javascript
-// disableComponentEditing.js
-// DXC-664 - remove "wrench" / open Dialog Button
-// overwrites default CONFIGURE display condition
-// should disable for .hidden components with no dialog, which are hardcoded on pages and available to authors
+<Image img={require('/images/aem/ui/author.EditorFrame.editableToolbar.config.actions.png')}/>
+
+```javascript title="disableComponentEditing.js"
 (function ($document, author) {
  $document.on('cq-layer-activated', function (ev) {
   if (ev.layer === 'Edit') {
@@ -274,7 +272,6 @@ component `[myapp]/core/components/[mycomponent]` will be populated with the dro
   }
  });
 })($(document), Granite.author);
-
 ```
 
 ```xml
@@ -291,4 +288,20 @@ component `[myapp]/core/components/[mycomponent]` will be populated with the dro
 ```text
 #base=js
 disableComponentEditing.js
+```
+
+## Disabling the "Convert to Building Block" Button
+
+This works very similar to the above example, we just need to overwrite the condition for the button.
+
+```javascript title="hideBuildingBlocksButton.js"
+(function ($document, author) {
+    $document.on('cq-layer-activated', function (ev) {
+        if (ev.layer === 'Edit') {
+            author.EditorFrame.editableToolbar.config.actions.BBCONVERT.condition = function (editable) {
+                return false;
+            }
+        }
+    });
+})($(document), Granite.author);
 ```
