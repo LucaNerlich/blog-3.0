@@ -24,6 +24,8 @@ project according to the best practices.
     2. `mvn clean install -PautoInstallSinglePackage`
 6. Access [http://localhost:4502](http://localhost:4502) and login via admin:admin
 
+Once you have shutdown (`ctrl+c`) your initial AEM Instance, you can / should start and shutdown AEM via the provided scripts in `crx-quickstart/bin`. 
+
 ## Requirements
 
 The following section describes the software needed to run a local AEM instance, as well as being able to start
