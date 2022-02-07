@@ -25,7 +25,7 @@ project according to the best practices.
     2. Add to $PATH
 5. Execute [Maven Archetype Command](#bootstrapping-a-development-environment-via-maven-archetype)
     1. `cd ./mysite`
-    2. `mvn clean install -PautoInstallSinglePackage`
+    2. `mvn clean install -PautoInstallPackage`
 6. Access [http://localhost:4502](http://localhost:4502) and login via admin:admin
 
 Once you have shutdown (`ctrl+c`) your initial AEM Instance, you can / should start and shutdown AEM via the provided scripts in `crx-quickstart/bin`. 
