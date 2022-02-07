@@ -10,13 +10,14 @@ sidebar_position: 1
 
 ## AEM
 
-- [Core Components](./aem/core-components.mdx)
 - [Local Development Setup](./aem/aem-dev-setup.md)
+- [Core Components](./aem/core-components.mdx)
+- [Components](./aem/components.mdx)
 - [Helix](./aem/helix.mdx)
 - [Event Listener](./aem/event-listener.mdx)
-- [Overlays](aem/ui/overlays.mdx)
+- [Overlays](./aem/ui/overlays.mdx)
 - [Spa Editor](./aem/spa-editor.mdx)
-- [Servelts](./aem/servlets.mdx)
+- [Servlets](./aem/servlets.mdx)
 - [Workflows](./aem/workflows.mdx)
 
 ### UI
