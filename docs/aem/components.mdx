@@ -1,6 +1,6 @@
 import Image from '@theme/IdealImage';
 
-# AEM Components
+# Components
 
 <div class="alert alert--warning" role="alert">
     Work in progress ⚠️
@@ -14,7 +14,7 @@ import Image from '@theme/IdealImage';
 <items jcr:primaryType="nt:unstructured">
     <radio-group-heading
         jcr:primaryType="nt:unstructured"
-        sling:resourceType="granite/ui/components/foundation/heading"
+        sling:resourceType="granite/ui/components/coral/foundation/heading"
         text="Radio Group Heading"
         level="3"/>
     <radio-group
@@ -71,3 +71,34 @@ The full dialog tab in xml looks like this
 </properties>
 ```
 
+## JCR Repo Sync
+
+### IntelliVault
+
+For Jetbrains IDEs, the IntelliVault Plugin works well. It can export from the JCR to your local file system and import your local filesystem into the JCR.
+
+[IntelliVault Marketplace](https://plugins.jetbrains.com/plugin/7328-intellivault)
+
+It needs a version of the FileVault tool `vault-cli`. You can download [v3.4.6 here](/assets/downloads/aem/vault-cli-3.4.6-bin.zip).
+
+A valid configuration looks like this:
+
+<Image img={require('/images/aem/components/intellivaultconfig.png')}/>
+
+IntelliVault commands can be invoked, via right clicking any path below a `jcr_root` node.
+
+<Image img={require('/images/aem/components/intellivaultusage.png')}/>
+
+<div class="alert alert--warning" role="alert">
+    Be careful, importing and exporting is destructive and will destroy / overwrite files.
+</div>
+
+1. Right Click `Pull from CRX` to copy and **overwrite** any content from the selected path from the JCR to your local filesystem.
+2. Right Click and `Push to CRX` top import and **overwrite** your local filesystem content to the selected path in your JCR.
+
+The IntelliVault plugin unfortunately does not get updated often and might not be available via the Jetbrains Plugin Marketplace, or not work altogether with your IDE Version.
+
+In that case, you can try to download the Plugin as a `.zip` archive and install it manually.
+
+- [v.0.10.0 stable](/assets/downloads/aem/IntelliVault-0.10.0.jar)
+- [v.0.11.2 alpha](/assets/downloads/aem/IntelliVault-0.11.2.jar)
