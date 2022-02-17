@@ -18,10 +18,24 @@ import Image from '@theme/IdealImage';
 
 ### Configuration and Usage
 
+// todo
+
 ### Reading the Style Value in a Sling Model / Template
 
 // https://javadoc.io/static/com.adobe.aem/uber-jar/6.5.9-1.0/com/adobe/cq/wcm/style/ComponentStyleInfo.html
 // currentResource.adaptTo(ComponentStyleInfo.class)
+
+You can read your current sling models applied Style (System), if you adapt your Resource to the `ComponentStyleInfo.class`.
+
+```java
+ComponentStyleInfo componentStyleInfo = request.getResource().adaptTo(ComponentStyleInfo.class);
+```
+
+`ComponentStyleInfo.class` holds the currently applied StyleSystem variation, as well as a reference to all applicable and available style variations.
+
+<Image img={require('/images/aem/components/componentStyleInfo.png')}/>
+
+You could use this, to alter the markup, based on the selected style / css class.
 
 ## Dialogs
 
