@@ -103,5 +103,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 img {
-    padding-bottom: 1em;
+    margin-bottom: 1em;
+    box-shadow: 0 15px 12px -8px rgb(0 0 0 / 20%);
+    border-radius: 6px;
 }
