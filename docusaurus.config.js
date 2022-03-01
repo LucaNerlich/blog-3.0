@@ -15,7 +15,7 @@ const config = {
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
-    staticDirectories: ['public', 'static'],
+    staticDirectories: ['static'],
     favicon: 'images/favicon.ico',
     organizationName: 'LucaNerlich',
     projectName: 'blog-3.0',
@@ -28,7 +28,6 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    // Please change this to your repo.
                     editUrl: 'https://github.com/LucaNerlich/blog-3.0/tree/main',
                     showLastUpdateAuthor: false,
                     showLastUpdateTime: true,
