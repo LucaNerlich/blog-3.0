@@ -23,7 +23,7 @@ sidebar_position: 1
 ### UI
 
 - [Workflows](./aem/ui/coral-ui.mdx)
-- [Multi Tenancy ui.frontend](./aem/ui/multi-tenancy-support-ui-frontend.md)
+- [Multi Tenancy ui.frontend](./aem/ui/multi-tenancy-support-ui-frontend.mdx)
 - [Overlays](./aem/ui/overlays.mdx)
 
 ### Annotations
