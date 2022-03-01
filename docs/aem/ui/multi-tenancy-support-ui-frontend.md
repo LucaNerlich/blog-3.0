@@ -150,10 +150,14 @@ For example:
 - /dist/clientlib-site-x
 - /dist/clientlib-site-y
 
+<div class="alert alert--info" role="alert">
+    Note, you can set 'flatten' to 'true'. This will copy all resource files into each ClientLib root resource folder. This makes it easier, to, for example, work with multi tenant favicons, which rely on the sub path being the same - over all ClientLibs generated.
+</div>
+
 We keep most of the archetype templates file version the same, just a couple of key changes:
 
 ```javascript
-[...]
+// [...]
 
 // Generate site specific clientlibs
 const SITES = ['site-X', 'site-Y'] // define our sites / tenants
@@ -182,7 +186,7 @@ for (const siteName of SITES) {
             resources: {
                 cwd: 'clientlib-' + siteName,
                 files: ['**/*.*'],
-                flatten: false,
+                flatten: true,
                 ignore: ['**/*.js', '**/*.css']
             }
         }
