@@ -20,7 +20,7 @@
         </image>
         <atom:link rel="self" type="application/rss+xml"
                    title="Podcast Supercuts - Privater Archivfeed"
-                   href="https://lucanerlich.com/sfs"/>
+                   href="https://lucanerlich.com/sfs.xml"/>
         <language>de-DE</language>
 
         <itunes:author>Diverse</itunes:author>
