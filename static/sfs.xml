@@ -40,6 +40,24 @@
         <itunes:explicit>yes</itunes:explicit>
 
         <item>
+            <title>TP - Dark Souls 2</title>
+            <pubDate>Thu, 10 March 2022 14:00:00 +0000</pubDate>
+            <guid isPermaLink="false">nP4o934gf3ydRLBFm4Fz</guid>
+            <description><![CDATA[TP - Dark Souls 2]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/EWtoCtgg7t5Dt8E/download"
+                       length="1026555904"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>24:14:16</itunes:duration>
+            <itunes:author>The Pod</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>TP - Dark Souls 2</itunes:summary>
+
+            <content:encoded><![CDATA[TP - Dark Souls 2]]></content:encoded>
+        </item>
+
+        <item>
             <title>Spiegel - Faking Hitler</title>
             <pubDate>Mon, 13 December 2021 15:00:00 +0000</pubDate>
             <guid isPermaLink="false">73cMNEYnRAMybBNt4btz</guid>
