@@ -10,6 +10,30 @@ To, for example, change the main authorui navigation, in crx/de right click and 
 
 [Documentation](https://docs.adobe.com/content/help/en/experience-manager-64/developing/platform/overlays.html)
 
+## Hide Main Navigation Items
+
+Add the following Overlay, to hide e.g "Personalization" from the Main AEM Homepage <http://localhost:4502/aem/start.html>.
+
+Place the overlay here: `ui.apps/src/main/content/jcr_root/apps/cq/core/content/nav/.content.xml`.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    id="root">
+    <projects jcr:primaryType="nt:unstructured"
+        sling:hideResource="{Boolean}true"/>
+    <screens jcr:primaryType="nt:unstructured"
+        sling:hideResource="{Boolean}true"/>
+    <personalization jcr:primaryType="nt:unstructured"
+        sling:hideResource="{Boolean}true"/>
+    <commerce jcr:primaryType="nt:unstructured"
+        sling:hideResource="{Boolean}true"/>
+    <communities jcr:primaryType="nt:unstructured"
+        sling:hideResource="{Boolean}true"/>
+</jcr:root>
+```
+
 ## Select Audiofiles in the Assets Sidepanel
 
 This post explains, how you can add a simple overlay to allow authors to filter and select audio files in the assets
