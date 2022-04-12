@@ -40,6 +40,78 @@
         <itunes:explicit>yes</itunes:explicit>
 
         <item>
+            <title>DttD - Phantasmagoria</title>
+            <pubDate>Tue, 12 April 2022 13:00:00 +0000</pubDate>
+            <guid isPermaLink="false">tx86sgSatTTmJAfqY7C3</guid>
+            <description><![CDATA[DttD - Phantasmagoria]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/pbiz34Lfk8x3gyt/download"
+                       length="227540992"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>5:13:03</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DttD - Phantasmagoria</itunes:summary>
+
+            <content:encoded><![CDATA[DttD - Phantasmagoria]]></content:encoded>
+        </item>
+
+        <item>
+            <title>DttD - A Quest for Glory 1</title>
+            <pubDate>Tue, 12 April 2022 13:00:00 +0000</pubDate>
+            <guid isPermaLink="false">K6eKCDnExXPYRqxJtMAP</guid>
+            <description><![CDATA[DttD - A Quest for Glory 1]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/Y8KdMYPdHt7cGPA/download"
+                       length="197132288"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>3:59:39</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DttD - A Quest for Glory 1</itunes:summary>
+
+            <content:encoded><![CDATA[DttD - A Quest for Glory 1]]></content:encoded>
+        </item>
+
+        <item>
+            <title>DttD - BlairWitch Volume 1</title>
+            <pubDate>Tue, 12 April 2022 12:00:00 +0000</pubDate>
+            <guid isPermaLink="false">adQLf3Qx4eT3HmcfoYaH</guid>
+            <description><![CDATA[DttD - BlairWitch Volume 1]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/nJzwqxzqGLGKNcb/download"
+                       length="263192576"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>5:50:42</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DttD - BlairWitch Volume 1</itunes:summary>
+
+            <content:encoded><![CDATA[DttD - BlairWitch Volume 1]]></content:encoded>
+        </item>
+
+        <item>
+            <title>DttD - The Last Express</title>
+            <pubDate>Tue, 12 April 2022 12:00:00 +0000</pubDate>
+            <guid isPermaLink="false">bDj5JgbH57t3PKRDF8To</guid>
+            <description><![CDATA[DttD - The Last Express]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/GGiDxa3JqnomqKr/download"
+                       length="234881024"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>4:46:16</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DttD - The Last Express</itunes:summary>
+
+            <content:encoded><![CDATA[DttD - The Last Express]]></content:encoded>
+        </item>
+
+        <item>
             <title>TP - Dark Souls 2</title>
             <pubDate>Thu, 10 March 2022 14:00:00 +0000</pubDate>
             <guid isPermaLink="false">nP4o934gf3ydRLBFm4Fz</guid>
