@@ -4,7 +4,11 @@ import Image from '@theme/IdealImage';
 
 The following chapter each present a coral xml snippet which can be copied into any `/components/mycomponent/_cq_dialog/.content.xml` file.
 
+## Empty Dialog / Starting Point
+
 This is an empty dialog structure and components can be placed in tabs (you can add `n` tabs.)
+
+<Image img={require('/images/aem/dialogfields/tabs.png')}/>
 
 ```xml title="/components/mycomponent/_cq_dialog/.content.xml"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -45,6 +49,28 @@ This is an empty dialog structure and components can be placed in tabs (you can 
                             </columns>
                         </items>
                     </properties>
+                    <layout
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Layout
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                        <!--  Place your components / dialog fields here  -->
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </layout>
                 </items>
             </tabs>
         </items>
@@ -71,5 +97,18 @@ You can write a class or id to your dialog fragment by adding `granite:class="so
 <Image img={require('/images/aem/dialogfields/alert.png')}/>
 
 You could now leverage the css class `cmp-editor-alert` to set the alert box div to e.g `width: 100%`.
+
+## Text (Readonly / Label)
+
+You can add simple, readonly text to the dialog. This lets you add "notes" or declarative text.
+
+```xml
+<text
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/text"
+   text="Some help text :)"/>
+```
+
+<Image img={require('/images/aem/dialogfields/text.png')}/>
 
 <small>Thanks to <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
