@@ -1,0 +1,75 @@
+import Image from '@theme/IdealImage';
+
+# Touch UI Component Dialog Examples
+
+The following chapter each present a coral xml snippet which can be copied into any `/components/mycomponent/_cq_dialog/.content.xml` file.
+
+This is an empty dialog structure and components can be placed in tabs (you can add `n` tabs.)
+
+```xml title="/components/mycomponent/_cq_dialog/.content.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="MyTestComponent"
+          sling:resourceType="cq/gui/components/authoring/dialog"
+          helpPath="https://url-to-your-documentation.com">
+    <content
+            granite:class="cmp-mytestcmp__editor"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                        <!--  Place your components / dialog fields here  -->
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
+```
+
+<Image img={require('/images/aem/dialogfields/empty.png')}/>
+
+You can write a class or id to your dialog fragment by adding `granite:class="some-css-class"` or `granite:id="some-id"`.
+
+## Alert
+
+```xml
+<alert
+   granite:class="cmp-editor-alert"
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/alert"
+   size="S"
+   text="Alert text"
+   variant="warning"/>
+```
+
+<Image img={require('/images/aem/dialogfields/alert.png')}/>
+
+You could now leverage the css class `cmp-editor-alert` to set the alert box div to e.g `width: 100%`.
+
+<small>Thanks to <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
