@@ -2,7 +2,7 @@ import Image from '@theme/IdealImage';
 
 # Touch UI Component Dialog Examples
 
-The following chapter each present a coral xml snippet which can be copied into any `/components/mycomponent/_cq_dialog/.content.xml` file.
+The following chapters each present a coral xml snippet which can be copied into any `/components/mycomponent/_cq_dialog/.content.xml` file.
 
 [Documentation Overview](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/server.html)
 
@@ -90,54 +90,9 @@ required="{Boolean}true"` to any component field to mark it as required.
     For example, the Alert field xml does not need to be named `alert`.
 </div>
 
-## Alert
+## Simple Data Fields
 
-[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/alert/index.html?highlight=alert)
-
-```xml
-<alert
-   granite:class="cmp-editor-alert"
-   jcr:primaryType="nt:unstructured"
-   sling:resourceType="granite/ui/components/coral/foundation/alert"
-   size="S"
-   text="Alert text"
-   variant="warning"/>
-```
-
-<Image img={require('/images/aem/dialogfields/alert.png')}/>
-
-You could now leverage the css class `cmp-editor-alert` to set the alert box div to e.g `width: 100%`.
-
-## Text (Readonly / Label)
-
-[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/text/index.html)
-
-You can add simple, readonly text to the dialog. This lets you add "notes" or declarative text.
-
-```xml
-<text
-   jcr:primaryType="nt:unstructured"
-   sling:resourceType="granite/ui/components/coral/foundation/text"
-   text="Some help text :)"/>
-```
-
-<Image img={require('/images/aem/dialogfields/text.png')}/>
-
-## Heading (Readonly / Label)
-
-[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/heading/index.html)
-
-```xml
-<heading
-    jcr:primaryType="nt:unstructured"
-    sling:resourceType="granite/ui/components/coral/foundation/heading"
-    level="{Long}2"
-    text="Some Heading"/>
-```
-
-<Image img={require('/images/aem/dialogfields/heading.png')}/>
-
-## Textfield
+### Textfield
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/textfield/index.html)
 
@@ -152,7 +107,7 @@ You can add simple, readonly text to the dialog. This lets you add "notes" or de
 
 <Image img={require('/images/aem/dialogfields/textfield.png')}/>
 
-## Textarea
+### Textarea
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/textarea/index.html)
 
@@ -167,7 +122,7 @@ You can add simple, readonly text to the dialog. This lets you add "notes" or de
 
 <Image img={require('/images/aem/dialogfields/textarea.png')}/>
 
-## Numberfield
+### Numberfield
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/numberfield/index.html)
 
@@ -186,7 +141,7 @@ You can define the min, max value and the increments, in which the input can be 
 
 <Image img={require('/images/aem/dialogfields/numberfield.png')}/>
 
-## Pathfield
+### Pathfield
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/pathfield/index.html)
 
@@ -201,12 +156,13 @@ You can define the min, max value and the increments, in which the input can be 
 
 <Image img={require('/images/aem/dialogfields/pathfield.png')}/>
 
-### Pathbrowser
+#### Pathbrowser
 
 In some cases you might want to use the older `coral2` pathbrowser component <https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager/when-to-choice-pathbrowser-as-well-as-pathfield/m-p/312540/highlight/true#M32451>.
 
 <div class="alert alert--warning" role="alert">
-    You can recognize the Coral 3 components by the path `/components/coral/foundation`. The older Coral 2 variants live in `/components/foundation`.
+    You can recognize the Coral 3 components by the path `/components/coral/foundation`. The older Coral 2 variants live
+    in `/components/foundation`.
 </div>
 
 ```xml
@@ -220,7 +176,7 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 
 <Image img={require('/images/aem/dialogfields/pathbrowser.png')}/>
 
-## Asset Upload
+### Asset Upload
 
 ```xml
 <file
@@ -235,7 +191,7 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 
 <Image img={require('/images/aem/dialogfields/assetupload.png')}/>
 
-## Checkbox
+### Checkbox
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/checkbox/index.html)
 
@@ -252,7 +208,7 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 
 <Image img={require('/images/aem/dialogfields/checkbox.png')}/>
 
-## Datepicker
+### Datepicker
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/datepicker/index.html)
 
@@ -269,7 +225,7 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 
 <Image img={require('/images/aem/dialogfields/datepicker.png')}/>
 
-## Userpicker
+### Userpicker
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/userpicker/index.html)
 
@@ -285,7 +241,7 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 
 <Image img={require('/images/aem/dialogfields/userpicker.png')}/>
 
-### Authorizable Autocomplete
+#### Authorizable Autocomplete
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/authorizable/autocomplete/index.html#/libs/granite/ui/components/coral/foundation/authorizable/autocomplete)
 
@@ -299,7 +255,9 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 
 <Image img={require('/images/aem/dialogfields/authautocomplete.png')}/>
 
-## Select Dropdown
+## Complex Data Fields
+
+### Select Dropdown
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/select/index.html)
 
@@ -336,7 +294,7 @@ Opend
 Closed
 <Image img={require('/images/aem/dialogfields/selectclosed.png')}/>
 
-## Radio Select
+### Radio Select
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/radiogroup/index.html)
 
@@ -362,7 +320,7 @@ Closed
 
 <Image img={require('/images/aem/dialogfields/radio.png')}/>
 
-## Multifield
+### Multifield
 
 A multifield wraps a predefined group of components and lets an author create `n` of these sets. The data will be saved to subnotes.
 Access that data via `@ChildResource` Annotation in your Sling Model, as described [here](../annotations/child-resource).
@@ -394,6 +352,58 @@ Access that data via `@ChildResource` Annotation in your Sling Model, as describ
 
 <Image img={require('/images/aem/dialogfields/multifield.png')}/>
 
+## Layout & Read Only
+
+### Alert
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/alert/index.html?highlight=alert)
+
+```xml
+<alert
+   granite:class="cmp-editor-alert"
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/alert"
+   size="S"
+   text="Alert text"
+   variant="warning"/>
+```
+
+<Image img={require('/images/aem/dialogfields/alert.png')}/>
+
+You could now leverage the css class `cmp-editor-alert` to set the alert box div to e.g `width: 100%`.
+
+### Text (Readonly / Label)
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/text/index.html)
+
+You can add simple, readonly text to the dialog. This lets you add "notes" or declarative text.
+
+```xml
+<text
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/text"
+   text="Some help text :)"/>
+```
+
+<Image img={require('/images/aem/dialogfields/text.png')}/>
+
+### Heading (Readonly / Label)
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/heading/index.html)
+
+```xml
+<heading
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/heading"
+    level="{Long}2"
+    text="Some Heading"/>
+```
+
+<Image img={require('/images/aem/dialogfields/heading.png')}/>
+
 <br/>
 <hr/>
-<small>Some examples from <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
+<small>
+    Some examples from <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal
+    Sikka</a>
+</small>
