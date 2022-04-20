@@ -314,8 +314,37 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 </select>
 ```
 
+Opend
 <Image img={require('/images/aem/dialogfields/selectopen.png')}/>
+
+Closed
 <Image img={require('/images/aem/dialogfields/selectclosed.png')}/>
+
+## Radio Select
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/radiogroup/index.html)
+
+```xml
+<radio
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+        name="./radioselection"
+        vertical="{Boolean}true"
+        fieldLabel="Radio Select">
+    <items jcr:primaryType="nt:unstructured">
+        <vara
+                jcr:primaryType="nt:unstructured"
+                text="Variation A"
+                value="var-a"/>
+        <varb
+                jcr:primaryType="nt:unstructured"
+                text="Variation B"
+                value="var-b"/>
+    </items>
+</radio>
+```
+
+<Image img={require('/images/aem/dialogfields/radio.png')}/>
 
 <br/>
 <small>Thanks to <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
