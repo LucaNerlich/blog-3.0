@@ -352,6 +352,64 @@ Access that data via `@ChildResource` Annotation in your Sling Model, as describ
 
 <Image img={require('/images/aem/dialogfields/multifield.png')}/>
 
+### Accordion
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/accordion/index.html)
+
+You can add a `parentConfig` block with `active` to set the accordion to be opened by default.
+Any dialog field can be added to each accordion item `items` block.
+
+```xml
+<accordion
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/accordion"
+        variant="default">
+    <items jcr:primaryType="nt:unstructured">
+        <block1
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Some Category"
+                sling:resourceType="granite/ui/components/coral/foundation/container"
+                maximized="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+                <textvalue1
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Text Value"
+                        name="./textvalue"/>
+                <textvalue2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="Text Value 2"
+                        name="./textvalue2"/>
+            </items>
+            <parentConfig
+               jcr:primaryType="nt:unstructured"
+               active="{Boolean}true"/>
+        </block1>
+        <block2
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Another Category"
+                sling:resourceType="granite/ui/components/coral/foundation/container"
+                maximized="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+                <numbervalue
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                        fieldLabel="Number Value"
+                        name="./numbervalue"/>
+                <numbervalue2
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                        fieldLabel="Number Value 2"
+                        name="./numbervalue2"/>
+            </items>
+        </block2>
+    </items>
+</accordion>
+```
+
+<Image img={require('/images/aem/dialogfields/accordion.png')}/>
+
 ## Layout & Read Only
 
 ### Alert
