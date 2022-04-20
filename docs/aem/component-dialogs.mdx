@@ -447,6 +447,28 @@ Any dialog field can be added to each accordion item `items` block.
 
 You could now leverage the css class `cmp-editor-alert` to set the alert box div to e.g `width: 100%`.
 
+### Hyperlink
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/hyperlink/index.html)
+
+```xml
+<hyperlink
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/hyperlink"
+   target="_blank"
+   rel="noopener noreferrer"
+   text="Granite Hyperlink Documentation"
+   icon="link"
+   href="https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/hyperlink/index.html"/>
+```
+
+<Image img={require('/images/aem/dialogfields/hyperlink.png')}/>
+
+Check the [Coral UI Icon List](https://developer.adobe.com/experience-manager/reference-materials/6-5/coral-ui/coralui3/Coral.Icon.html#availableIcons) for available icons.
+
+When adding these kinds of read only components, you will most likely need to add custom css via `granite:class="someclass"` to fix/update the layout.
+For example, set `display:block`, to move the next item to a new line.
+
 ### Text (Readonly / Label)
 
 [Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/text/index.html)
