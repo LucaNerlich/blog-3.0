@@ -150,5 +150,35 @@ You can add simple, readonly text to the dialog. This lets you add "notes" or de
 
 <Image img={require('/images/aem/dialogfields/textarea.png')}/>
 
+## Pathfield
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/pathfield/index.html)
+
+```xml
+<pathfield
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+   fieldLabel="Select path"
+   rootpath="/content"
+   name="./path"/>
+```
+
+<Image img={require('/images/aem/dialogfields/pathfield.png')}/>
+
+### Pathbrowser
+
+In some cases you might want to use the older `coral2` pathbrowser component <https://experienceleaguecommunities.adobe.com/t5/adobe-experience-manager/when-to-choice-pathbrowser-as-well-as-pathfield/m-p/312540/highlight/true#M32451>.
+
+```xml
+<pathbrowser
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+   fieldLabel="Select asset"
+   rootpath="/content/dam"
+   name="./assetpath"/>
+```
+
+<Image img={require('/images/aem/dialogfields/pathbrowser.png')}/>
+
 <br/>
 <small>Thanks to <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
