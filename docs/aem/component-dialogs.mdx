@@ -236,5 +236,86 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 
 <Image img={require('/images/aem/dialogfields/checkbox.png')}/>
 
+## Datepicker
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/datepicker/index.html)
+
+```xml
+<datepicker
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+   displayedFormat="MM-DD-YYYY HH:mm"
+   fieldLabel="datepicker"
+   name="./datepicker"
+   type="datetime"
+   typeHint="Date"/>
+```
+
+<Image img={require('/images/aem/dialogfields/datepicker.png')}/>
+
+## Userpicker
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/userpicker/index.html)
+
+```xml
+<userpicker
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/userpicker"
+    fieldLabel="User Picker"
+    hideServiceUsers="{Boolean}true"
+    impersonatesOnly="{Boolean}false"
+    name="./user"/>
+```
+
+<Image img={require('/images/aem/dialogfields/userpicker.png')}/>
+
+### Authorizable Autocomplete
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/authorizable/autocomplete/index.html#/libs/granite/ui/components/coral/foundation/authorizable/autocomplete)
+
+```xml
+<authautocomplete
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/authorizable/autocomplete"
+    fieldLabel="User Picker"
+    name="./user"/>
+```
+
+<Image img={require('/images/aem/dialogfields/authautocomplete.png')}/>
+
+## Select Dropdown
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/select/index.html)
+
+```xml
+<select
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+        fieldLabel="List Item"
+        name="./selectItem">
+    <items jcr:primaryType="nt:unstructured">
+        <children
+                jcr:primaryType="nt:unstructured"
+                text="Child pages"
+                value="children"/>
+        <static
+                jcr:primaryType="nt:unstructured"
+                text="Fixed list"
+                value="static"/>
+        <search
+                jcr:primaryType="nt:unstructured"
+                text="Search"
+                value="search"/>
+        <tags
+                jcr:primaryType="nt:unstructured"
+                text="Tags"
+                value="tags"/>
+    </items>
+</select>
+```
+
+<Image img={require('/images/aem/dialogfields/selectopen.png')}/>
+<Image img={require('/images/aem/dialogfields/selectclosed.png')}/>
+
 <br/>
 <small>Thanks to <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
