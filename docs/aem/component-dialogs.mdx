@@ -362,6 +362,38 @@ Closed
 
 <Image img={require('/images/aem/dialogfields/radio.png')}/>
 
+## Multifield
+
+A multifield wraps a predefined group of components and lets an author create `n` of these sets. The data will be saved to subnotes.
+Access that data via `@ChildResource` Annotation in your Sling Model, as described [here](../annotations/child-resource).
+
+```xml
+<multifield
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+    required="{Boolean}true">
+    <field
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container"
+        name="./values">
+        <items jcr:primaryType="nt:unstructured">
+            <textvalue
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="Text Value"
+                name="./textvalue"/>
+            <numbervalue
+                 jcr:primaryType="nt:unstructured"
+                 sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                 fieldLabel="Number Value"
+                 name="./numbervalue"/>
+        </items>
+    </field>
+</multifield>
+```
+
+<Image img={require('/images/aem/dialogfields/multifield.png')}/>
+
 <br/>
 <hr/>
 <small>Some examples from <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
