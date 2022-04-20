@@ -82,6 +82,11 @@ This is an empty dialog structure and components can be placed in tabs (you can 
 
 You can write a class or id to your dialog fragment by adding `granite:class="some-css-class"` or `granite:id="some-id"`.
 
+<div class="alert alert--info" role="alert">
+    Note, that the actual xml item element tag name, can be anything, as long as its unique for this component.
+    For example, the Alert field xml does not need to be named `alert`.
+</div>
+
 ## Alert
 
 ```xml
@@ -110,5 +115,18 @@ You can add simple, readonly text to the dialog. This lets you add "notes" or de
 ```
 
 <Image img={require('/images/aem/dialogfields/text.png')}/>
+
+## Textfield
+
+```xml
+<textfield
+   jcr:primaryType="nt:unstructured"
+   sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+   fieldDescription="The button label"
+   fieldLabel="Button Label"
+   name="./label"/>
+```
+
+<Image img={require('/images/aem/dialogfields/textfield.png')}/>
 
 <small>Thanks to <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
