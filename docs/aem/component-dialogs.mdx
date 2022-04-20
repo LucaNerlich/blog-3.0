@@ -4,6 +4,8 @@ import Image from '@theme/IdealImage';
 
 The following chapter each present a coral xml snippet which can be copied into any `/components/mycomponent/_cq_dialog/.content.xml` file.
 
+[Documentation Overview](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/server.html)
+
 ## Empty Dialog / Starting Point
 
 This is an empty dialog structure and components can be placed in tabs (you can add `n` tabs.)
@@ -120,6 +122,20 @@ You can add simple, readonly text to the dialog. This lets you add "notes" or de
 ```
 
 <Image img={require('/images/aem/dialogfields/text.png')}/>
+
+## Heading (Readonly / Label)
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/heading/index.html)
+
+```xml
+<heading
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/heading"
+    level="{Long}2"
+    text="Some Heading"/>
+```
+
+<Image img={require('/images/aem/dialogfields/heading.png')}/>
 
 ## Textfield
 
@@ -314,8 +330,37 @@ In some cases you might want to use the older `coral2` pathbrowser component <ht
 </select>
 ```
 
+Opend
 <Image img={require('/images/aem/dialogfields/selectopen.png')}/>
+
+Closed
 <Image img={require('/images/aem/dialogfields/selectclosed.png')}/>
+
+## Radio Select
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/form/radiogroup/index.html)
+
+```xml
+<radio
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+        name="./radioselection"
+        vertical="{Boolean}true"
+        fieldLabel="Radio Select">
+    <items jcr:primaryType="nt:unstructured">
+        <vara
+                jcr:primaryType="nt:unstructured"
+                text="Variation A"
+                value="var-a"/>
+        <varb
+                jcr:primaryType="nt:unstructured"
+                text="Variation B"
+                value="var-b"/>
+    </items>
+</radio>
+```
+
+<Image img={require('/images/aem/dialogfields/radio.png')}/>
 
 <br/>
 <small>Thanks to <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a></small>
