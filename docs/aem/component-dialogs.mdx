@@ -498,6 +498,32 @@ You can add simple, readonly text to the dialog. This lets you add "notes" or de
 
 <Image img={require('/images/aem/dialogfields/heading.png')}/>
 
+### Well
+
+[Documentation](https://developer.adobe.com/experience-manager/reference-materials/6-5/granite-ui/api/jcr_root/libs/granite/ui/components/coral/foundation/well/index.html)
+
+A `Well` groups items together visually, by adding a background color and a small margin.
+
+```xml
+<wellGroup jcr:primaryType="nt:unstructured"
+               sling:resourceType="granite/ui/components/coral/foundation/well">
+    <items jcr:primaryType="nt:unstructured">
+        <textvalue1
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldLabel="Text Value"
+                name="./textvalue"/>
+        <somenumber
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                fieldLabel="Number Value"
+                name="./numbervalue2"/>
+    </items>
+</wellGroup>
+```
+
+<Image img={require('/images/aem/dialogfields/well.png')}/>
+
 <br/>
 <hr/>
 <small>
