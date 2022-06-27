@@ -60,10 +60,15 @@ const config = {
         '@docusaurus/plugin-ideal-image',
     ],
 
+    // themeConfig.hideableSidebar has been moved to themeConfig.docs.sidebar.hideable.
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
-            hideableSidebar: true,
+            docs: {
+                sidebar: {
+                    hideable: true
+                }
+            },
             colorMode: {
                 defaultMode: 'dark',
                 disableSwitch: false,
