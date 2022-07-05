@@ -27,6 +27,11 @@
     "react-dom": "^17.0.1",
     "sharp": "^0.30.7"
   },
+  "engines": {
+    "node": "16.15.0",
+    "npm": "8.5.5",
+    "yarn": "3.2.1"
+  },
   "browserslist": {
     "production": [
       ">0.5%",
