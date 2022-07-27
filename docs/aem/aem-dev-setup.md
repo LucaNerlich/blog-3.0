@@ -168,13 +168,13 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 
 ## SonarQube Setup - Automatic Rule Evaluation
 
-1. Use official SonarQube DockerCompose YML [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
+1. Use official SonarQube DockerCompose yml [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
     - save locally
     - update Postgres version to `v14`
 2. (On Windows) Increase available ram via powershell
     - `wsl -d docker-desktop`
     - `sysctl -w vm.max_map_count=262144`
-3. Navigate to the above yml files in your local file system
+3. Navigate to the above yml file in your local file system
     - `docker-compose up` (Add `-d` to run this in the background)
 4. Navigate to `http://localhost:9000`
 5. Login with the default SonarQube Credentials `admin/admin`
@@ -182,7 +182,6 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 6. Go to `http://localhost:9000/admin/marketplace` and install the following Plugins
     - AEM Rules for SonarQube by "Wunderman Thompson Technology"
     - IBM iX AEM Sonar rules by "IBM iX"
-    - Findbugs by "SpotBugs Team"
     - restart SonarQube
 7. Go to 'Projects' -> Manually -> Analyse locally
     - Choose a token name
