@@ -171,6 +171,8 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 1. Use official SonarQube DockerCompose yml [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
     - save locally
     - update Postgres version to `v14`
+    - on M1 (Apple Silicon) Mac add the following line `platform: linux/amd64`
+      - <https://stackoverflow.com/questions/66482075/docker-apple-silicon-m1-preview-sonarqube-no-matching-manifest-for-linux-arm6>
 2. (On Windows) Increase available ram via powershell
     - `wsl -d docker-desktop`
     - `sysctl -w vm.max_map_count=262144`
