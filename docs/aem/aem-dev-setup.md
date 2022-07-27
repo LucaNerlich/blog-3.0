@@ -176,6 +176,7 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
         - <https://stackoverflow.com/questions/66482075/docker-apple-silicon-m1-preview-sonarqube-no-matching-manifest-for-linux-arm6>
       - `SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dbootstrap.system_call_filter=false"` to `environment:`
         - <https://community.sonarsource.com/t/failed-to-run-sonarqube-by-docker-compose-yml/52998>
+      - In your docker settings increase the available disc size to at least 100GB
 2. (On Windows) Increase available ram via powershell
     - `wsl -d docker-desktop`
     - `sysctl -w vm.max_map_count=262144`
