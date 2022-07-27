@@ -188,6 +188,9 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 6. Go to `http://localhost:9000/admin/marketplace` and install the following Plugins
     - AEM Rules for SonarQube by "Wunderman Thompson Technology"
     - IBM iX AEM Sonar rules by "IBM iX"
+    - Download the latest release .jar from here <https://github.com/wttech/AEM-Rules-for-SonarQube>
+    - Place the .jar in your volume target of `sonarqube/extensions/plugins`
+      - Default on Mac Docker Hub is `/opt/sonarqube/extensions/plugins`
     - restart SonarQube
 7. Go to 'Projects' -> Manually -> Analyse locally
     - Choose a token name
