@@ -180,6 +180,7 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 6. Go to `http://localhost:9000/admin/marketplace?search=aem` and install the AEM Plugins
    - AEM Rules for SonarQube by "Wunderman Thompson Technology"
    - IBM iX AEM Sonar rules by "IBM iX"
+   - Findbugs by "SpotBugs Team"
    - restart SonarQube
 7. Go to 'Projects' -> Manually -> Analyse locally
    - Choose a token name
@@ -190,6 +191,17 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
    - Navigate to your projects root pom.xml file
    - Execute the sonar command `mvn clean verify sonar:sonar -Dsonar.projectKey=<your-project-name> -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<your-token>`
    - Replace `<your-project-name>` and `<your-token>` with your own values generated in step 7.
+
+### Connect Intellij IDEA SonarLint Plugin
+
+1. Install the SonarLint Plugin from the IDEA Marketplace
+2. Go to Settings -> Tools -> SonarLint
+3. Click on the "+" icon and add your local SonarQube Instance (e.g. http://localhost:9000)
+4. Go to `http://localhost:9000/account/security`
+   - Generate a "user token"
+   - Save this securely
+5. In your IDEs Sonar Lint Settings add the token from step 4
+6. Click apply and "Update binding" afterwards
 
 Thanks for reading!
 
