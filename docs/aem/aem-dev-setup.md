@@ -178,7 +178,7 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 4. Navigate to `http://localhost:9000`
 5. Login with the default SonarQube Credentials `admin/admin`
     - Update the password when prompted by the app
-6. Go to `http://localhost:9000/admin/marketplace?search=aem` and install the AEM Plugins
+6. Go to `http://localhost:9000/admin/marketplace` and install the following Plugins
     - AEM Rules for SonarQube by "Wunderman Thompson Technology"
     - IBM iX AEM Sonar rules by "IBM iX"
     - Findbugs by "SpotBugs Team"
@@ -194,6 +194,55 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
     - Execute the sonar
       command `mvn clean verify sonar:sonar -Dsonar.projectKey=<your-project-name> -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<your-token>`
     - Replace `<your-project-name>` and `<your-token>` with your own values generated in step 7.
+
+### Add JaCoCo Unit Test Coverage
+
+1. Navigate to your projects root `/pom.xml` file
+2. Add the following line to the `<properties>` section
+    - `<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>`
+3. Add the Jacoco Plugin
+   ```xml
+   <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.8</version>
+        <executions>
+            <execution>
+            <id>prepare-and-report</id>
+            <goals>
+            <goal>prepare-agent</goal>
+            <goal>report</goal>
+            </goals>
+            </execution>
+            <execution>
+            <id>report-aggregate</id>
+            <phase>verify</phase>
+            <goals>
+            <goal>report-aggregate</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${project.basedir}/../target/site/jacoco-aggregate</outputDirectory>
+            </configuration>
+            </execution>
+        </executions>
+   </plugin>
+   ```
+4. Add the Sonar Maven Plugin
+   ```xml
+   <plugin>
+    <groupId>org.sonarsource.scanner.maven</groupId>
+    <artifactId>sonar-maven-plugin</artifactId>
+    <version>3.8.0.2131</version>
+    <executions>
+        <execution>
+            <phase>verify</phase>
+            <goals>
+                <goal>sonar</goal>
+            </goals>
+        </execution>
+    </executions>
+   </plugin>
+   ```
 
 ### Connect Intellij IDEA SonarLint Plugin
 
