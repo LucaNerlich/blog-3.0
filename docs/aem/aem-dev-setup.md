@@ -170,6 +170,7 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 
 1. [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
     - save locally
+    - update Postgres version to `v14`
 2. (On Windows) Increase available ram via powershell
     - `wsl -d docker-desktop`
     - `sysctl -w vm.max_map_count=262144`
@@ -241,6 +242,18 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
             </goals>
         </execution>
     </executions>
+   </plugin>
+   ```
+5. If a module complains during a regular build due to missing credentials, add the following snippet to its pom. file e.g. `/ui.tests/pom.xml`
+   ```xml
+   <plugin>
+       <groupId>org.sonarsource.scanner.maven</groupId>
+       <artifactId>sonar-maven-plugin</artifactId>
+       <executions>
+           <execution>
+               <phase>none</phase>
+           </execution>
+       </executions>
    </plugin>
    ```
 
