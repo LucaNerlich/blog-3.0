@@ -168,7 +168,7 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 
 ## SonarQube Setup - Automatic Rule Evaluation
 
-1. [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
+1. Use official SonarQube DockerCompose YML [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
     - save locally
     - update Postgres version to `v14`
 2. (On Windows) Increase available ram via powershell
