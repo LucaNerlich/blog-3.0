@@ -223,6 +223,11 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
             </goals>
             <configuration>
                 <outputDirectory>${project.basedir}/../target/site/jacoco-aggregate</outputDirectory>
+                <excludes>
+                    <exclude>ui.apps/**/*</exclude>
+                    <exclude>ui.tests/**/*</exclude>
+                    <exclude>it.tests/**/*</exclude>
+                </excludes>
             </configuration>
             </execution>
         </executions>
