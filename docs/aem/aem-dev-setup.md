@@ -12,11 +12,12 @@ project according to the best practices.
 2. Login with Adobe Account & Download AEM
     1. [Adobe Software Distribution](https://experience.adobe.com/#/downloads/content/software-distribution/en/aemcloud.html)
     2. e.g AEM SDK v2021.3.5087.20210322T071003Z-210325
-       1. Note, AEM Changed its Versioning for Cloud to `year + version + timestamp`.
+        1. Note, AEM Changed its Versioning for Cloud to `year + version + timestamp`.
     3. extract archive
     4. rename to `cq-author-p4502.jar`
-       1. If you want to start a local publisher, name it to `cq-publish-p4503`.
-       2. You can change the number to any valid port, if you have something already running and blocking that specific port.
+        1. If you want to start a local publisher, name it to `cq-publish-p4503`.
+        2. You can change the number to any valid port, if you have something already running and blocking that specific
+           port.
 3. Start AEM Instance
     1. `java -jar cq-author-p4502.jar`
     2. wait 1-5 minutes (Newer Versions of AEM start a lot quicker, than e.g 6.3 or 6.4)
@@ -28,7 +29,8 @@ project according to the best practices.
     2. `mvn clean install -PautoInstallPackage`
 6. Access [http://localhost:4502](http://localhost:4502) and login via admin:admin
 
-Once you have shutdown (`ctrl+c`) your initial AEM Instance, you can / should start and shutdown AEM via the provided scripts in `crx-quickstart/bin`. 
+Once you have shutdown (`ctrl+c`) your initial AEM Instance, you can / should start and shutdown AEM via the provided
+scripts in `crx-quickstart/bin`.
 
 ## Requirements
 
@@ -75,7 +77,9 @@ Additionally, `-gui` will automatically set the default admin users credentials 
 
 The Apache Maven Archetype describes Archetypes like this
 
-> [...] provide a system that provides a consistent means of generating Maven projects. Archetype will help authors create Maven project templates for users, and provides users with the means to generate parameterized versions of those project templates.
+> [...] provide a system that provides a consistent means of generating Maven projects. Archetype will help authors
+> create Maven project templates for users, and provides users with the means to generate parameterized versions of those
+> project templates.
 
 To summarize, by using an archetype, which itself has been created by the AEM Developer Team, we can set specific
 variables with which the archetypes bootstraps / creates a customized set of files and directories - ready to use.
@@ -144,17 +148,48 @@ drwxr-xr-x  11 nerlich  staff  352B ui.tests/
 Building and deploying the complete development environment can be done via the following
 command `mvn clean install -PautoInstallSinglePackage` - executed in the root directory.
 
-`ui.apps`, `ui.config` and `ui.content` can be individually build with the profile `-PautoInstallPackage`. Deploying just the
+`ui.apps`, `ui.config` and `ui.content` can be individually build with the profile `-PautoInstallPackage`. Deploying
+just the
 java module 'core' can be achieved with the profile `-PautoInstallBundle`.
 
-> I usually just run `mvn clean install -PautoInstallPackage` in my projects root. The deployment is quick enough, and I can be sure, that I did not miss anything.
+> I usually just run `mvn clean install -PautoInstallPackage` in my projects root. The deployment is quick enough, and I
+> can be sure, that I did not miss anything.
 
 ## Attaching a Java Debugger
 
-To debug java code, you will need to start your AEM Instance with a debug port. To do this, you need to modify the startup script.
-This is the `crx-quickstart/bin/start` file for MacOS/unix and `crx-quickstart/bin/start.bat` for windows. Open it in a text editor and look for CQ_JVM_OPTS or `java.awt.headless=true`.
-Append `-Djava.awt.headless=true -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=30303,suspend=n` to that list of options, save and start AEM with this modified file.
+To debug java code, you will need to start your AEM Instance with a debug port. To do this, you need to modify the
+startup script.
+This is the `crx-quickstart/bin/start` file for MacOS/unix and `crx-quickstart/bin/start.bat` for windows. Open it in a
+text editor and look for CQ_JVM_OPTS or `java.awt.headless=true`.
+Append `-Djava.awt.headless=true -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=30303,suspend=n` to that list of
+options, save and start AEM with this modified file.
 You can also increase the amount of RAM, which the AEM Process can allocate, here - if needed.
+
+## SonarQube Setup - Automatic Rule Evaluation
+
+1. [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
+    - save locally
+2. (On Windows) Increase available ram via powershell
+    - `wsl -d docker-desktop`
+    - `sysctl -w vm.max_map_count=262144`
+3. Navigate to the above yml files in your local file system
+    - `docker-compose up` (Add `-d` to run this in the background)
+4. Navigate to `http://localhost:9000`
+5. Login with the default SonarQube Credentials `admin/admin`
+    - Update the password when prompted by the app
+6. Go to `http://localhost:9000/admin/marketplace?search=aem` and install the AEM Plugins
+   - AEM Rules for SonarQube by "Wunderman Thompson Technology"
+   - IBM iX AEM Sonar rules by "IBM iX"
+   - restart SonarQube
+7. Go to 'Projects' -> Manually -> Analyse locally
+   - Choose a token name
+   - Generate a token
+   - Save this token securely
+8. Update your local maven settings according to the documentation <http://localhost:9000/documentation/analysis/scan/sonarscanner-for-maven/>
+9. Analyse your local project
+   - Navigate to your projects root pom.xml file
+   - Execute the sonar command `mvn clean verify sonar:sonar -Dsonar.projectKey=<your-project-name> -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<your-token>`
+   - Replace `<your-project-name>` and `<your-token>` with your own values generated in step 7.
 
 Thanks for reading!
 
