@@ -78,7 +78,8 @@ Additionally, `-gui` will automatically set the default admin users credentials 
 The Apache Maven Archetype describes Archetypes like this
 
 > [...] provide a system that provides a consistent means of generating Maven projects. Archetype will help authors
-> create Maven project templates for users, and provides users with the means to generate parameterized versions of those
+> create Maven project templates for users, and provides users with the means to generate parameterized versions of
+> those
 > project templates.
 
 To summarize, by using an archetype, which itself has been created by the AEM Developer Team, we can set specific
@@ -178,19 +179,21 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 5. Login with the default SonarQube Credentials `admin/admin`
     - Update the password when prompted by the app
 6. Go to `http://localhost:9000/admin/marketplace?search=aem` and install the AEM Plugins
-   - AEM Rules for SonarQube by "Wunderman Thompson Technology"
-   - IBM iX AEM Sonar rules by "IBM iX"
-   - Findbugs by "SpotBugs Team"
-   - restart SonarQube
+    - AEM Rules for SonarQube by "Wunderman Thompson Technology"
+    - IBM iX AEM Sonar rules by "IBM iX"
+    - Findbugs by "SpotBugs Team"
+    - restart SonarQube
 7. Go to 'Projects' -> Manually -> Analyse locally
-   - Choose a token name
-   - Generate a token
-   - Save this token securely
-8. Update your local maven settings according to the documentation <http://localhost:9000/documentation/analysis/scan/sonarscanner-for-maven/>
+    - Choose a token name
+    - Generate a token
+    - Save this token securely
+8. Update your local maven settings according to the
+   documentation <http://localhost:9000/documentation/analysis/scan/sonarscanner-for-maven/>
 9. Analyse your local project
-   - Navigate to your projects root pom.xml file
-   - Execute the sonar command `mvn clean verify sonar:sonar -Dsonar.projectKey=<your-project-name> -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<your-token>`
-   - Replace `<your-project-name>` and `<your-token>` with your own values generated in step 7.
+    - Navigate to your projects root pom.xml file
+    - Execute the sonar
+      command `mvn clean verify sonar:sonar -Dsonar.projectKey=<your-project-name> -Dsonar.host.url=http://localhost:9000 -Dsonar.login=<your-token>`
+    - Replace `<your-project-name>` and `<your-token>` with your own values generated in step 7.
 
 ### Connect Intellij IDEA SonarLint Plugin
 
@@ -198,8 +201,8 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 2. Go to Settings -> Tools -> SonarLint
 3. Click on the "+" icon and add your local SonarQube Instance (e.g. http://localhost:9000)
 4. Go to `http://localhost:9000/account/security`
-   - Generate a "user token"
-   - Save this securely
+    - Generate a "user token"
+    - Save this securely
 5. In your IDEs Sonar Lint Settings add the token from step 4
 6. Click apply and "Update binding" afterwards
 

@@ -54,7 +54,8 @@ An important part is the selector matching. This attributes 'maps' your validati
 The latter can be done either via a `granite:data` node, or by adding `validation=<your-custom-attribute>` directly to any dialog field. Take a look at the following examples to see it in action.
 
 <div class="alert alert--warning" role="alert">
-    ⚠️ The css 'data-foundation-validation' selector class changed between 6.5 and AEMaaCS. AEMaaCS uses only the 'data-validation' attribute ⚠️
+    ⚠️ The css 'data-foundation-validation' selector class changed between 6.5 and AEMaaCS. AEMaaCS uses only the
+    'data-validation' attribute ⚠️
 </div>
 
 The following subchapter demonstrate some examples on how the above can be used in various validation scenarios.
@@ -157,7 +158,7 @@ For readability’s sake, the snippet only includes the relevant parts - the ove
 const PATTERN_URL = "^.*\\.(svg)$"
 // [...]
 
-selector: "[data-foundation-validation=extension-svg]",
+"[data-foundation-validation=extension-svg]",
 validate: function (el) {
 	var element = $(el);
 	var value = element.val().toString();
@@ -198,7 +199,7 @@ Our selector will match all `coral-multifields`, however, our custom logic then 
 
 ```javascript
 // [...]
-selector: "coral-multifield",
+"coral-multifield",
 validate: function (el) {
 	// coral-multifield -> MultifieldCollection -> getAll -> List of coral-multifield-items
 	var totalPanels = el.items.getAll().length;

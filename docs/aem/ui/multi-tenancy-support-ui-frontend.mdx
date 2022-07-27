@@ -9,11 +9,11 @@ This tutorial expects an entry level understanding of the AEM Client Library mec
 ## TL:DR
 
 1. Configure webpack common to, for each desired 'site', copy and generate (to /dist)
-    1. site.css
-    2. site.js
-    3. all resources (images, fonts)
+ 1. site.css
+ 2. site.js
+ 3. all resources (images, fonts)
 2. Configure the aem-clientlib-generator plugin to generate a separate clientlib for each specified site and their files
-   in /dist
+in /dist
 3. Implement site specific component variants, styling etc.
 
 ## Issue
@@ -41,30 +41,30 @@ two important files are:
 ### ui.frontend Folder Structure
 
 - ui.frontend
-    - /clientlib.config.js
-    - /webpack.common.js
-    - /src/main/webpack
-        - /components
-            - /[some-component-A]
-                - /[site-X] -- the components styling for the site X
-                - /[site-Y]
-                - [...]
-            - /[some-component-B]
-                - /[site-X]
-                - /[site-Y]
-                - [...]
-            - [...]
-        - /resources
-            - /[site-X]
-            - /[site-Y]
-        - /site/layouts
-            - /[site-X]
-                - /main-site-X.scss
-                - /main-site-X.ts
-            - /[site-Y]
-                - /main-site-Y.scss
-                - /main-site-Y.ts
-            - [...]
+  - /clientlib.config.js
+  - /webpack.common.js
+  - /src/main/webpack
+  - /components
+  - /[some-component-A]
+  - /[site-X] -- the components styling for the site X
+  - /[site-Y]
+  - [...]
+  - /[some-component-B]
+  - /[site-X]
+  - /[site-Y]
+  - [...]
+  - [...]
+  - /resources
+  - /[site-X]
+  - /[site-Y]
+  - /site/layouts
+  - /[site-X]
+  - /main-site-X.scss
+  - /main-site-X.ts
+  - /[site-Y]
+  - /main-site-Y.scss
+  - /main-site-Y.ts
+  - [...]
 
 ### /src/main/webpack/site/layouts/main-site-X.scss
 
@@ -100,7 +100,7 @@ For the webpack config, we need to modify three key areas
 
 ```javascript
 // we need to define the javascript/typescripts entry file location for each clientlib and their site.
-entry: {
+{
     site - X: '/src/main/webpack/site/layouts/site-X/main-site-X.ts',
     site - Y: '/src/main/webpack/site/layouts/main-site-Y.ts',
 },
@@ -109,15 +109,15 @@ entry: {
 
 // our clientlib will be called clientlib-site-x and the entry javascript file should be called site-x.js
 // -> 'clientlib-[name]/[name].js'
-output: {
-    filename: (chunkData) => {
+{
+    (chunkData) => {
         return chunkData.chunk.name === 'dependencies' ? 'clientlib-dependencies/[name].js' : 'clientlib-[name]/[name].js';
     }, path: path.resolve(__dirname, 'dist')
 },
 
 // [...]
 
-plugins: [
+[
     // [...]
     new CopyWebpackPlugin([
         // we need to specify the path to each site
@@ -143,7 +143,9 @@ For example:
 - /dist/clientlib-site-y
 
 <div class="alert alert--info" role="alert">
-    Note, you can set 'flatten' to 'true'. This will copy all resource files into each ClientLib root resource folder. This makes it easier, to, for example, work with multi tenant favicons, which rely on the sub path being the same - over all ClientLibs generated.
+    Note, you can set 'flatten' to 'true'. This will copy all resource files into each ClientLib root resource folder.
+    This makes it easier, to, for example, work with multi tenant favicons, which rely on the sub path being the same -
+    over all ClientLibs generated.
 </div>
 
 We keep most of the archetype templates file version the same, just a couple of key changes:

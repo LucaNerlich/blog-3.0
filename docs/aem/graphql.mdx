@@ -3,73 +3,73 @@
 ## Setup
 
 1. Update Dispatcher Filters
-    - `dispatcher/src/conf.dispatcher.d/filters/filters.any`
-    ```
-    $include "./default_clientheaders.any"
-    "Origin"
-    "Access-Control-Request-Method"
-    "Access-Control-Request-Headers"
+ - `dispatcher/src/conf.dispatcher.d/filters/filters.any`
+ ```
+ $include "./default_clientheaders.any"
+ "Origin"
+ "Access-Control-Request-Method"
+ "Access-Control-Request-Headers"
     ```
 2. Update Dispatcher ClientHeaders
-    - `dispatcher/src/conf.dispatcher.d/clientheaders/clientheaders.any`
-    ```
-    # Allow GraphQL GET, POST & preflight requests
-    /0103 { /type "allow" /method '(GET|POST|OPTIONS)' /url "/content/_cq_graphql/*/endpoint.json" }
+ - `dispatcher/src/conf.dispatcher.d/clientheaders/clientheaders.any`
+ ```
+ # Allow GraphQL GET, POST & preflight requests
+ /0103 { /type "allow" /method '(GET|POST|OPTIONS)' /url "/content/_cq_graphql/*/endpoint.json" }
     ```
 3. Add CORS Config
-    - `ui.config/src/main/content/jcr_root/apps/cic/osgiconfig/config/com.adobe.granite.cors.impl.CORSPolicyImpl~cic-graphql.cfg.json`
-    ```json
-    {
-        "supportscredentials": false,
-        "supportedmethods": [
-            "GET",
-            "HEAD",
-            "POST",
-            "OPTIONS"
-        ],
-        "alloworigin": [
-            ""
-        ],
-        "maxage:Integer": 1800,
-        "alloworiginregexp": [
-            "http://localhost:.*"
-        ],
-        "allowedpaths": [
-            "/content/cq:graphql/global/endpoint.json",
-            "/content/_cq_graphql/global/endpoint.json",
-            "/graphql/execute.json/.*"
-        ],
-        "supportedheaders": [
-            "Origin",
-            "Accept",
-            "X-Requested-With",
-            "Content-Type",
-            "Access-Control-Request-Method",
-            "Access-Control-Request-Headers",
-            "Authorization"
-        ]
-    }
+ - `ui.config/src/main/content/jcr_root/apps/cic/osgiconfig/config/com.adobe.granite.cors.impl.CORSPolicyImpl~cic-graphql.cfg.json`
+ ```json
+ {
+     "supportscredentials": false,
+     "supportedmethods": [
+         "GET",
+         "HEAD",
+         "POST",
+         "OPTIONS"
+     ],
+     "alloworigin": [
+         ""
+     ],
+     "maxage:Integer": 1800,
+     "alloworiginregexp": [
+         "http://localhost:.*"
+     ],
+     "allowedpaths": [
+         "/content/cq:graphql/global/endpoint.json",
+         "/content/_cq_graphql/global/endpoint.json",
+         "/graphql/execute.json/.*"
+     ],
+     "supportedheaders": [
+         "Origin",
+         "Accept",
+         "X-Requested-With",
+         "Content-Type",
+         "Access-Control-Request-Method",
+         "Access-Control-Request-Headers",
+         "Authorization"
+     ]
+ }
     ```
 4. Add ReferrerFilter
-    - `ui.config/src/main/content/jcr_root/apps/cic/osgiconfig/config/org.apache.sling.security.impl.ReferrerFilter~graphql.cfg.json`
-    ```json
-    {
-        "allow.empty": false,
-        "allow.hosts": [],
-        "allow.hosts.regexp": [
-            "http://localhost:.*"
-        ],
-        "filter.methods": [
-            "POST",
-            "PUT",
-            "DELETE",
-            "COPY",
-            "MOVE"
-        ],
-        "exclude.agents.regexp": [
-            ""
-        ]
-    }
+ - `ui.config/src/main/content/jcr_root/apps/cic/osgiconfig/config/org.apache.sling.security.impl.ReferrerFilter~graphql.cfg.json`
+ ```json
+ {
+     "allow.empty": false,
+     "allow.hosts": [],
+     "allow.hosts.regexp": [
+         "http://localhost:.*"
+     ],
+     "filter.methods": [
+         "POST",
+         "PUT",
+         "DELETE",
+         "COPY",
+         "MOVE"
+     ],
+     "exclude.agents.regexp": [
+         ""
+     ]
+ }
     ```
 
 ## Documentation
