@@ -218,6 +218,8 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 1. Navigate to your projects root `/pom.xml` file
 2. Add the following line to the `<properties>` section
     - `<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>`
+    - `<sonar.coverage.exclusions>ui.apps/**/*,ui.tests/**/*,it.tests/**/*</sonar.coverage.exclusions>`
+      - to exclude specific paths from the (coverage) analysis
 3. Add the Jacoco Plugin
    ```xml
    <plugin>
