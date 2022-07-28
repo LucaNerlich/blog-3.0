@@ -171,11 +171,17 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 1. Use official SonarQube DockerCompose yml [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
     - save locally
     - update Postgres version to `v14`
-2. (On Windows + WSL2) Increase available ram via powershell
+    - on M1 (Apple Silicon) Mac add the following line 
+      - `platform: linux/amd64` to `sonarqube:`
+        - <https://stackoverflow.com/questions/66482075/docker-apple-silicon-m1-preview-sonarqube-no-matching-manifest-for-linux-arm6>
+      - `SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dbootstrap.system_call_filter=false"` to `environment:`
+        - <https://community.sonarsource.com/t/failed-to-run-sonarqube-by-docker-compose-yml/52998>
+      - In your docker settings increase the available disc size to at least 100GB
+2. (On Windows) Increase available ram via powershell
     - cd to `C:\Users\<username>`
     - Create a new file `.wslconfig`
     - Add the following two lines
-      - ```
+        - ```
         [wsl2]
         kernelCommandLine = "sysctl.vm.max_map_count=262144"
         ```
@@ -190,6 +196,9 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 6. Go to `http://localhost:9000/admin/marketplace` and install the following Plugins
     - AEM Rules for SonarQube by "Wunderman Thompson Technology"
     - IBM iX AEM Sonar rules by "IBM iX"
+    - Download the latest release .jar from here <https://github.com/wttech/AEM-Rules-for-SonarQube>
+    - Place the .jar in your volume target of `sonarqube/extensions/plugins`
+      - Default on Mac Docker Hub is `/opt/sonarqube/extensions/plugins`
     - restart SonarQube
 7. Go to 'Projects' -> Manually -> Analyse locally
     - Choose a token name
