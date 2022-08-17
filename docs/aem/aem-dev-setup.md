@@ -1,8 +1,11 @@
+import Image from '@theme/IdealImage';
+
 # Local Development Setup
 
-This posts describes the steps and software requirements one needs to follow, to create and setup a working, local AEM
-instance. Secondly, an example of using the "Maven Archetype" provides the necessary basics to bootstrap a new AEM
-project according to the best practices.
+This post describes the steps and software requirements one needs to follow, to create and set up a working, local AEM
+instance.
+Secondly, an example of using the "Maven Archetype" provides the necessary basics to bootstrap a new AEM
+project, according to the best practices.
 
 ## TL:DR
 
@@ -16,7 +19,7 @@ project according to the best practices.
     3. extract archive
     4. rename to `cq-author-p4502.jar`
         1. If you want to start a local publisher, name it to `cq-publish-p4503`.
-        2. You can change the number to any valid port, if you have something already running and blocking that specific
+        2. You can change the number to any valid port if you have something already running and blocking that specific
            port.
 3. Start AEM Instance
     1. `java -jar cq-author-p4502.jar`
@@ -63,15 +66,39 @@ A local development setup consists of two parts. One, the actual AEM instance (j
 
 After downloading the desired AEM Version from
 the [Adobe Software Distribution](https://experience.adobe.com/#/downloads/content/software-distribution/en/aemcloud.html)
-, extract the archive - if the cloud sdk has been downloaded. Otherwise, we can directly run the jar.
+extract the archive — if the cloud sdk has been downloaded.
+Otherwise, we can directly run the jar.
 
 By renaming the jar according to the following schema, a couple of default settings can be
-set: `cq-(author|publish)-p(port)`. For example `cq-author-p4502`. When started, this will run the AEM instance as an
+set: `cq-(author|publish)-p(port)`.
+For example `cq-author-p4502`.
+When started, this will run the AEM instance as an
 author and expose it locally via port 4502.
 
-Running the jar is as easy as executing it like this: `java -jar my-downloaded-aem.jar -gui`. The parameter `-gui` can
-be appended, to launch an additional small UI, which informs the user about the startup / installation progress.
+Running the jar is as easy as executing it like this: `java -jar my-downloaded-aem.jar -gui`.
+The parameter `-gui` can be appended, to launch an additional small UI, which informs the user about the startup /
+installation progress.
 Additionally, `-gui` will automatically set the default admin users credentials to `admin:admin`.
+
+### Configuring Debug Ports for Local Development
+
+Do be able to attach a java debugger locally, the startup scripts need to be extended by a couple of arguments.
+
+In each (author, publish) start script, find the following line
+
+`if not defined CQ_JVM_OPTS set CQ_JVM_OPTS=-Xmx4024m -XX:MaxPermSize=256M` and add the following arguments
+
+`if not defined CQ_JVM_OPTS set CQ_JVM_OPTS=-Xmx4024m -XX:MaxPermSize=256M -Djava.awt.headless=true -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=30303,suspend=n`.
+Note, that the `address=30303` needs to be different for author and publish.
+
+A debug run config in Intellij IDEA looks like this
+
+<Image img={require('/images/aem/idea-debug-config.png')}/>
+
+You can download example files here:
+
+- [Author Start.bat Windows](/assets/downloads/aem/author-start/start.bat)
+- [Publish Start.bat Windows](/assets/downloads/aem/publish-start/start.bat)
 
 ### Bootstrapping a development environment via Maven Archetype
 
@@ -168,22 +195,23 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 
 ## SonarQube Setup - Automatic Rule Evaluation
 
-1. Use official SonarQube DockerCompose yml [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
+1. Use official SonarQube DockerCompose
+   yml [DockerCompose Sonar + Postgres](https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/sq-with-postgres/docker-compose.yml)
     - save locally
     - update Postgres version to `v14`
-    - on M1 (Apple Silicon) Mac add the following line 
-      - `platform: linux/amd64` to `sonarqube:`
-        - <https://stackoverflow.com/questions/66482075/docker-apple-silicon-m1-preview-sonarqube-no-matching-manifest-for-linux-arm6>
-      - `SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dbootstrap.system_call_filter=false"` to `environment:`
-        - <https://community.sonarsource.com/t/failed-to-run-sonarqube-by-docker-compose-yml/52998>
-      - In your docker settings increase the available disc size to at least 100GB
+    - on M1 (Apple Silicon) Mac add the following line
+        - `platform: linux/amd64` to `sonarqube:`
+            - <https://stackoverflow.com/questions/66482075/docker-apple-silicon-m1-preview-sonarqube-no-matching-manifest-for-linux-arm6>
+        - `SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dbootstrap.system_call_filter=false"` to `environment:`
+            - <https://community.sonarsource.com/t/failed-to-run-sonarqube-by-docker-compose-yml/52998>
+        - In your docker settings increase the available disc size to at least 100GB
 2. (On Windows) Increase available ram via powershell
     - cd to `C:\Users\<username>`
     - Create a new file `.wslconfig`
     - Add the following two lines
         - ```
-        [wsl2]
-        kernelCommandLine = "sysctl.vm.max_map_count=262144"
+      [wsl2]
+      kernelCommandLine = "sysctl.vm.max_map_count=262144"
         ```
     - run `wsl --shutdown`
     - reboot your machine
@@ -197,9 +225,9 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
     - AEM Rules for SonarQube by "Wunderman Thompson Technology"
     - IBM iX AEM Sonar rules by "IBM iX"
     - For third-party plugins, place the .jar in your volume target of `sonarqube/extensions/plugins`
-      - Default on Mac Docker Hub is `/opt/sonarqube/extensions/plugins`
-      - On Windows, browse to `\\wsl$\docker-desktop-data\data\docker\volumes` via explorer
-        - one folder for each volume exists
+        - Default on Mac Docker Hub is `/opt/sonarqube/extensions/plugins`
+        - On Windows, browse to `\\wsl$\docker-desktop-data\data\docker\volumes` via explorer
+            - one folder for each volume exists
     - restart SonarQube
 7. Go to 'Projects' -> Manually -> Analyse locally
     - Choose a token name
@@ -219,7 +247,7 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
 2. Add the following line to the `<properties>` section
     - `<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>`
     - `<sonar.coverage.exclusions>ui.apps/**/*,ui.tests/**/*,it.tests/**/*</sonar.coverage.exclusions>`
-      - to exclude specific paths from the (coverage) analysis
+        - to exclude specific paths from the (coverage) analysis
 3. Add the Jacoco Plugin
    ```xml
    <plugin>
@@ -268,7 +296,8 @@ You can also increase the amount of RAM, which the AEM Process can allocate, her
     </executions>
    </plugin>
    ```
-5. If a module complains during a regular build due to missing credentials, add the following snippet to its pom. file e.g. `/ui.tests/pom.xml`
+5. If a module complains during a regular build due to missing credentials, add the following snippet to its pom. file
+   e.g. `/ui.tests/pom.xml`
    ```xml
    <plugin>
        <groupId>org.sonarsource.scanner.maven</groupId>
