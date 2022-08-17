@@ -42,7 +42,7 @@ extending and customizing AEM.
 
 ### AEM
 
-This setup works for all latest major AEM Versions, including AEM as a Cloud Service, which is Adobes latest AEM
+This setup works for all the latest major AEM Versions, including AEM as a Cloud Service, which is Adobes latest AEM
 offering. The Cloud SDK and 6.5 are in active development and receive new features on a regular basis. The Cloud SDK is
 being versioned via timestamps, such as `aem-sdk-2021.3.5026.20210309T210727Z-210225`, while the AEM On-Premise and
 Managed Services offerings still bear the classic `major.minor.patch` level notation.
@@ -60,7 +60,9 @@ Managed Services offerings still bear the classic `major.minor.patch` level nota
 
 ## Setup
 
-A local development setup consists of two parts. One, the actual AEM instance (java process) running and secondly
+A local development setup consists of two parts.
+One, the actual AEM instance (java process) running and,
+secondly, the repository containing all the projects custom code.
 
 ### Running AEM locally
 
@@ -105,16 +107,18 @@ You can download example files here:
 The Apache Maven Archetype describes Archetypes like this
 
 > [...] provide a system that provides a consistent means of generating Maven projects. Archetype will help authors
-> create Maven project templates for users, and provides users with the means to generate parameterized versions of
+> create Maven project templates for users, and provide users with the means to generate parameterized versions of
 > those
 > project templates.
 
 To summarize, by using an archetype, which itself has been created by the AEM Developer Team, we can set specific
-variables with which the archetypes bootstraps / creates a customized set of files and directories - ready to use.
+variables with which the archetype bootstraps itself and creates a customized set of files and directories — ready to use.
 
-The following example demonstrates a bash command using the v27 of the aem-project-archetype. By setting 'appTitle', '
-appId' and 'groupId' we tell the Archetype how it should name and structure our packages. 'frontendModule' can be one
-of ['none', 'general', 'react', 'angular']. By specifying this parameter, we can opt in to use the (new) ui.frontend
+The following example demonstrates a bash command using the v27 of the aem-project-archetype.
+By setting 'appTitle', '
+appId' and 'groupId' we tell the Archetype how it should name and structure our packages.
+'frontendModule' can be one of the following items['none', 'general', 'react', 'angular'].
+By specifying this parameter, we can opt in to use the (new) ui.frontend
 module, which itself can be preconfigured with either a "classic" html variant, or one of the modern Javascript SPA
 Frameworks - currently only React and Angular are supported.
 
