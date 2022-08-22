@@ -90,7 +90,8 @@ In each (author, publish) start script, find the following line
 
 `if not defined CQ_JVM_OPTS set CQ_JVM_OPTS=-Xmx4024m -XX:MaxPermSize=256M` and add the following arguments
 
-`if not defined CQ_JVM_OPTS set CQ_JVM_OPTS=-Xmx4024m -XX:MaxPermSize=256M -Djava.awt.headless=true -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=30303,suspend=n`.
+`if not defined CQ_JVM_OPTS set CQ_JVM_OPTS=-Xmx4024m -XX:MaxPermSize=256M -Djava.awt.headless=true -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=30303,suspend=n`
+.
 Note, that the `address=30303` needs to be different for author and publish.
 
 A debug run config in Intellij IDEA looks like this
@@ -112,7 +113,8 @@ The Apache Maven Archetype describes Archetypes like this
 > project templates.
 
 To summarize, by using an archetype, which itself has been created by the AEM Developer Team, we can set specific
-variables with which the archetype bootstraps itself and creates a customized set of files and directories — ready to use.
+variables with which the archetype bootstraps itself and creates a customized set of files and directories — ready to
+use.
 
 The following example demonstrates a bash command using the v27 of the aem-project-archetype.
 By setting 'appTitle', '
@@ -184,7 +186,8 @@ command `mvn clean install -PautoInstallSinglePackage` - executed in the root di
 just the
 java module 'core' can be achieved with the profile `-PautoInstallBundle`.
 
-> I usually just run `mvn clean install -PautoInstallPackage` in my projects' root. The deployment is quick enough, and I
+> I usually just run `mvn clean install -PautoInstallPackage` in my projects' root. The deployment is quick enough, and
+> I
 > can be sure that I did not forget anything.
 
 ## SonarQube Setup - Automatic Rule Evaluation
@@ -314,6 +317,19 @@ java module 'core' can be achieved with the profile `-PautoInstallBundle`.
     - Save this securely
 5. In your IDEs Sonar Lint Settings add the token from step 4
 6. Click apply and "Update binding" afterwards
+
+## Setup a local Dispatcher with Docker
+
+Just follow the steps described
+here: [local-development-environment-set-up/dispatcher-tools](https://experienceleague.adobe.com/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools.html).
+
+On Windows, the `docker_run.cmd` file will need to be slightly modified. Remove the following lines:
+
+- Line: 41 + 41
+- Line 179 - 181
+
+<Image img={require('/images/aem/dispatcher-windows1.png')}/>
+<Image img={require('/images/aem/dispatcher-windows2.png')}/>
 
 Thanks for reading!
 
