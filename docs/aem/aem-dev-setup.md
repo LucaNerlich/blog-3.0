@@ -318,7 +318,7 @@ java module 'core' can be achieved with the profile `-PautoInstallBundle`.
 5. In your IDEs Sonar Lint Settings add the token from step 4
 6. Click apply and "Update binding" afterwards
 
-## Setup a local Dispatcher with Docker
+## Set up a local Dispatcher with Docker
 
 Just follow the steps described
 here: [local-development-environment-set-up/dispatcher-tools](https://experienceleague.adobe.com/docs/experience-manager-learn/cloud-service/local-development-environment-set-up/dispatcher-tools.html).
