@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"
      xmlns:atom="http://www.w3.org/2005/Atom"
-     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/">
 
     <!-- https://www.gbmb.org/mb-to-bytes -->
     <!-- Tracks > Align Tracks > End-To-End -->
     <!-- Tracks > Mix -> Stereo to Mono  -->
 
     <channel>
-        <title>Stay Forever Spielt - Privater Archivfeed</title>
+        <title>Podcast — Privater Archiv-Feed</title>
         <link>https://lucanerlich.com</link>
-        <description>Stay Forever Spielt Supercuts - Privater Archivfeed</description>
+        <description>Podcast Supercuts — Privater Archiv-Feed</description>
         <lastBuildDate>Sat, 26 Jul 2020 22:00:59 +0000</lastBuildDate>
 
         <image>
             <url>https://lucanerlich.com/logo.png</url>
-            <title>Stay Forever Spielt - Privater Archivfeed</title>
+            <title>Podcast Supercuts — Privater Archiv-Feed</title>
             <link>https://lucanerlich.com</link>
         </image>
         <atom:link rel="self" type="application/rss+xml"
-                   title="Podcast Supercuts - Privater Archivfeed"
+                   title="Podcast Supercuts - Privater Archiv-Feed"
                    href="https://lucanerlich.com/sfs.xml"/>
         <language>de-DE</language>
 
@@ -38,6 +39,24 @@
         <itunes:subtitle>Podcasts Supercuts</itunes:subtitle>
         <itunes:block>yes</itunes:block>
         <itunes:explicit>yes</itunes:explicit>
+
+        <item>
+            <title>SFS - Demoniak</title>
+            <pubDate>Tue, 15 October 2022 20:00:00 +0000</pubDate>
+            <guid isPermaLink="false">g8ADDt6A4hs4zdJApT7C</guid>
+            <description><![CDATA[SFS - Demoniak]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/7WKo93pL4MZWAAJ/download"
+                       length="576716800"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>11:58:29</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Demoniak</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Demoniak]]></content:encoded>
+        </item>
 
         <item>
             <title>DttD - Phantasmagoria</title>
@@ -130,24 +149,6 @@
         </item>
 
         <item>
-            <title>Spiegel - Faking Hitler</title>
-            <pubDate>Mon, 13 December 2021 15:00:00 +0000</pubDate>
-            <guid isPermaLink="false">73cMNEYnRAMybBNt4btz</guid>
-            <description><![CDATA[Spiegel - Faking Hitler]]></description>
-
-            <enclosure url="https://share.lucanerlich.com/s/7YSD7Li6p9GcAW5/download"
-                       length="313524224"
-                       type="audio/mpeg"/>
-
-            <itunes:duration>6:30:35</itunes:duration>
-            <itunes:author>Der Spiegel</itunes:author>
-            <itunes:episodeType>full</itunes:episodeType>
-            <itunes:summary>Spiegel - Faking Hitler</itunes:summary>
-
-            <content:encoded><![CDATA[Spiegel - Faking Hitler]]></content:encoded>
-        </item>
-
-        <item>
             <title>SFS - Outer Wilds</title>
             <pubDate>Tue, 26 November 2021 15:00:00 +0000</pubDate>
             <guid isPermaLink="false">9bGaysC793AaE3Nx9J38</guid>
@@ -158,7 +159,7 @@
                        type="audio/mpeg"/>
 
             <itunes:duration>10:03:25</itunes:duration>
-            <itunes:author>The Pod</itunes:author>
+            <itunes:author>Stay Forever</itunes:author>
             <itunes:episodeType>full</itunes:episodeType>
             <itunes:summary>SFS - Outer Wilds</itunes:summary>
 
