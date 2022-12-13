@@ -1,0 +1,65 @@
+# Render Conditions
+
+## JSP
+
+Path: `/apps/myproject/renderconditions/myrendercondition/myrendercondition.jsp`
+
+```jsp
+<%@include file="/libs/granite/ui/global.jsp" %>
+<%@page session="false"
+        import="org.apache.sling.api.resource.ResourceResolver,
+                com.adobe.granite.ui.components.rendercondition.RenderCondition,
+                com.something.myproject.core.servlets.MyRenderConditionServlet"
+%>
+<%
+    final ResourceResolver resolver = slingRequest.getResourceResolver();
+    request.setAttribute(RenderCondition.class.getName(), new MyRenderConditionServlet(resolver));
+%>
+```
+
+## Java
+
+Path: `core/src/main/java/com/something/myproject/core/servlets/MyRenderConditionServlet.java`
+
+```java
+package com.something.myproject.core.servlets;
+
+import com.adobe.granite.ui.components.rendercondition.RenderCondition;
+import org.apache.jackrabbit.api.security.user.Group;
+import org.apache.jackrabbit.api.security.user.User;
+import org.apache.jackrabbit.api.security.user.UserManager;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.Iterator;
+
+public class MyRenderConditionServlet implements RenderCondition {
+    private static final Logger LOG = LoggerFactory.getLogger(MyRenderConditionServlet.class);
+    private final ResourceResolver resolver;
+
+    public MyRenderConditionServlet(ResourceResolver resolver) {
+        this.resolver = resolver;
+    }
+
+    @Override
+    public boolean check() throws ServletException, IOException {
+        // do any checks here and return true, if render condition should match
+        return true;
+    }
+}
+```
+
+## Usage
+
+Any item that can handle a granite:rendercondition
+
+```xml
+<granite:rendercondition
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="myproject/renderconditions/myrendercondition"/>
+```
