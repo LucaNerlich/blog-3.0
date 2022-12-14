@@ -342,10 +342,14 @@ Closed
 A multifield wraps a predefined group of components and lets an author create `n` of these sets. The data will be saved to subnotes.
 Access that data via `@ChildResource` Annotation in your Sling Model, as described [here](../annotations/child-resource).
 
+Add `composite="{Boolean}true"` to save the entries as a child node which in return can easily be injected into a Sling Model via `@ChildResource`.
+Otherwise all values entered will be stored on the node itself as Array Properties.
+
 ```xml
-<multifield
+<myMultifield
     jcr:primaryType="nt:unstructured"
     sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+composite="{Boolean}true"
     required="{Boolean}true">
     <field
         jcr:primaryType="nt:unstructured"
@@ -364,7 +368,7 @@ Access that data via `@ChildResource` Annotation in your Sling Model, as describ
                  name="./numbervalue"/>
         </items>
     </field>
-</multifield>
+</myMultifield>
 ```
 
 <Image img={require('/images/aem/dialogfields/multifield.png')}/>
