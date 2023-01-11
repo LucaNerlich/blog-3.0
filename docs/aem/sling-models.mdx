@@ -1,10 +1,33 @@
 # Sling Models and Services
 
+## Check for author / publish mode
+
+```java
+public static boolean isAuthorMode(SlingHttpServletRequest request) {
+    boolean result;
+    final WCMMode wcmMode = WCMMode.fromRequest(request);
+
+    switch (wcmMode) {
+        case EDIT:
+        case DESIGN:
+        case PREVIEW:
+            result = true;
+            break;
+        default:
+            result = false;
+    }
+
+    return result;
+}
+```
+
+Possible values are DISABLED, EDIT, PREVIEW, ANALYTICS,READ_ONLY and DESIGN.
+
 ## Content as a Service - CaaS
 
 'Sling Module Exporter'
 
-Enables users to query pages with xx.model.json and retrieve a json document with the pages structure and content.
+It enables users to query pages with xx.model.json and retrieve a json document with the pages structure and content.
 
 `https://sling.apache.org/documentation/bundles/models.html#exporter-framework-since-130`
 
