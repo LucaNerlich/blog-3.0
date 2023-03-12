@@ -29,8 +29,7 @@
   },
   "engines": {
     "node": ">=16.15.0",
-    "npm": "8.5.5",
-    "yarn": "1.22.17"
+    "npm": "8.5.5"
   },
   "browserslist": {
     "production": [
