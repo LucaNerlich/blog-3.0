@@ -91,10 +91,10 @@ const config = {
                 },
                 items: [
                     {
-                        type: 'doc',
-                        docId: 'intro',
-                        position: 'left',
-                        label: 'Documentation',
+                        to: 'blog',
+                        label: 'Blog',
+                        className: "font-green",
+                        position: 'left'
                     },
                     {
                         to: '/docs/category/projects',

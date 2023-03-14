@@ -35,6 +35,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
     color: #ff0000;
 }
 
+.font-green {
+    color: #19c256;
+}
+
 .font-red > div > a {
     color: #ff0000;
 }
