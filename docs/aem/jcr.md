@@ -1,9 +1,12 @@
-# JCR - Session
+# Modify and Query the JCR
 
 ## JCR Queries
 
 I highly recommend downloading and "studying" the [JCR Query Cheatsheet](https://experienceleague.adobe.com/docs/experience-manager-65/assets/JCR_query_cheatsheet-v1.1.pdf) [^1].
 
+### QueryBuilder
+
+### SQL2
 
 ## Session API / JCR API
 

@@ -33,18 +33,7 @@ const config = {
                     showLastUpdateTime: true,
                     remarkPlugins: [require('mdx-mermaid')],
                 },
-                blog: {
-                    showReadingTime: true,
-                    editUrl:
-                        'https://github.com/LucaNerlich/blog-3.0/tree/main/docs',
-                    postsPerPage: 5,
-                    feedOptions: {
-                        type: 'all',
-                        copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
-                    },
-                    blogSidebarCount: 'ALL',
-                    blogSidebarTitle: 'All our posts',
-                },
+                blog: false,
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
