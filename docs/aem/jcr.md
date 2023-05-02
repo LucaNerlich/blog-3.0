@@ -2,15 +2,69 @@
 
 ## JCR Queries
 
-I highly recommend downloading and "studying" the [JCR Query Cheatsheet](https://experienceleague.adobe.com/docs/experience-manager-65/assets/JCR_query_cheatsheet-v1.1.pdf) [^1].
+I highly recommend downloading and "studying"
+the [JCR Query Cheatsheet](https://experienceleague.adobe.com/docs/experience-manager-65/assets/JCR_query_cheatsheet-v1.1.pdf) [^1].
 
 ### QueryBuilder
 
+The QueryBuilder API executes a query which can be customized via
+a [predicates](https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/developing/full-stack/search/query-builder-predicates.html?lang=en)
+hashmap.
+The below configuration creates a query that searches for nodes below a given path,
+that have two predefined property key/value pairs.
+
+Using the QueryBuilder is strongly advised when you need to sanitze input.
+For example in a servlet, where the user can customize the query via request parameter.
+
+```java
+final HashMap<String, String> properties = new HashMap<>();
+// predicates
+properties.put("path", "/content/mysite");
+properties.put("group.1_property", "some-property-name1");
+properties.put("group.1_property.value", "some-property-value1);
+properties.put("group.2_property", "some-property-name2");
+properties.put("group.2_property.value", "some-property-value2);
+
+// config
+properties.put("p.offset", "0");
+properties.put("p.limit", "-1");
+```
+
+The above configuration can be passed to the QueryBuilder.
+
+```java
+@Reference
+private QueryBuilder builder;
+
+private List<Hit> executeQuery(SlingHttpServletRequest request, HashMap<String, String> properties) {
+    final Session session = request.getResourceResolver().adaptTo(Session.class);
+    final com.day.cq.search.Query query = builder.createQuery(PredicateGroup.create(properties), session);
+    final SearchResult result = query.getResult();
+    return result.getHits();
+}
+```
+
 ### SQL2
+
+When the query does not need to be sanitized,
+`resourceResolver.findResources()` can be used
+to query content in a simpler way which is more similar to a classic SQL query.
+
+The below query searches for nodes below a given path.
+These nodes need to have the resourceType of the TestModel and the nodes paths needs to include the given locale.
+
+```java
+final String myQuery = "SELECT * FROM [nt:base] AS s " +
+                "WHERE ISDESCENDANTNODE([/content/experience-fragments]) " +
+                "AND [sling:resourceType] = '" + TestModel.RESOURCE_TYPE + "'  " +
+                "AND [jcr:path] LIKE '%" + locale.toLowerCase() + "%'";
+final Iterator<Resource> questionResources = request.getResourceResolver().findResources(myQuery, Query.JCR_SQL2);
+```
 
 ## Session API / JCR API
 
-To use the JCR API, add the jackrabbit-standalone-2.4.0.jar file to your Java application’s class path. You can obtain this JAR file from the Java JCR API web page at [jackrabbit.apache.org](https://jackrabbit.apache.org/jcr/jcr-api.html).
+To use the JCR API, add the jackrabbit-standalone-2.4.0.jar file to your Java application’s class path. You can obtain
+this JAR file from the Java JCR API web page at [jackrabbit.apache.org](https://jackrabbit.apache.org/jcr/jcr-api.html).
 
 ```java
 import javax.jcr.Repository;
