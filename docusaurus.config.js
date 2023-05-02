@@ -91,12 +91,6 @@ const config = {
                 },
                 items: [
                     {
-                        to: 'blog',
-                        label: 'Blog',
-                        className: "font-green",
-                        position: 'left'
-                    },
-                    {
                         to: '/docs/category/projects',
                         label: 'Projects',
                         position: 'left'
