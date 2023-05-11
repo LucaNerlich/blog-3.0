@@ -2,10 +2,6 @@ import Image from '@theme/IdealImage';
 
 # Overlays
 
-<div class="alert alert--warning" role="alert">
-    Work in progress ⚠️
-</div>
-
 To, for example, change the main authorui navigation, in crx/de right click and 'overlay node': /libs/cq/core/content/nav.
 
 [Documentation](https://docs.adobe.com/content/help/en/experience-manager-64/developing/platform/overlays.html)
@@ -33,6 +29,32 @@ Place the overlay here: `ui.apps/src/main/content/jcr_root/apps/cq/core/content/
         sling:hideResource="{Boolean}true"/>
 </jcr:root>
 ```
+
+## Add a button to the main navigation / Dashboard
+
+Create a new node / overlay here `ui.apps/src/main/content/jcr_root/apps/cq/core/content/nav/.content.xml`.
+This adds a new 'HelpDesk' button to the main navigation.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <helpdesk
+        jcr:primaryType="nt:unstructured"
+        jcr:title="HelpDesk"
+        href="https://adobe.com"
+        icon="callCenter"
+        order="{Long}1600"
+        target="_blank"/>
+</jcr:root>
+
+```
+
+<Image img={require('/images/aem/ui/helpdesk.png')}/>
+
+Fiddle around with the 'order' value to place the new button at the desired location.
+You can find the other buttons here `/libs/cq/core/content/nav`.
+
 
 ## Select Audiofiles in the Assets Sidepanel
 
