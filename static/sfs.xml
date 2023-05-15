@@ -30,7 +30,7 @@
         <itunes:category text="Games &amp; Hobbies">
             <itunes:category text="Video Games"></itunes:category>
         </itunes:category>
-    
+
         <itunes:owner>
             <itunes:name>Luca Nerlich</itunes:name>
             <itunes:email>spam@lucanerlich.de</itunes:email>
@@ -39,40 +39,58 @@
         <itunes:subtitle>Podcasts Supercuts</itunes:subtitle>
         <itunes:block>yes</itunes:block>
         <itunes:explicit>yes</itunes:explicit>
-    
+
+        <item>
+            <title>SF - 1893 A Worlds Fair Mystery</title>
+            <pubDate>Mon, 15 May 2023 12:00:00 +0000</pubDate>
+            <guid isPermaLink="false">RiBPhAxNEMNfx4joqz6P</guid>
+            <description><![CDATA[SF - 1893 A Worlds Fair Mystery]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/wyS6La9WZMfBXff/download"
+                       length="562036736"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>11:28:02</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SF - 1893 A Worlds Fair Mystery</itunes:summary>
+
+            <content:encoded><![CDATA[SF - 1893 A Worlds Fair Mystery]]></content:encoded>
+        </item>
+
         <item>
             <title>TP - Bloodborne</title>
             <pubDate>Sun, 12 March 2023 17:00:00 +0000</pubDate>
             <guid isPermaLink="false">7TqbDBfpoFSkH4MCgg4f</guid>
             <description><![CDATA[TP - Bloodborne]]></description>
-        
+
             <enclosure url="https://share.lucanerlich.com/s/3Hi4Qod3eFHQsSm/download"
                        length="807403520 "
                        type="audio/mpeg"/>
-        
+
             <itunes:duration>18:08:20</itunes:duration>
             <itunes:author>The Pod</itunes:author>
             <itunes:episodeType>full</itunes:episodeType>
             <itunes:summary>TP - Bloodborne</itunes:summary>
-        
+
             <content:encoded><![CDATA[TP - Bloodborne]]></content:encoded>
         </item>
-    
+
         <item>
             <title>SFS - Reiter der schwarzen Sonne</title>
             <pubDate>Mon, 1 January 2023 10:00:00 +0000</pubDate>
             <guid isPermaLink="false">JstM54M46PBYJDpEKoix</guid>
             <description><![CDATA[SFS - Reiter der schwarzen Sonne]]></description>
-        
+
             <enclosure url="https://share.lucanerlich.com/s/ccZLrFDQKHRM6gN/download"
                        length="490733568"
                        type="audio/mpeg"/>
-        
+
             <itunes:duration>10:27:16</itunes:duration>
             <itunes:author>Stay Forever</itunes:author>
             <itunes:episodeType>full</itunes:episodeType>
             <itunes:summary>SFS - Reiter der schwarzen Sonne</itunes:summary>
-        
+
             <content:encoded><![CDATA[SFS - Reiter der schwarzen Sonne]]></content:encoded>
         </item>
 
