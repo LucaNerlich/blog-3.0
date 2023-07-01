@@ -76,6 +76,85 @@ Path: `jcr_root/apps/wknd/components/title`
     componentGroup="Adobe"/>
 ```
 
+## Access AEM Template Policies
+
+The following code examples demonstrate, how one can access editable template policies from a sling model.
+A template policy allows the author to configure settings at runtime via the AEM UI ("Edit template").
+These can be created as dialog nodes in a _cq_design_dialog file.
+
+An accessible policy property is the same as any other regular dialog property.
+
+```xml title="ui.apps/src/main/content/jcr_root/apps/xxx/yyy/_cq_design_dialog/.content.xml"
+<someSelectProperty
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+        fieldLabel="Some Value Dropdown"
+        required="{Boolean}true"
+        name="./someSelectProperty">
+    <items jcr:primaryType="nt:unstructured">
+        <small
+                jcr:primaryType="nt:unstructured"
+                text="Small"
+                selected="{Boolean}true"
+                value="{Long}1"/>
+        <medium
+                jcr:primaryType="nt:unstructured"
+                text="Medium"
+                value="{Long}2"/>
+        <large
+                jcr:primaryType="nt:unstructured"
+                text="Large"
+                value="{Long}3"/>
+    </items>
+</someSelectProperty>
+```
+
+We implement two helper methods which we use to easily access a given resources available template policy.
+
+```java title="core/src/main/java/xxx/yyy/utilities/Utils.java"
+/**
+ * Retrieves the {@link ContentPolicy} associated with the given {@link Resource}.
+ *
+ * @param resource the {@link Resource} from which the associated ContentPolicy is to be retrieved
+ * @return the associated ContentPolicy, or null if the ContentPolicyManager is not available or there is no associated ContentPolicy
+ */
+public static ContentPolicy getContentPolicy(Resource resource) {
+    ContentPolicy result = null;
+    final ContentPolicyManager contentPolicyManager = resource.getResourceResolver().adaptTo(ContentPolicyManager.class);
+    if (contentPolicyManager != null) {
+        result = contentPolicyManager.getPolicy(resource);
+    }
+    return result;
+}
+
+/**
+ * Fetches a specific policy property from the given {@link ContentPolicy} object and returns its value of the provided {@link Class} type.
+ * If the content policy is null or the property doesn't exist, returns null.
+ *
+ * @param contentPolicy the {@link ContentPolicy} from which to retrieve the property
+ * @param property      the property name to be fetched
+ * @param classType     the {@link Class} type of the property value
+ * @return the value of the property of the given {@link Class} type, or null if the content policy is null or the property doesn't exist
+ */
+public static <T> T getPolicyProperty(ContentPolicy contentPolicy, String property, Class<T> classType) {
+    T result = null;
+    if (contentPolicy != null) {
+        result = contentPolicy.getProperties().get(property, classType);
+    }
+    return result;
+}
+```
+
+We can then reuse these methods in our Sling Model
+
+```java title="core/src/main/java/xxx/yyy/models/impl/SomeSlingModel.java"
+final ContentPolicy contentPolicy = Utils.getContentPolicy(resource);
+// reusing the 'name' from our design_dialog property
+final String policySomeSelect = Utils.getPolicyProperty(contentPolicy, "someSelectProperty", String.class);
+```
+
+You can now access the currently selected policy value in your created variable.
+
 ## UserManager
 
 ## TagManager
