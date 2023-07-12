@@ -32,7 +32,7 @@ export default function Home() {
         <Layout
             title={`Hello from ${siteConfig.title}`}
             description="Description will go into a meta tag in <head />">
-            <a rel="me" href="https://mastodon.social/@luca00">Mastodon</a>
+            <a style={{display: 'none'}} rel="me" href="https://mastodon.social/@luca00">Mastodon</a>
             <HomepageHeader/>
             <main>
                 <HomepageFeatures/>
