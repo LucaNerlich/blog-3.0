@@ -41,10 +41,28 @@
         <itunes:explicit>yes</itunes:explicit>
 
         <item>
-            <title>SF - 1893 A Worlds Fair Mystery</title>
+            <title>SFS - Fatal Heritage</title>
+            <pubDate>Fri, 28 August 2023 10:00:00 +0000</pubDate>
+            <guid isPermaLink="false">aa5n9JPBQkxk9TEmL4Ae</guid>
+            <description><![CDATA[SFS - Fatal Heritage]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/F5fs2cKDDXbAnAd/download"
+                       length="230686720"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>04:49:40</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Fatal Heritage</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Fatal Heritage]]></content:encoded>
+        </item>
+
+        <item>
+            <title>SFS - 1893 A Worlds Fair Mystery</title>
             <pubDate>Mon, 15 May 2023 12:00:00 +0000</pubDate>
             <guid isPermaLink="false">RiBPhAxNEMNfx4joqz6P</guid>
-            <description><![CDATA[SF - 1893 A Worlds Fair Mystery]]></description>
+            <description><![CDATA[SFS - 1893 A Worlds Fair Mystery]]></description>
 
             <enclosure url="https://share.lucanerlich.com/s/wyS6La9WZMfBXff/download"
                        length="562036736"
@@ -53,7 +71,7 @@
             <itunes:duration>11:28:02</itunes:duration>
             <itunes:author>Stay Forever</itunes:author>
             <itunes:episodeType>full</itunes:episodeType>
-            <itunes:summary>SF - 1893 A Worlds Fair Mystery</itunes:summary>
+            <itunes:summary>SFS - 1893 A Worlds Fair Mystery</itunes:summary>
 
             <content:encoded><![CDATA[SF - 1893 A Worlds Fair Mystery]]></content:encoded>
         </item>
