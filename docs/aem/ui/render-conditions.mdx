@@ -17,7 +17,7 @@ Path: `/apps/myproject/renderconditions/myrendercondition/myrendercondition.jsp`
 %>
 ```
 
-## Java
+## Java - implements RenderCondition
 
 Path: `core/src/main/java/com/something/myproject/core/servlets/MyRenderConditionServlet.java`
 
@@ -54,12 +54,70 @@ public class MyRenderConditionServlet implements RenderCondition {
 }
 ```
 
-## Usage
+### Usage
 
-Any item that can handle a granite:rendercondition
+Inside  any item that can handle a `granite:rendercondition`.
 
 ```xml
 <granite:rendercondition
     jcr:primaryType="nt:unstructured"
     sling:resourceType="myproject/renderconditions/myrendercondition"/>
+```
+
+## Java - as SafeMethodServlet
+
+```java
+package com.something.myproject.core.servlets;
+
+import com.adobe.granite.ui.components.Config;
+import com.adobe.granite.ui.components.rendercondition.RenderCondition;
+import com.adobe.granite.ui.components.rendercondition.SimpleRenderCondition;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
+import org.osgi.service.component.annotations.Component;
+
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+
+// https://github.com/adobe/aem-core-wcm-components/blob/main/bundles/core/src/main/java/com/adobe/cq/wcm/core/components/internal/servlets/contentfragment/ElementNamesRenderCondition.java
+@Component(
+        service = {Servlet.class},
+        property = {
+                "sling.servlet.resourceTypes=" + PathRenderCondition.RESOURCE_TYPE,
+                "sling.servlet.methods=GET"
+        }
+)
+public class SomeRenderCondition extends SlingSafeMethodsServlet {
+
+    // does not exist as a file -> only referenced by rendercondition block in xml
+    static final String RESOURCE_TYPE = "com.something.myproject.core.servlets/somerendercondition";
+
+    @Override
+    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
+            throws ServletException {
+        boolean shouldShow = false;
+
+        final Resource resource = request.getResource();
+        final Config config = new Config(resource);
+        final Long depth = config.get("someValue", Long.class);
+
+        // use configured values with any other value here to determine, if the component should render
+        shouldShow = someValue == 4;
+
+        request.setAttribute(RenderCondition.class.getName(), new SimpleRenderCondition(shouldShow));
+    }
+}
+```
+
+### Usage
+
+Inside any item that can handle a `granite:rendercondition`.
+
+```xml
+<granite:rendercondition
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="com.something.myproject.core.servlets/pathrendercondition"
+    someValue="{Long}7"/>
 ```
