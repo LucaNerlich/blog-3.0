@@ -41,6 +41,24 @@
         <itunes:explicit>yes</itunes:explicit>
 
         <item>
+            <title>DTTD - Max Payne 1</title>
+            <pubDate>Mon, 23 October 2023 10:00:00 +0000</pubDate>
+            <guid isPermaLink="false">8qcK8j5tyLRqmGChPrtB</guid>
+            <description><![CDATA[DTTD - Max Payne 1]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/J8WefHZM8jGTxJf/download"
+                       length="425721856"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>09:27:17</itunes:duration>
+            <itunes:author>Down to the Detail</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>DTTD - Max Payne 1</itunes:summary>
+
+            <content:encoded><![CDATA[DTTD - Max Payne 1]]></content:encoded>
+        </item>
+
+        <item>
             <title>SFS - Fatal Heritage</title>
             <pubDate>Fri, 28 August 2023 10:00:00 +0000</pubDate>
             <guid isPermaLink="false">aa5n9JPBQkxk9TEmL4Ae</guid>
