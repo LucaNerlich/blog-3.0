@@ -33,7 +33,6 @@ sidebar_position: 1
 
 ## General Technology Posts
 
-- [JetBrains Compose](projects/jetbrains-compose.mdx)
 - [Rust Lang](./tech/rust-lang.mdx)
 
 ## Archive
