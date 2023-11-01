@@ -45,7 +45,44 @@ const config = {
     ],
 
     plugins: [
-        '@docusaurus/plugin-ideal-image',
+        'docusaurus-plugin-sass',
+        ['@docusaurus/plugin-ideal-image',
+            {
+                quality: 80,
+                max: 1080, // max resized image's size.
+                min: 540, // min resized image's size. if original is lower, use that size.
+                steps: 4, // the max number of images generated between min and max (inclusive)
+                disableInDev: false,
+            },
+        ],
+        [
+            '@docusaurus/plugin-pwa',
+            {
+                debug: true,
+                offlineModeActivationStrategies: [
+                    'appInstalled',
+                    'standalone',
+                    'queryString',
+                ],
+                pwaHead: [
+                    {
+                        tagName: 'link',
+                        rel: 'icon',
+                        href: '/img/M10Z_Orange.png',
+                    },
+                    {
+                        tagName: 'link',
+                        rel: 'manifest',
+                        href: '/manifest.json',
+                    },
+                    {
+                        tagName: 'meta',
+                        name: 'theme-color',
+                        content: '#FA0C00',
+                    },
+                ],
+            },
+        ],
     ],
 
     // themeConfig.hideableSidebar has been moved to themeConfig.docs.sidebar.hideable.
