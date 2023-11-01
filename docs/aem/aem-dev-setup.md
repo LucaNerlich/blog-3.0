@@ -198,9 +198,9 @@ java module 'core' can be achieved with the profile `-PautoInstallBundle`.
     - update Postgres version to `v14`
     - on M1 (Apple Silicon) Mac add the following line
         - `platform: linux/amd64` to `sonarqube:`
-            - <https://stackoverflow.com/questions/66482075/docker-apple-silicon-m1-preview-sonarqube-no-matching-manifest-for-linux-arm6>
+            - https://stackoverflow.com/questions/66482075/docker-apple-silicon-m1-preview-sonarqube-no-matching-manifest-for-linux-arm6
         - `SONAR_SEARCH_JAVAADDITIONALOPTS: "-Dbootstrap.system_call_filter=false"` to `environment:`
-            - <https://community.sonarsource.com/t/failed-to-run-sonarqube-by-docker-compose-yml/52998>
+            - https://community.sonarsource.com/t/failed-to-run-sonarqube-by-docker-compose-yml/52998
         - In your docker settings increase the available disc size to at least 100GB
 2. (On Windows) Increase available ram via powershell
     - cd to `C:\Users\<username>`
@@ -212,7 +212,7 @@ java module 'core' can be achieved with the profile `-PautoInstallBundle`.
         ```
     - run `wsl --shutdown`
     - reboot your machine
-    - <https://stackoverflow.com/a/69294687/4034811>
+    - https://stackoverflow.com/a/69294687/4034811
 3. Navigate to the above yml file in your local file system
     - `docker-compose up` (Add `-d` to run this in the background)
 4. Navigate to `http://localhost:9000`
@@ -231,7 +231,7 @@ java module 'core' can be achieved with the profile `-PautoInstallBundle`.
     - Generate a token
     - Save this token securely
 8. Update your local maven settings according to the
-   documentation <http://localhost:9000/documentation/analysis/scan/sonarscanner-for-maven/>
+   documentation http://localhost:9000/documentation/analysis/scan/sonarscanner-for-maven
 9. Analyse your local project
     - Navigate to your projects root pom.xml file
     - Execute the sonar

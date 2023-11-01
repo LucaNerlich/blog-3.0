@@ -170,4 +170,4 @@ result.nodes.each { node ->
 
 ## References
 
-[^1]  <https://experienceleague.adobe.com/docs/experience-manager-65/deploying/practices/best-practices-for-queries-and-indexing.html?lang=en#jcrquerycheatsheet>
+[^1]  https://experienceleague.adobe.com/docs/experience-manager-65/deploying/practices/best-practices-for-queries-and-indexing.html?lang=en#jcrquerycheatsheet>
