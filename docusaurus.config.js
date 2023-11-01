@@ -117,7 +117,7 @@ const config = {
                 items: [
                     {
                         to: '/docs/category/projects',
-                        label: 'Projects',
+                        label: 'Sunday-Projects',
                         position: 'left'
                     },
                     {
