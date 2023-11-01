@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/vsLight');
-const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
+// const lightCodeTheme = require('prism-react-renderer/themes/vsLight');
+// const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
 // Docusauraus.io config
 // https://github.com/facebook/docusaurus/blob/main/website/docusaurus.config.js
@@ -20,7 +20,6 @@ const config = {
     organizationName: 'LucaNerlich',
     projectName: 'blog-3.0',
     trailingSlash: true,
-
     presets: [
         [
             'classic',
@@ -140,11 +139,11 @@ const config = {
                         ],
                     },
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} Luca Nerlich - Built with Docusaurus v2.`,
+                copyright: `Copyright © ${new Date().getFullYear()} Luca Nerlich - Built with Docusaurus v3.`,
             },
             prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme,
+                // theme: lightCodeTheme,
+                // darkTheme: darkCodeTheme,
                 additionalLanguages: ['groovy', 'java', 'rust'],
             },
         }),
