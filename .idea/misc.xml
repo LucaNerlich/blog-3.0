@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AemServers">
+    <servers>
+      <aemServer>
+        <host>localhost</host>
+        <name>Author</name>
+        <port>4502</port>
+      </aemServer>
+      <aemServer>
+        <host>localhost</host>
+        <name>Publish</name>
+        <port>4503</port>
+      </aemServer>
+    </servers>
+  </component>
+</project>
