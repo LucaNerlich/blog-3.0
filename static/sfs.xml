@@ -41,6 +41,24 @@
         <itunes:explicit>yes</itunes:explicit>
 
         <item>
+            <title>SFS - Neuromancer</title>
+            <pubDate>Mon, 27 November 2023 10:00:00 +0000</pubDate>
+            <guid isPermaLink="false">Rg7GoDjmbxbsgzp76F5K</guid>
+            <description><![CDATA[SFS - Neuromancer]]></description>
+
+            <enclosure url="https://share.lucanerlich.com/s/r6qAgsgCrdxk7co/download"
+                       length="483393536"
+                       type="audio/mpeg"/>
+
+            <itunes:duration>09:51:42</itunes:duration>
+            <itunes:author>Stay Forever</itunes:author>
+            <itunes:episodeType>full</itunes:episodeType>
+            <itunes:summary>SFS - Neuromancer</itunes:summary>
+
+            <content:encoded><![CDATA[SFS - Neuromancer]]></content:encoded>
+        </item>
+
+        <item>
             <title>SFS - Universum der Unendlichkeit</title>
             <pubDate>Fri, 24 November 2023 10:00:00 +0000</pubDate>
             <guid isPermaLink="false">HXrgHm8JhT347G8NSc9s</guid>
