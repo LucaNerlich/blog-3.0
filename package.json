@@ -16,15 +16,15 @@
     },
     "dependencies": {
         "@docusaurus/core": "^3.0.0",
-        "@docusaurus/plugin-ideal-image": "^3.0.0",
-        "@docusaurus/plugin-pwa": "^3.0.0",
-        "@docusaurus/preset-classic": "^3.0.0",
-        "docusaurus-plugin-sass": "^0.2.5",
+        "@docusaurus/plugin-ideal-image": "^3.0.1",
+        "@docusaurus/plugin-pwa": "^3.0.1",
+        "@docusaurus/preset-classic": "^3.0.1",
         "@mdx-js/react": "^3.0.0",
         "clsx": "^2.0.0",
+        "docusaurus-plugin-sass": "^0.2.5",
         "mdx-mermaid": "^2.0.0",
-        "mermaid": "^10.6.0",
-        "prism-react-renderer": "^2.1.0",
+        "mermaid": "^10.6.1",
+        "prism-react-renderer": "^2.3.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "sharp": "^0.32.6"
@@ -33,7 +33,7 @@
         "@docusaurus/module-type-aliases": "^3.0.0",
         "@docusaurus/tsconfig": "3.0.0",
         "@docusaurus/types": "3.0.0",
-        "@types/react": "^18.2.29",
+        "@types/react": "^18.2.45",
         "typescript": "~5.2.2"
     },
     "engines": {
