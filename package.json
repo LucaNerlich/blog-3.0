@@ -7,7 +7,7 @@
         "start": "docusaurus start",
         "dev": "npm run generate && docusaurus start",
         "build": "npm run generate && docusaurus build",
-        "generate": "npm run generateAuthors",
+        "generate": "npm run generateAudioFeed",
         "swizzle": "docusaurus swizzle",
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",
