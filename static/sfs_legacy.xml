@@ -35,7 +35,7 @@
             <itunes:name>Luca Nerlich</itunes:name>
             <itunes:email>spam@lucanerlich.de</itunes:email>
         </itunes:owner>
-        <itunes:image href="https://lucanerlich.com/images/logo.png"/>
+        <itunes:image href="https://lucanerlich.com/images/avatar-ln.png"/>
         <itunes:subtitle>Podcasts Supercuts</itunes:subtitle>
         <itunes:block>yes</itunes:block>
         <itunes:explicit>yes</itunes:explicit>

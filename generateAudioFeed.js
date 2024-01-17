@@ -55,7 +55,7 @@ async function yamlObjectToXml(yamlObject) {
         },
         'itunes:image': {
             $: {
-                href: yamlObject.image ?? 'https://lucanerlich.com/logo.png',
+                href: yamlObject.image ?? 'https://lucanerlich.com/images/avatar-ln.png',
             },
         },
         'description': yamlObject.description,
