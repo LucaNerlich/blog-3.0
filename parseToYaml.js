@@ -28,6 +28,10 @@ fs.readFile(basepath + '.xml', 'utf8', function (err, data) {
                         break;
                     case 'guid':
                     case 'author':
+                    case 'itunes:author':
+                    case 'itunes:episodeType':
+                    case 'itunes:summary':
+                    case 'content:encoded':
                         // ignore
                         break;
                     case 'itunes:duration':
