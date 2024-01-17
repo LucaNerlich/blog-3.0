@@ -12,7 +12,7 @@
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",
         "serve": "docusaurus serve",
-        "generateAuthors": "node ./generateAuthorsJson.js",
+        "generateAudioFeed": "node ./generateAudioFeed.js",
         "write-translations": "docusaurus write-translations",
         "write-heading-ids": "docusaurus write-heading-ids"
     },
