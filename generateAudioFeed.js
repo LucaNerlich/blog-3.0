@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const https = require('https');
 const {URL} = require('url');
 
-const basepath = './static/audiofeed';
+const basepath = './static/sfs';
 
 function convertToPubDateFormat(dateString) {
     const date = new Date(dateString);
@@ -18,7 +18,7 @@ function convertToPubDateFormat(dateString) {
         minute: 'numeric',
         timeZone: 'UTC'
     };
-    return date.toLocaleDateString('en-GB', options) + ' +0000';
+    return date.toLocaleDateString('en-GB', options) + ' +GMT';
 }
 
 function toHash(string) {
@@ -55,13 +55,13 @@ async function yamlObjectToXml(yamlObject) {
         },
         'itunes:image': {
             $: {
-                href: yamlObject.image,
+                href: yamlObject.image ?? 'https://lucanerlich.com/logo.png',
             },
         },
         'description': yamlObject.description,
-        'author': 'm10z@posteo.de',
+        'author': 'spam@spam.de',
         'itunes:duration': yamlObject.seconds,
-        'link': 'https://m10z.de',
+        'link': 'https://lucanerlich.com',
         'enclosure': {
             $: {
                 url: yamlObject.url,
