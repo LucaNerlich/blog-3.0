@@ -16,9 +16,9 @@ function convertToPubDateFormat(dateString) {
         day: 'numeric',
         hour: 'numeric',
         minute: 'numeric',
-        timeZone: 'UTC'
+        timeZone: 'Europe/Berlin'
     };
-    return date.toLocaleDateString('en-GB', options) + ' +GMT';
+    return date.toLocaleDateString('en-GB', options) + ' +MEZ';
 }
 
 function toHash(string) {
@@ -81,6 +81,7 @@ async function insertItemsToXMLFile(xmlFilePath, yamlObjects) {
             return;
         }
 
+        result.rss.channel[0]['pubDate'] = convertToPubDateFormat(new Date().toDateString())
         result.rss.channel[0].item = await Promise.all(yamlObjects.map(yamlObjectToXml));
 
         const builder = new xml2js.Builder({
