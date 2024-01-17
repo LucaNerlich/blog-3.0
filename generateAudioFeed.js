@@ -60,6 +60,7 @@ async function yamlObjectToXml(yamlObject) {
         },
         'description': yamlObject.description,
         'author': 'spam@spam.de',
+        'itunes:explicit': 'false',
         'itunes:duration': yamlObject.seconds,
         'link': 'https://lucanerlich.com',
         'enclosure': {
