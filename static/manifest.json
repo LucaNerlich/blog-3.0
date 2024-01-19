@@ -7,18 +7,18 @@
     "description": "LucaNerlich Tech Blog",
     "icons": [
         {
-            "src": "/images/avatar-ln.png",
+            "src": "/images/avatar-ai.jpg",
             "sizes": "144x144",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "/images/avatar-ln.png",
+            "src": "/images/avatar-ai.jpg",
             "sizes": "144x144",
             "type": "image/png"
         },
         {
-            "src": "/images/avatar-ln.png",
+            "src": "/images/avatar-ai.jpg",
             "sizes": "512x512",
             "type": "image/png"
         }
