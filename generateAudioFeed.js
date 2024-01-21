@@ -27,6 +27,32 @@ function toHash(string) {
     return hash.digest('hex');
 }
 
+/**
+ * Returns a sum of seconds for the given input time string.
+ * Valid input values:
+ * - 10:00:00 -> hours:minutes:seconds
+ * - 10:00 -> minutes:seconds
+ * - 13000 -> just seconds
+ *
+ * @param {string} time The input time string in one of the valid formats.
+ * @return {number} The total number of seconds.
+ */
+function getSeconds(time) {
+    const timeParts = time.toString().split(':');
+    let seconds = 0;
+    if (timeParts.length === 3) {
+        seconds += parseInt(timeParts[0]) * 3600; // hours to seconds
+        seconds += parseInt(timeParts[1]) * 60; // minutes to seconds
+        seconds += parseInt(timeParts[2]); // seconds
+    } else if (timeParts.length === 2) {
+        seconds += parseInt(timeParts[0]) * 60; // minutes to seconds
+        seconds += parseInt(timeParts[1]); // seconds
+    } else {
+        seconds += parseInt(timeParts[0]); // seconds
+    }
+    return seconds;
+}
+
 async function yamlObjectToXml(yamlObject) {
     const url = new URL(yamlObject.url);
     const options = {
@@ -61,7 +87,7 @@ async function yamlObjectToXml(yamlObject) {
         'description': yamlObject.description,
         'author': 'spam@spam.de',
         'itunes:explicit': 'false',
-        'itunes:duration': yamlObject.seconds,
+        'itunes:duration': getSeconds(yamlObject.seconds),
         'link': 'https://lucanerlich.com',
         'enclosure': {
             $: {
