@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<age-declaration>
+    <ageblock-basic>
+        <age-issuer>m10z.de</age-issuer>
+        <last-change>2024-01-22</last-change>
+        <country>de</country>
+        <label-version>1.0</label-version>
+        <revisit-after>1days</revisit-after>
+        <custom info="generator">www.fsk.de/labelgenerator</custom>
+    </ageblock-basic>
+    <ageblock-labeltype>
+        <xmlfile>true</xmlfile>
+        <httpheader>false</httpheader>
+        <htmlmeta>false</htmlmeta>
+        <label-z>false</label-z>
+        <default-age>16</default-age>
+        <alternate>https://wasted.de</alternate>
+    </ageblock-labeltype>
+    <ageblock-labeltype-definition>
+        <labeltype-xmlfile>
+            <label class="default">
+                <min-age>16</min-age>
+                <default-age>16</default-age>
+            </label>
+            <label class="bewertungseinheit1">
+                <age>16</age>
+                <min-age>16</min-age>
+                <default-age>16</default-age>
+                <scope>m10z.de</scope>
+            </label>
+        </labeltype-xmlfile>
+    </ageblock-labeltype-definition>
+</age-declaration>
