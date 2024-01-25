@@ -84,7 +84,7 @@ async function yamlObjectToXml(yamlObject) {
                 href: yamlObject.image ?? 'https://lucanerlich.com/images/avatar-ai.jpg',
             },
         },
-        'description': yamlObject.description,
+        'description': yamlObject.title,
         'author': 'spam@spam.de',
         'itunes:explicit': 'false',
         'itunes:duration': getSeconds(yamlObject.seconds),
