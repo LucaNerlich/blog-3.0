@@ -31,10 +31,6 @@ sidebar_position: 1
 - [@ChildResource](./aem/annotations/child-resource.mdx)
 - [@ExternalizedValueMapValue](./aem/annotations/externalized-value-map-value.mdx)
 
-## General Technology Posts
-
-- [Rust Lang](./tech/rust-lang.mdx)
-
 ## Archive
 
 Contains old blog posts and link archives.
