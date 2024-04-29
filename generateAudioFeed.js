@@ -7,18 +7,10 @@ const {URL} = require('url');
 
 const basepath = './static/sfs';
 
+// Convert dateString to IETF RFC 2822
 function convertToPubDateFormat(dateString) {
     const date = new Date(dateString);
-    const options = {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        timeZone: 'Europe/Berlin'
-    };
-    return date.toLocaleDateString('en-GB', options) + ' +MEZ';
+    return date.toUTCString();
 }
 
 function toHash(string) {
