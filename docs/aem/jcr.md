@@ -168,6 +168,11 @@ result.nodes.each { node ->
 
 [Further Groovy Examples on Github](https://github.com/hashimkhan786/aem-groovy-scripts)
 
+## Delete Inbox Notifications
+
+To delete AEM Inbox Notifications, just delete `/var/taskmanagement/tasks`.
+Locally via CRX/DE and on deployed environments via "empty" Content-Package.
+
 ## References
 
 [^1]  https://experienceleague.adobe.com/docs/experience-manager-65/deploying/practices/best-practices-for-queries-and-indexing.html?lang=en#jcrquerycheatsheet>
