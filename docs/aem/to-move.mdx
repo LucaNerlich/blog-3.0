@@ -24,33 +24,8 @@ https://git.corp.adobe.com/unilever-replatform/PyAEM
 
 https://pypi.org/project/pyaem3/
 
-## AEM Component Help Pages
-
-https://medium.com/@surajkamdi/adding-documentation-for-aem-components-ab0bced28c26
-
-1.  First of all, Open the [CRXDE](https://experienceleague.adobe.com/docs/experience-manager-65/developing/devtools/developing-with-crxde-lite.html?lang=en) console [http://localhost:4502/crx/de/index.jsp](http://localhost:4502/crx/de/index.jsp)
-2.  Go to the component path. example - `_/apps/<project-name>/components/general_`
-3.  Now create a new markdown file inside the component with the name **README.md.**
-4.  Now add the following sample markdown text into **README.md** file.
-5. Now, go to [http://localhost:4502/libs/wcm/core/content/sites/components.html](http://localhost:4502/libs/wcm/core/content/sites/components.html) and select **Title Component** from the list with a valid **component group**.
-6. Now copy the URL from the address bar. In my case, URL will be **_/mnt/overlay/wcm/core/content/sites/components/details.html/apps/Suraj/title_**
-7. Go to the **_component_** inside **CRXDE Lite** > **_cq:dialog_** and set the **_helpPath_** property and set the value from the above-copied path.
-8. Now allow and add the component to the page, Open the Dialog and Click on the **Help (?)** icon.
-
-### Steps to set Documentation as Default Active Tab
-
-In order to show up **_documentation_** as the **_default active tab_** when the author clicks on the **Help (?)** icon, We need to overlay the AEM’s certain functionality. Just follow certain steps.
-
-1.  Go to CRXDE Lite Console [http://localhost:4502/crx/de/index.jsp](http://localhost:4502/crx/de/index.jsp)
-2.  Go to **_/libs/wcm/core/content/sites/components/details/jcr:content/content/single/content/items/content/items/tabs/items/documentation_**
-3.  Right-Click on the **_documentation_** node and Select the **_Overlay Node_** option.
-Set the following properties on the Overlay Node dialog and Click on OK.
-**Path:** /libs/wcm/core/content/sites/components/details/jcr:content/content/single/content/items/content/items/tabs/items/documentation
-**Overlay Location:** /apps/
-**Match Node Types:** Checked
 
 ## Querying the JCR
-
 
 ## Service User / System User
 
