@@ -597,13 +597,14 @@ A `Well` groups items together visually, by adding a background color and a smal
 <br/>
 <hr/>
 <small>
-    Some examples from <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal
-    Sikka</a>
+    Some examples from <a href="https://techrevel.blog/2017/05/26/coral-3-granite-ui-components">Aanchal Sikka</a>
 </small>
 
 ## Full XML Example
 
 The following `.content.xml` file is a complete `cq:dialog` file for a component dialog that displays all, commonly used, Granite ui fields.
+
+<Image img={require('/images/aem/dialogfields/demo-aem-component.png')}/>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -612,7 +613,7 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
           xmlns:cq="http://www.day.com/jcr/cq/1.0"
           jcr:primaryType="nt:unstructured"
           jcr:title="Dialog Demo"
-          helpPath="/mnt/overlay/wcm/core/content/sites/components/details.html/apps/luca/components/demo/v1/demo"
+          helpPath="/mnt/overlay/wcm/core/content/sites/components/details.html/apps/c4c/components/demo/v1/demo"
           sling:resourceType="cq/gui/components/authoring/dialog">
     <content
         jcr:primaryType="nt:unstructured"
@@ -679,22 +680,26 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                 fieldLabel="Textfield"
+                                                fieldDescription="This is a Textfield."
                                                 name="./textfield"/>
                                             <password
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/password"
                                                 fieldLabel="Password"
+                                                fieldDescription="This is a Password."
                                                 name="./password"/>
                                             <textarea
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
                                                 fieldLabel="Textarea"
                                                 emptyText="Some placeholder text"
+                                                fieldDescription="This is a Textarea."
                                                 name="./textarea"/>
                                             <numberfield
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                                                 fieldLabel="Numberfield"
+                                                fieldDescription="This is a Numberfield."
                                                 name="./numberfield"
                                                 min="{Long}1"
                                                 max="{Long}10"
@@ -703,6 +708,7 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                 fieldLabel="Pathfield"
+                                                fieldDescription="This is a Pathfield."
                                                 rootpath="/content"
                                                 name="./pathfield"/>
                                             <datepicker
@@ -710,6 +716,7 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
                                                 displayedFormat="MM-DD-YYYY HH:mm"
                                                 fieldLabel="Datepicker"
+                                                fieldDescription="This is a Datepicker."
                                                 name="./datepicker"
                                                 type="datetime"
                                                 typeHint="Date"/>
@@ -717,11 +724,13 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
                                                 fieldLabel="Colorpicker"
+                                                fieldDescription="This is a Colorpicker."
                                                 name="./colorpicker"/>
                                             <userpicker
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/userpicker"
                                                 fieldLabel="Userpicker"
+                                                fieldDescription="This is a Userpicker."
                                                 hideServiceUsers="{Boolean}true"
                                                 impersonatesOnly="{Boolean}false"
                                                 name="./userpicker"/>
@@ -916,6 +925,7 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                                 fieldLabel="Select Dropdown"
+                                                fieldDescription="This is a Select Dropdown."
                                                 name="./select">
                                                 <items jcr:primaryType="nt:unstructured">
                                                     <item1
@@ -937,7 +947,8 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
                                                 name="./radioselection"
                                                 vertical="{Boolean}true"
-                                                fieldLabel="Radio Select">
+                                                fieldLabel="Radio Select"
+                                                fieldDescription="This is a Radio Select.">
                                                 <items jcr:primaryType="nt:unstructured">
                                                     <vara
                                                         jcr:primaryType="nt:unstructured"
@@ -953,6 +964,7 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
                                                 fieldLabel="Multifield"
+                                                fieldDescription="This is a Multifield."
                                                 composite="{Boolean}true">
                                                 <field
                                                     jcr:primaryType="nt:unstructured"
@@ -963,11 +975,13 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                             fieldLabel="Text Value"
+                                                            fieldDescription="This is a Textfield."
                                                             name="./textvalue"/>
                                                         <numbervalue
                                                             jcr:primaryType="nt:unstructured"
                                                             sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                                                             fieldLabel="Number Value"
+                                                            fieldDescription="This is a Numberfield."
                                                             name="./numbervalue"/>
                                                     </items>
                                                 </field>
@@ -1003,11 +1017,13 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                         fieldLabel="Text Value"
+                                                        fieldDescription="This is a Textfield."
                                                         name="./textvalueWell"/>
                                                     <somenumber
                                                         jcr:primaryType="nt:unstructured"
                                                         sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                                                         fieldLabel="Number Value"
+                                                        fieldDescription="This is a Numberfield."
                                                         name="./numbervalue2Well"/>
                                                 </items>
                                             </wellGroup>
@@ -1030,11 +1046,13 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                 fieldLabel="Text Value"
+                                                                fieldDescription="This is a Textfield."
                                                                 name="./textvalueAccodion"/>
                                                             <textvalue2
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                                 fieldLabel="Text Value 2"
+                                                                fieldDescription="This is a Textfield."
                                                                 name="./textvalue2Accordion"/>
                                                         </items>
                                                         <parentConfig
@@ -1051,11 +1069,13 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                                                                 fieldLabel="Number Value"
+                                                                fieldDescription="This is a Numberfield."
                                                                 name="./numbervalue"/>
                                                             <numbervalue2
                                                                 jcr:primaryType="nt:unstructured"
                                                                 sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
                                                                 fieldLabel="Number Value 2"
+                                                                fieldDescription="This is a Numberfield."
                                                                 name="./numbervalue2"/>
                                                         </items>
                                                     </block2>
@@ -1072,5 +1092,4 @@ The following `.content.xml` file is a complete `cq:dialog` file for a component
         </items>
     </content>
 </jcr:root>
-
 ```
