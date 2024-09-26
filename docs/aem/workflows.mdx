@@ -77,6 +77,26 @@ catch (Exception e) {
 }
 ```
 
+## Deactivate the Newsletter Bounce Workflow Launcher
+
+Create a new 'overlay' file in `/conf/global/settings/workflow/launcher/config/newsletter_bounce_check/.content.xml` and set `enabled="{Boolean}false"`. Ensure, that this path is covered via your META-INF `filter.xml`.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          jcr:primaryType="cq:WorkflowLauncher"
+          comment="Deprecated - please use Adobe Campaign instead, as of AEM 6.1 (CQ-29408)"
+          condition=""
+          description=""
+          enabled="{Boolean}false"
+          eventType="{Long}1"
+          excludeList=""
+          glob="/var/mailimport"
+          nodetype="nt:unstructured"
+          runModes="author"
+          workflow="/var/workflow/models/newsletter_bounce_check"/>
+```
+
 ### Links
 
 [Administering Workflows](https://docs.adobe.com/content/help/en/experience-manager-64/administering/operations/workflows.html)
