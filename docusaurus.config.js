@@ -44,6 +44,11 @@ const config = {
         ],
     ],
 
+    // adding umami
+    clientModules: [
+        require.resolve('./umami.js'),
+    ],
+
     plugins: [
         'docusaurus-plugin-sass',
         ['@docusaurus/plugin-ideal-image',
