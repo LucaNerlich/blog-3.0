@@ -31,6 +31,8 @@ const config = {
                     showLastUpdateAuthor: false,
                     showLastUpdateTime: true,
                     remarkPlugins: [require('mdx-mermaid')],
+                    // https://stackoverflow.com/questions/61999271/how-to-set-docs-as-the-main-page
+                    routeBasePath: '/',
                 },
                 blog: false,
                 theme: {
@@ -128,12 +130,7 @@ const config = {
                 },
                 items: [
                     {
-                        to: '/docs/category/projects',
-                        label: 'Sunday-Projects',
-                        position: 'left'
-                    },
-                    {
-                        to: '/docs/category/aem',
+                        to: '/category/aem',
                         label: 'AEM',
                         className: "font-red",
                         position: 'left'
