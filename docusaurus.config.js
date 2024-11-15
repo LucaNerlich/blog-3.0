@@ -46,7 +46,9 @@ const config = {
 
     // https://docusaurus.io/blog/releases/3.6
     future: {
-        experimental_faster: true,
+        // breaks in docker build
+        // × Module not found: Can't resolve '/app/node_modules/@docusaurus/core/lib/client/clientEntry.js' in '/app'
+        experimental_faster: false,
     },
 
     // adding umami
