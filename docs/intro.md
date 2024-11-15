@@ -39,7 +39,7 @@ developer, consultant or just tech-interested in general, there's something for 
 ------------------------
 
 My left sidebar is your best friend on this site. Use it to quickly find related articles or categories. Can't find what
-you need? Use the side-wide search or just hit me up at [luca.nerlich@gmail.com]!
+you need? Use the side-wide search or just hit me up at [luca.nerlich@gmail.com](mailto:luca.nerlich@gmail.com)!
 
 **Stay in Touch**
 --------------
