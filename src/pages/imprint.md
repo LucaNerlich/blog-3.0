@@ -6,9 +6,7 @@ Diese Webseite wird vertreten durch die Person
 
 ```text
 Luca Nerlich
-Wandsbeker Chaussee 114
-22089 Hamburg
-Germany
+luca.nerlich at gmail.com
 ```
 
 

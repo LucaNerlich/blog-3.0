@@ -27,7 +27,7 @@ const config = {
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    editUrl: 'https://github.com/LucaNerlich/blog-3.0/tree/main',
+                    editUrl: 'https://github.com/LucaNerlich/lucanerlich.com/tree/main',
                     showLastUpdateAuthor: false,
                     showLastUpdateTime: true,
                     remarkPlugins: [require('mdx-mermaid')],
@@ -136,7 +136,7 @@ const config = {
                         position: 'left'
                     },
                     {
-                        href: 'https://github.com/LucaNerlich/blog-3.0',
+                        href: 'https://github.com/LucaNerlich/lucanerlich.com',
                         label: 'GitHub',
                         position: 'right',
                     },
@@ -146,12 +146,8 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Docs',
+                        title: 'Legal',
                         items: [
-                            {
-                                label: 'Documentation',
-                                to: '/docs/intro',
-                            },
                             {
                                 label: 'Imprint',
                                 to: '/imprint',
@@ -176,7 +172,7 @@ const config = {
                         items: [
                             {
                                 label: 'GitHub',
-                                href: 'https://github.com/LucaNerlich/blog-3.0',
+                                href: 'https://github.com/LucaNerlich/lucanerlich.com',
                             },
                             {
                                 label: 'Gitlab',
