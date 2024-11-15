@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@docusaurus/core": "^3.6.1",
+        "@docusaurus/faster": "^3.6.1",
         "@docusaurus/plugin-ideal-image": "^3.6.1",
         "@docusaurus/plugin-pwa": "^3.6.1",
         "@docusaurus/preset-classic": "^3.6.1",

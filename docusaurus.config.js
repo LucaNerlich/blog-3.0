@@ -44,6 +44,11 @@ const config = {
         ],
     ],
 
+    // https://docusaurus.io/blog/releases/3.6
+    future: {
+        experimental_faster: true,
+    },
+
     // adding umami
     clientModules: [
         require.resolve('./umami.js'),
