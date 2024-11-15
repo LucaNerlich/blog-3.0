@@ -1,0 +1,41 @@
+# (DE) Download der kompletten GOG Bibliothek
+
+Wer Spiele bei [Good Old Games](https://gog.com) kauft, hat immer Zugriff auf die Offline-Installer aller Spiele in der Account-Bibliothek. GOG bietet zwar den Steam-Konkurrenten 'Galaxy' an, dieser ist aber nicht als Archiv / Backup-Tool gedacht, sondern *nur* für den *day-to-day* Kram (downloaden, spielen, shoppen).
+
+Möchte man nun seine komplette Bibliothek herunterladen, bzw. die Offline-Installer sichern, gibt es derzeit zwei Möglichkeiten.
+
+1. Der **lgogdownloader** von Sude-
+ - https://github.com/Sude-/lgogdownloader
+ - https://www.gog.com/forum/general/lgogdownloader_gogdownloader_for_linux
+2. Das **gogrepoc** Python Script von Kalanyr
+ - https://github.com/Kalanyr/gogrepoc
+ - https://www.gog.com/forum/general/gogrepopy_python_script_for_regularly_backing_up_your_purchased_gog_collection_for_full_offline_e/page199
+
+Der **lgogdownloader** muss unter Linux selbst kompiliert werden, das Python-Skript läuft quasi standalone.
+Dieser Beitrag ist daher eine kurze Anleitung, wie man das Python-Skript **gogrepoc** unter Windows 11 zum Laufen bekommt.
+
+1. Python3 installieren - am einfachsten ueber den [Windows Store](https://www.microsoft.com/store/productId/9NCVDN91XZQP?ocid=pdpshare)
+2. Das gogrepoc script herunterladen
+ - https://github.com/Kalanyr/gogrepoc
+ - Entweder per git, oder einfach [als zip](https://github.com/Kalanyr/gogrepoc/archive/refs/heads/master.zip)
+3. Auf der Ziel-Festplatte einen neuen Ordner 'gog-backups', oder aehnlicher Name, erstellen und das Skript hier, entpackt, ablegen
+4. Sicherstellen, dass Python3 auf der Kommandozeile verfuebgar ist
+ - Im Terminal / CMD / Powershell `python3 -v` eingeben
+ - Die etwaige Python REPL per `exit()` verlassen
+5. Im Ordner des `gogrepoc.py` Skripts folgende Abhaengigkeiten installieren
+ 1. `pip3 install html5lib`
+ 2. `pip3 install pyOpenSSL`
+6. Sollten weitere Fehler folgender Art auftreten, den `pip3 install <library>` Befehl anpassen und mit der fehlenden Abhaengigkeit erneut ausfuehren
+ - `ModuleNotFoundError: No module named 'html5lib'`
+7. Das Skript ausfuehren und einloggen
+ - `python3 gogrepoc.py login`
+8. Die GOG Bibliothek scannen und initial alle Metadaten herunterladen
+ - `python3 gogrepoc.py update`
+9. Kompletten Download starten
+ - `python3 gogrepoc.py download -lang en de`
+ - Das Skript kopiert erst ganz zum Schluss alle heruntergeladenen Dateien in die dedizierten Spieleordner
+
+
+Danke fürs Lesen.
+
+Meldet euch bei Fragen gerne auf [unserem Discord](https://discord.gg/bYPsrFxxtu).
